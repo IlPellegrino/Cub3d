@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/11 11:47:40 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/11 18:52:54 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBED_H
 # define CUBED_H
 
+# include "colors.h"
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
@@ -21,19 +22,39 @@
 # include <unistd.h>
 # include <stdio.h>
 
-#define HEIGHT 480
+#define HEIGHT 293
 #define WIDTH 640
-#define MAPW 24
-#define MAPH 24
 
-typedef struct s_game
+typedef	struct	s_image
+{
+	char	*name;
+	int		size;
+	//add if needed
+}				t_image;
+
+typedef	struct s_game
+{
+	char	**map;
+	int		is_wall;
+	
+}				t_game;
+
+
+typedef struct s_raycast
 {
 	double	posX;
 	double	posY;
 	double	dirX;
 	double	dirY;
-	
-}			t_game;
+	double	fov;
+	double	ray_x;
+	double	ray_y;
+}			t_raycast;
+
+typedef struct	s_cubed
+{
+	t_game	*s_raycast;
+}				t_cubed;
 
 
 
