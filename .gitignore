@@ -1,4 +1,3 @@
 ./mlx
 *.o
-*.obj
 *a.out
