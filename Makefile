@@ -16,12 +16,14 @@ CLONE_MLX = @if [ -d "mlx/" ]; then \
 
 PARSING_SRC = parsing.c
 RAYCASTER_SRC = raycaster.c
+UTILS_SRC = events.c init.c utils.c
 
 RAYCATSER = $(addprefix raycaster/, $(RAYCASTER_SRC))
 PARSING = $(addprefix parsing/, $(PARSING_SRC))
+UTILS = $(addprefix utils/, $(UTILS_SRC))
 MAIN = main.c
 
-SRC = $(addprefix src/, $(RAYCASTER) $(MAIN) $(PARSING))
+SRC = $(addprefix src/, $(RAYCASTER) $(MAIN) $(PARSING) $(UTILS))
 
 OBJS = $(SRC:.c=.o)
 
@@ -83,6 +85,18 @@ destroy: fclean
 
 help:
 	@echo "This is the help menu: still in progress..."
+
+ciuschi:	
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	echo "(.)(.) CIUSCHI lavora o ti meno di BOTTE, mi devi una 4090RTX se non finiamo entro fine LUGLIO! (_!_)"
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+dog:
+	@echo "\n  / \__\n\
+ (    @\___\n\
+ /         O\n\
+/   (_____/\n\
+/_____/  U\n\
+"
 
 .DEFAULT:
 	@echo " \t =========\n\

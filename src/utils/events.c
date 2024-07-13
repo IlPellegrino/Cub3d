@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/12 12:20:54 by nromito          ###   ########.fr       */
+/*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
+/*   Updated: 2024/07/12 16:37:04 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	check_map(char *map)
+int	key_events(t_cubed *cubed)
 {
-	int	fd_map;
-
-	fd_map = open(map, O_RDONLY | 0677);
-	
-	return (0);
+	(void)cubed->game->map;
+	return (1);
 }

@@ -3,39 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/12 03:26:22 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/12 16:29:30 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubed.h"
 
-int ft_error(char *error)
-{
-	ft_putendl_fd(error, 2);
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
-	t_game	game;
-
-	(void)argc;
-	(void)argv;
-	(void)game;
+	t_cubed		cubed;
 	
 	//parsing(game, argc, argv);
-	/*if (argv[1] && argc == 2)
+	if (argv[1] && argc == 2)
 	{
 		if (check_map(argv[1]))
-			return (ft_error("Invalid map\n", 2));
-		init_vars(&game);
-		screen_setting(&game, argv[1]);
+			return (ft_error("Invalid map\n", &cubed));
+		screen_setting(&cubed);
 	}
 	else
-		ft_error("Wrong number of arguments\n", 2);*/
+		ft_error("Wrong number of arguments\n", &cubed);
 	printf("This is Cub3D!\n");
 	return (0);
 }

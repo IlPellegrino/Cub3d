@@ -3,59 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/11 18:52:54 by ciusca           ###   ########.fr       */
+/*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
+/*   Updated: 2024/07/12 16:39:01 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBED_H
 # define CUBED_H
 
-# include "colors.h"
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-# include "../mlx/mlx_int.h"
+# include <X11/X.h>
+# include "structs.h"
+# include "colors.h"
 # include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/time.h>
+# include <string.h>
 
-#define HEIGHT 293
-#define WIDTH 640
+# define WIDTH 620
+# define HEIGHT 480
 
-typedef	struct	s_image
-{
-	char	*name;
-	int		size;
-	//add if needed
-}				t_image;
+// utils //
+int		ft_close(t_cubed *cubed);
+int 	ft_error(char *error, t_cubed *cubed);
 
-typedef	struct s_game
-{
-	char	**map;
-	int		is_wall;
-	
-}				t_game;
+// events //
+int		key_events(t_cubed *cubed);
 
+/* init */
+int		screen_setting(t_cubed *cubed);
 
-typedef struct s_raycast
-{
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	fov;
-	double	ray_x;
-	double	ray_y;
-}			t_raycast;
+/* parsing */
+int		check_map(char *map);
 
-typedef struct	s_cubed
-{
-	t_game	*s_raycast;
-}				t_cubed;
+/* raycaster */
 
-
+/* utils */
+//tutti qua coglione
 
 #endif
