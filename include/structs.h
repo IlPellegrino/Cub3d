@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/12 16:21:47 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/14 23:58:59 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef	struct	s_image
+typedef	struct	s_img
 {
 	char	*name;
-	int		size;
-	//add if needed
-}				t_image;
+	char	*pixel_ptr; //pointer to the pixels 
+	void	*img; // a pointer to the image
+	int		bits_per_pixel; 
+	int		endian;
+	int		line_len; //
+}				t_img;
 
 typedef	struct s_game
 {
@@ -40,13 +43,11 @@ typedef struct s_raycast
 
 typedef struct	s_cubed
 {
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
+	int			x_player; // x plyaer postion
+	int			y_player; // y player position
 	void		*mlx;
 	void		*window;
-	void		*img;
-	char		*addr;
+	t_img		*img;
 	t_raycast	*raycast;
 	t_game		*game;
 }				t_cubed;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/12 12:24:51 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/15 00:28:03 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int ft_error(char *error, t_cubed *cubed)
 {
 	ft_putendl_fd(error, 2);
-	ft_close(cubed);
+	ft_close(cubed, 1);
 	return (0);
 }
 
-int	ft_close(t_cubed *cubed)
+int	ft_close(t_cubed *cubed, int err_status)
 {
 	if (cubed->img)
-		mlx_destroy_image(cubed->mlx, cubed->img);
+		mlx_destroy_image(cubed->mlx, cubed->img->img);
 	if (cubed->window)
 		mlx_destroy_window(cubed->mlx, cubed->window);
 	if (cubed->mlx)
@@ -30,7 +30,7 @@ int	ft_close(t_cubed *cubed)
 		mlx_destroy_display(cubed->mlx);
 		free (cubed->mlx);
 	}
-	free (cubed->raycast);
-	free (cubed->game);
-	exit (0);
+	//free (cubed->raycast);
+	//free (cubed->game);
+	exit (err_status);
 }

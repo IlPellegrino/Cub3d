@@ -5,6 +5,11 @@
 		"unistd.h": "c",
 		"types.h": "c",
 		"fcntl.h": "c",
-		"cubed.h": "c"
+		"cubed.h": "c",
+		"mlx_int.h": "c",
+		"string.h": "c",
+		"structs.h": "c",
+		"defines.h": "c",
+		"initializer_list": "c"
 	}
 }
