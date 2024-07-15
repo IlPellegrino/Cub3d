@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/15 00:10:36 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/15 16:57:29 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int		key_events(int key, t_cubed *cubed);
 int		screen_setting(t_cubed *cubed);
 
 /* parsing */
-int		parsing(char **argv, int argc);
-int		check_map(char *map);
+int		parsing(char **argv, int argc, t_cubed *cubed);
+int		check_file(char *map, t_cubed *cubed);
 
 /* raycaster */
 
