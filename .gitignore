@@ -1,1 +1,3 @@
-mlx/
+./mlx
+*.o
+*a.out
