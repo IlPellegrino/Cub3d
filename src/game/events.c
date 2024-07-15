@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/11 11:51:11 by nromito          ###   ########.fr       */
+/*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
+/*   Updated: 2024/07/15 17:23:15 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cubed.h"
+#include "../../include/cubed.h"
 
-int	init_vars(t_game *game)
+int	events(int key, t_cubed *cubed)
 {
-	
+	printf("key = %d\n", key);
+	if (key == esc)
+		ft_close(cubed, 0);
+	return (1);
 }

@@ -16,12 +16,19 @@ CLONE_MLX = @if [ -d "mlx/" ]; then \
 
 PARSING_SRC = parsing.c
 RAYCASTER_SRC = raycaster.c
+UTILS_SRC = close_and_err.c
+INIT_SRC = init.c
+GAME_SRC = game_loop.c events.c
 
+GAME = $(addprefix game/, $(GAME_SRC))
+INIT = $(addprefix init/, $(INIT_SRC))
 RAYCATSER = $(addprefix raycaster/, $(RAYCASTER_SRC))
 PARSING = $(addprefix parsing/, $(PARSING_SRC))
+UTILS = $(addprefix utils/, $(UTILS_SRC))
 MAIN = main.c
 
-SRC = $(addprefix src/, $(RAYCASTER) $(MAIN) $(PARSING))
+SRC = $(addprefix src/, $(RAYCASTER) $(GAME) $(MAIN) \
+						$(PARSING) $(UTILS) $(INIT))
 
 OBJS = $(SRC:.c=.o)
 
@@ -53,14 +60,14 @@ $(NAME): $(OBJS)
 		@CLR="\033[35m"; \
 		NC="\033[0m"; \
 		echo ""; \
-		echo "     █████████  █████  █████ ███████████ $${CLR}  ████████  ██████████ $${NC}"; \
-		echo "    ███░░░░░███░░███  ░░███ ░░███░░░░░███$${CLR} ███░░░░███░░███░░░░███ $${NC}"; \
-		echo "   ███     ░░░  ░███   ░███  ░███    ░███$${CLR}░░░    ░███ ░███   ░░███ $${NC}"; \
-		echo "  ░███          ░███   ░███  ░██████████ $${CLR}   ██████░  ░███    ░███ $${NC}"; \
-		echo "  ░███          ░███   ░███  ░███░░░░░███$${CLR}  ░░░░░░███ ░███    ░███ $${NC}"; \
-		echo "  ░░███     ███ ░███   ░███  ░███    ░███$${CLR} ███   ░███ ░███    ███ $${NC}"; \
-		echo "   ░░█████████  ░░████████   ███████████ $${CLR}░░████████  ██████████ $${NC}"; \
-		echo "    ░░░░░░░░░    ░░░░░░░░   ░░░░░░░░░░░  $${CLR} ░░░░░░░░  ░░░░░░░░░░ $${NC}"; \
+		echo "    █████████  █████  █████ ███████████ $${CLR}  ████████  ██████████ $${NC}"; \
+		echo "   ███░░░░░███░░███  ░░███ ░░███░░░░░███$${CLR} ███░░░░███░░███░░░░███ $${NC}"; \
+		echo "  ███     ░░░  ░███   ░███  ░███    ░███$${CLR}░░░    ░███ ░███   ░░███ $${NC}"; \
+		echo " ░███          ░███   ░███  ░██████████ $${CLR}   ██████░  ░███    ░███ $${NC}"; \
+		echo " ░███          ░███   ░███  ░███░░░░░███$${CLR}  ░░░░░░███ ░███    ░███ $${NC}"; \
+		echo " ░░███     ███ ░███   ░███  ░███    ░███$${CLR} ███   ░███ ░███    ███ $${NC}"; \
+		echo "  ░░█████████  ░░████████   ███████████ $${CLR}░░████████  ██████████ $${NC}"; \
+		echo "   ░░░░░░░░░    ░░░░░░░░   ░░░░░░░░░░░  $${CLR} ░░░░░░░░  ░░░░░░░░░░ $${NC}"; \
 		echo ""
 clean:
 		@echo "\e[0;35mCleaning\e[0m -> \e[0;37mLIBFT\e[0m"
@@ -81,16 +88,24 @@ re: fclean all
 destroy: fclean
 		rm -rf mlx/
 
-help:
-	@echo "This is the help menu: still in progress..."
+ciuschi:	
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	echo "(.)(.) CIUSCHI lavora o ti meno di BOTTE, mi devi una 4090RTX se non finiamo entro fine LUGLIO! (_!_)"
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+dog:
+	@echo "\n  / \__\n\
+ (    @\___\n\
+ /         O\n\
+/   (_____/\n\
+/_____/  U\n\
+"
 
 .DEFAULT:
 	@echo " \t =========\n\
 		 | \e[0;95mCUB3D\e[0m |\n\
 		 =========\n\n\
 No rule called '\e[1;31m$@\e[0m'\n\
-\e[1;32mUsage\e[0m: \e[1;37m make: \e[1;32mall \e[0m- \e[1;32mclean \e[0m- \e[1;32mfclean \e[0m\n\
-Or type \e[1;32mmake help \e[0mfor more informations\n"
+\e[1;32mUsage\e[0m: \e[1;37m make: \e[1;32mall \e[0m- \e[1;32mclean \e[0m- \e[1;32mfclean \e[0m\n"
 
 .SILENT:
 

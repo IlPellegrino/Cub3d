@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:12:56 by ciusca            #+#    #+#             */
-/*   Updated: 2024/06/25 15:07:24 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/15 13:15:13 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <stdarg.h>
 # include <stdint.h>
 
@@ -72,6 +73,7 @@ char	**ft_split(char const *s, char const c);
 int		matrix_len(char **mat);
 char	**ft_matrix_dup(char **matrix);
 void	free_matrix(char **mat);
+void	print_matrix(char **mat);
 
 /* memory functions */
 void	ft_bzero(void *s, size_t n);

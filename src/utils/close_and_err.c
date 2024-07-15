@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/14 15:59:44 by ciusca           ###   ########.fr       */
+/*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
+/*   Updated: 2024/07/15 17:24:59 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	check_map(char *map)
+int ft_error(char *error, t_cubed *cubed)
 {
-	int	fd_map;
-
-	fd_map = open(map, O_RDONLY | 0677);
-	(void)fd_map;
+	ft_putendl_fd(error, 2);
+	ft_close(cubed, 1);
 	return (0);
 }
 
-int	parsing(char **argv, int argc)
+int	ft_close(t_cubed *cubed, int err_status)
 {
-	(void)argc;
-	(void)argv;
-	return (1);	
+	if (cubed->img)
+		mlx_destroy_image(cubed->mlx, cubed->img);
+	if (cubed->win)
+		mlx_destroy_window(cubed->mlx, cubed->win);
+	if (cubed->mlx)
+	{
+		mlx_destroy_display(cubed->mlx);
+		free (cubed->mlx);
+	}
+	//free (cubed->raycast);
+	//free (cubed->game);
+	exit (err_status);
 }
-

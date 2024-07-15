@@ -5,57 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/11 18:52:54 by ciusca           ###   ########.fr       */
+/*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
+/*   Updated: 2024/07/15 17:00:54 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBED_H
 # define CUBED_H
 
-# include "colors.h"
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-# include "../mlx/mlx_int.h"
+# include <X11/X.h>
+# include "defines.h"
+# include "structs.h"
+# include "colors.h"
 # include <math.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/time.h>
+# include <string.h>
 
-#define HEIGHT 293
-#define WIDTH 640
+void	draw_map(t_cubed *cubed, int **map);
 
-typedef	struct	s_image
-{
-	char	*name;
-	int		size;
-	//add if needed
-}				t_image;
+// utils //
+int		ft_close(t_cubed *cubed, int err_status);
+int 	ft_error(char *error, t_cubed *cubed);
+void	create_img(t_img *img, void *mlx, int size, int color);
 
-typedef	struct s_game
-{
-	char	**map;
-	int		is_wall;
-	
-}				t_game;
+// events //
+//int		key_events(int key, t_cubed *cubed);
 
+/* init */
+int		init_data(t_cubed *cubed);
 
-typedef struct s_raycast
-{
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	fov;
-	double	ray_x;
-	double	ray_y;
-}			t_raycast;
+/* parsing */
+int		parsing(char **argv, int argc);
+int		check_map(char *map);
 
-typedef struct	s_cubed
-{
-	t_game	*s_raycast;
-}				t_cubed;
+/* raycaster */
 
+/* game loop */
+int		game_loop(t_cubed *cub);
+int		events(int key, t_cubed *cubed);
 
+/* utils */
+//tutti qua coglione
 
 #endif

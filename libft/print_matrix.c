@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   print_matrix.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/14 15:59:44 by ciusca           ###   ########.fr       */
+/*   Created: 2024/07/15 13:13:30 by ciusca            #+#    #+#             */
+/*   Updated: 2024/07/15 13:14:08 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cubed.h"
+#include "libft.h"
 
-int	check_map(char *map)
+void	print_matrix(char **mat)
 {
-	int	fd_map;
+	int	i;
 
-	fd_map = open(map, O_RDONLY | 0677);
-	(void)fd_map;
-	return (0);
+	i = -1;
+	while (mat[++i])
+	{
+		printf("%s\n", mat[i]);
+	}
 }
-
-int	parsing(char **argv, int argc)
-{
-	(void)argc;
-	(void)argv;
-	return (1);	
-}
-
