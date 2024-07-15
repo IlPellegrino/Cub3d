@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   close_and_err.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/15 16:57:43 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/15 17:47:44 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int ft_error(char *error, t_cubed *cubed)
 int	ft_close(t_cubed *cubed, int err_status)
 {
 	if (cubed->img)
-		mlx_destroy_image(cubed->mlx, cubed->img->img);
-	if (cubed->window)
-		mlx_destroy_window(cubed->mlx, cubed->window);
+		mlx_destroy_image(cubed->mlx, cubed->img);
+	if (cubed->win)
+		mlx_destroy_window(cubed->mlx, cubed->win);
 	if (cubed->mlx)
 	{
 		mlx_destroy_display(cubed->mlx);

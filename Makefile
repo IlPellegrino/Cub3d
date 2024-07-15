@@ -16,14 +16,19 @@ CLONE_MLX = @if [ -d "mlx/" ]; then \
 
 PARSING_SRC = parsing.c
 RAYCASTER_SRC = raycaster.c
-UTILS_SRC = events.c init.c utils.c
+UTILS_SRC = close_and_err.c
+INIT_SRC = init.c
+GAME_SRC = game_loop.c events.c
 
+GAME = $(addprefix game/, $(GAME_SRC))
+INIT = $(addprefix init/, $(INIT_SRC))
 RAYCATSER = $(addprefix raycaster/, $(RAYCASTER_SRC))
 PARSING = $(addprefix parsing/, $(PARSING_SRC))
 UTILS = $(addprefix utils/, $(UTILS_SRC))
 MAIN = main.c
 
-SRC = $(addprefix src/, $(RAYCASTER) $(MAIN) $(PARSING) $(UTILS))
+SRC = $(addprefix src/, $(RAYCASTER) $(GAME) $(MAIN) \
+						$(PARSING) $(UTILS) $(INIT))
 
 OBJS = $(SRC:.c=.o)
 

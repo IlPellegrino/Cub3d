@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/15 16:10:44 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/15 17:47:31 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef	struct s_game
 	int		is_wall;
 }				t_game;
 
+typedef struct s_player
+{
+	int		plyr_x;
+	int		plyr_y;
+	float	fov;
+}				t_player;
+
 typedef struct s_raycast
 {
 	double	posX;
@@ -48,11 +55,13 @@ typedef struct s_raycast
 
 typedef struct	s_cubed
 {
-	int			x_player; // x plyaer postion
-	int			y_player; // y player position
+	int			map_h;
+	int			map_w;
+	char		**map;
 	void		*mlx;
-	void		*window;
-	t_img		*img;
+	void		*win;
+	void		*img;
+	t_player	*player;
 	t_raycast	*raycast;
 	t_game		*game;
 }				t_cubed;
