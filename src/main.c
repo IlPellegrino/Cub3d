@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/16 20:17:08 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/16 20:38:44 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,15 @@ void	draw_map(t_cubed *cubed, int **map)
 int	main(int argc, char **argv)
 {
 	t_cubed		cubed;
+	t_game		*game;
 	t_img		*img;
 
-	(void)argv;
-	if (argc != 2)
-		return (ft_putendl_fd(USAGE, 2), 1);
-	parsing(argv, argc);
-		//check_map(argv[1])
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (0);
+	cubed.game = game;
+	if (!parsing(argv, argc, &cubed))
+		return (0);
 	screen_setting(&cubed);
 	img = malloc(sizeof(t_img));
 	cubed.img = img;
@@ -129,7 +131,7 @@ int	main(int argc, char **argv)
 	//mlx_key_hook(cubed.window, &key_events, &cubed);
 	mlx_put_image_to_window(cubed.mlx, cubed.window, cubed.img->img, PLAYER_X, PLAYER_Y);
 	mlx_hook(cubed.window, 17, 1L << 17, &ft_close, &cubed);
-	mlx_hook(cubed.window, 02, 1L<<0, &key_events, &cubed);
+	mlx_hook(cubed.window, 02, 1L << 0, &key_events, &cubed);
 	// rendering();
 	mlx_loop(cubed.mlx);
 	return (0);

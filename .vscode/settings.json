@@ -11,6 +11,7 @@
 		"structs.h": "c",
 		"defines.h": "c",
 		"initializer_list": "c",
-		"colors.h": "c"
+		"colors.h": "c",
+		"mlx.h": "c"
 	}
 }

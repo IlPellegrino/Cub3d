@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/16 18:59:28 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/16 20:38:55 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@ typedef	struct	s_img
 	void	*img; // a pointer to the image
 	int		bits_per_pixel; 
 	int		endian;
-	int		line_len; //
+	int		line_len;
 }				t_img;
 
 typedef	struct s_game
 {
-	char	**map;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	**world_map;
+	int		floor_cl;
+	int		ceiling_cl;
 	int		is_wall;
-	
 }				t_game;
 
 typedef struct s_player

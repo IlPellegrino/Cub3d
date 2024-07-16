@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/16 19:40:34 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/16 20:38:51 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_img	*create_img(void *mlx, int size, int color);
 int		init_data(t_cubed *cubed);
 
 /* parsing */
-int		parsing(char **argv, int argc);
-int		check_map(char *map);
+int		parsing(char **argv, int argc, t_cubed *cubed);
+int		check_file(char *map, t_cubed *cubed);
 
 /* raycaster */
 
