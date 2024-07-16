@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/15 16:21:54 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/16 18:59:28 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ typedef	struct s_game
 
 typedef struct s_player
 {
-	int		plyr_x;
-	int		plyr_y;
+	int		x;
+	int		y;
+	int		map_x;
+	int		map_y;
 	float	fov;
 }				t_player;
 
