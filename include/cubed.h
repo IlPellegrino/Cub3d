@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/16 15:18:35 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:38:23 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@
 # include <sys/time.h>
 # include <string.h>
 
-void	draw_map(t_cubed *cubed, int **map);
+void	draw_map(t_cubed *cubed, char **map);
+char 	**set_map(void);
+void 	draw_player(t_cubed *cubed, int x, int y);
 
 /* close_and_err */
 int		ft_close(t_cubed *cubed, int err_status);
 int 	ft_error(char *error, t_cubed *cubed);
+t_img	*create_img(void *mlx, int size, int color);
 
 /* utils */
 int		create_trgb(int t, int r, int g, int b);
@@ -50,7 +53,7 @@ int		surfaces_check(char *line, t_cubed *cubed);
 int		textures_check(char *line, t_cubed *cubed);
 
 /* raycaster */
-void	create_img(t_img *img, void *mlx, int size, int color);
+// void	create_img(t_img *img, void *mlx, int size, int color);
 
 /* game loop */
 int		game_loop(t_cubed *cub);

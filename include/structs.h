@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 11:31:22 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:30:57 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef	struct s_game
 
 typedef struct s_player
 {
-	int		plyr_x;
-	int		plyr_y;
+	int		x;
+	int		y;
+	int		map_x;
+	int		map_y;
 	float	fov;
 }				t_player;
 
