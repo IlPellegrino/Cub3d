@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/15 17:47:31 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/17 11:31:22 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef	struct s_game
 	char	**world_map;
 	int		floor_cl;
 	int		ceiling_cl;
+	int		ht;
+	int		counter;
+	int		p_flag;
 	int		is_wall;
 }				t_game;
 

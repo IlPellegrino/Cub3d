@@ -13,6 +13,9 @@
 # define ROTATION_SPEED 0.045 // rotation speed
 # define PLAYER_SPEED 4 // player speed
 
+# define F 1
+# define C 2
+
 enum keys{
 	esc = 65307,
 	w = 119,

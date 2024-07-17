@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/15 17:47:37 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:09:02 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	main(int argc, char **argv)
 {
 	t_cubed	cubed;
 	
-	(void)argc;
-	(void)argv;
+	parsing(argv, argc, &cubed);
 	init_data(&cubed);
 	mlx_hook(cubed.win, KeyPress, KeyPressMask, &events, &cubed);
 	mlx_hook(cubed.win, 17, 1L << 17, &ft_close, &cubed);

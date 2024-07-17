@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_matrix.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 13:13:30 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/17 16:38:37 by nromito          ###   ########.fr       */
+/*   Created: 2024/07/16 11:58:47 by nromito           #+#    #+#             */
+/*   Updated: 2024/07/16 11:59:02 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/cubed.h"
 
-void	print_matrix(char **mat)
+int	create_trgb(int t, int r, int g, int b)
 {
-	int	i;
-
-	i = -1;
-	while (mat[++i])
-	{
-		printf("[%s]\n", mat[i]);
-	}
+	return (t << 24 | r << 16 | g << 8 | b);
 }
