@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 20:29:12 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 00:15:05 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	check_move(t_cubed *cubed, int key)
 		p->x -= PLAYER_SPEED;
 	else if (key == d && !is_wall(cubed, (p->x + PLAYER_SIZE / 2) + PLAYER_SPEED, p->y))
 		p->x += PLAYER_SPEED;
-	else
-		return (0);
 	return (1);
 }
 
@@ -67,5 +65,6 @@ int	events(int key, t_cubed *cubed)
 		ft_close(cubed, 0);
 	check_move(cubed, key);
 	check_rotate(cubed, key);
+	game_loop(cubed);
 	return (1);
 }
