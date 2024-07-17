@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
+/*   Updated: 2024/07/17 20:03:06 by ciusca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
 # define USAGE "\nInvalid argument\nUsage: ./cub3d path/to/map\n"
 
-#define PI 3.14159265359
+# define PI 3.14159265359
 
 # define WIDTH 1900 // screen width
 # define HEIGHT 1000 // screen height
@@ -13,13 +25,14 @@
 # define FOV 60 // field of view
 
 # define ROTATION_SPEED 0.045 // rotation speed
-# define PLAYER_SIZE 8 // player size
+# define PLAYER_SIZE 7 // player size
 # define PLAYER_SPEED 4 // player speed
 
 # define F 1
 # define C 2
 
-enum colors{
+enum e_colors
+{
 	red = 0x00ff0000,
 	green = 0x0000ff00,
 	blue = 0x000000ff,
@@ -39,7 +52,8 @@ enum colors{
 	navy = 0x00000080,
 };
 
-enum keys{
+enum e_keys
+{
 	esc = 65307,
 	w = 119,
 	a = 97,
@@ -50,7 +64,11 @@ enum keys{
 	e = 101,
 	q = 113,
 	m = 109,
-	f = 102
+	f = 102,
+	left = 65361,
+	up = 65362,
+	right = 65363,
+	down = 65364
 };
 
 #endif

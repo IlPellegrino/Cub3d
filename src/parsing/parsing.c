@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 17:41:34 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/17 19:35:35 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	file_checker(int fd, t_cubed *cubed)
 		else if (line[i])
 		{
 			line[ft_strlen(line) - 1] = '\0';
-			cubed->game->world_map[cubed->game->counter++] = ft_strdup(line);
+			cubed->map[cubed->game->counter++] = ft_strdup(line);
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -155,7 +155,7 @@ int	check_file(char *map, t_cubed *cubed)
 	}
 	count_map_columns(fd, cubed);
 	close(fd);
-	cubed->game->world_map = ft_calloc(sizeof (char **), cubed->game->ht + 1);
+	cubed->map = ft_calloc(sizeof (char **), cubed->game->ht + 1);
 	fd = open(map, O_RDONLY, 0677);
 	if (fd < 0)
 	{
@@ -178,7 +178,7 @@ int	parsing(char **argv, int argc, t_cubed *cubed)
 	cubed->game->counter = 0;
 	cubed->game->is_wall = 0;
 	check_file(argv[1], cubed);
-	print_matrix(cubed->game->world_map);
+	print_matrix(cubed->map);
 	// check_map(cubed);
 	return (1);
 }

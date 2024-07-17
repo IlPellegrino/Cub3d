@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 18:17:24 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 20:31:50 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,17 @@ int	init_player(t_cubed *cubed)
 	p->map_y = 5;
 	p->x = p->map_x * TILE_SIZE + TILE_SIZE / 2 - PLAYER_SIZE / 2;
 	p->y = p->map_y * TILE_SIZE + TILE_SIZE / 2 - PLAYER_SIZE / 2;
+	printf("player x = %d\nplayer y = %d\n", p->x, p->y);
+	p->angle = 0;
+	p->d_x = cos(p->angle) * 20;
+	p->d_y = sin(p->angle) * 20;
+	printf("delta x = %f\ndelta y = %f\n", p->d_x, p->d_y);
 	return (1);
 }
 
 int	init_data(t_cubed *cubed)
 {
 	cubed->mlx = mlx_init();
-	cubed->win = mlx_new_window(cubed->mlx, WIDTH, HEIGHT, "Cub3D");
 	cubed->img = malloc(sizeof(t_img));
 	create_img(cubed->mlx, cubed->img);
 	cubed->raycast = malloc(sizeof (t_raycast));

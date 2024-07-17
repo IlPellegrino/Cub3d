@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 18:16:57 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 20:08:56 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef	struct s_game
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	**world_map;
 	int		floor_cl;
 	int		ceiling_cl;
 	int		ht;
@@ -42,6 +41,9 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
+	float	angle;
+	float	d_x; //delta x of the player
+	float	d_y; //delta y of the player
 	int		map_x;
 	int		map_y;
 	float	fov;
