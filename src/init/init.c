@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 17:02:59 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 18:17:24 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	init_data(t_cubed *cubed)
 	cubed->game = malloc(sizeof (t_game));
 	if (!cubed->raycast || !cubed->game)
 		return (0);
-	cubed->game->is_wall = 0;
 	cubed->raycast->dirX = -1;
 	cubed->raycast->dirY = 0;
 	cubed->raycast->posX = 22;

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 15:08:37 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 18:16:57 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef	struct s_game
 	char	**world_map;
 	int		floor_cl;
 	int		ceiling_cl;
+	int		ht;
+	int		counter;
+	int		p_flag;
 	int		is_wall;
 }				t_game;
 

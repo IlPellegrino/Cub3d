@@ -16,6 +16,8 @@
 # define PLAYER_SIZE 8 // player size
 # define PLAYER_SPEED 4 // player speed
 
+# define F 1
+# define C 2
 
 enum colors{
 	red = 0x00ff0000,

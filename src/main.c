@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 17:09:36 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 18:16:43 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ void	create_img(void *mlx, t_img *img)
 int	main(int argc, char **argv)
 {
 	t_cubed	cubed;
-
-	(void)argc;
-	(void)argv;
+	
+	parsing(argv, argc, &cubed);
 	init_data(&cubed);
 	cubed.map = set_map();
 	print_matrix(cubed.map);
