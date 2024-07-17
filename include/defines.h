@@ -22,7 +22,19 @@ enum colors{
 	green = 0x0000ff00,
 	blue = 0x000000ff,
 	white = 0x00ffffff,
-	black = 0x00000000
+	black = 0x00000000,
+	grey = 0x00a9a9a9,
+	yellow = 0x00ffff00,
+	purple = 0x00800080,
+	orange = 0x00ffa500,
+	brown = 0x00a52a2a,
+	pink = 0x00ff69b4,
+	teal = 0x0000ffff,
+	magenta = 0x00ff00ff,
+	cyan = 0x00ffff00,
+	olive = 0x00808000,
+	maroon = 0x00800000,
+	navy = 0x00000080,
 };
 
 enum keys{

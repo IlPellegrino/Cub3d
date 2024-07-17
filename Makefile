@@ -22,13 +22,13 @@ GAME_SRC = game_loop.c events.c
 
 GAME = $(addprefix game/, $(GAME_SRC))
 INIT = $(addprefix init/, $(INIT_SRC))
-RAYCATSER = $(addprefix raycaster/, $(RAYCASTER_SRC))
+RAYCASTER = $(addprefix raycaster/, $(RAYCASTER_SRC))
 PARSING = $(addprefix parsing/, $(PARSING_SRC))
 UTILS = $(addprefix utils/, $(UTILS_SRC))
 MAIN = main.c
 
-SRC = $(addprefix src/, $(RAYCASTER) $(GAME) $(MAIN) \
-						$(PARSING) $(UTILS) $(INIT))
+SRC = $(addprefix src/, $(GAME) $(MAIN) \
+						$(PARSING) $(UTILS) $(INIT) $(RAYCASTER))
 
 OBJS = $(SRC:.c=.o)
 

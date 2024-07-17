@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/16 20:38:44 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:09:36 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,10 @@ void	better_pixel_put(t_img *img, int x, int y, int color)
 	*((unsigned int *)(offset + img->pixel_ptr)) = color;
 }
 
-t_img	*create_img(void *mlx, int size, int color)
+void	create_img(void *mlx, t_img *img)
 {
-	//img = malloc(sizeof(t_img));
-	t_img *img;
-	
-	img = malloc(sizeof(t_img));
-	img->img = mlx_new_image(mlx, size, size);
-	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_len, &img->endian);
-
-	// si puo cambiare con il while
-	for (int i = 0; i < size; i++)
-	{
-		for(int j = 0; j < size; j++)
-		{
-			if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
-				better_pixel_put(img, j, i, blue);
-			else
-				better_pixel_put(img, j, i, color);
-		}
-	}
-	return (img);	
+	img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_len, &img->endian);	
 }
 
 int	main(int argc, char **argv)
@@ -52,13 +35,10 @@ int	main(int argc, char **argv)
 	init_data(&cubed);
 	cubed.map = set_map();
 	print_matrix(cubed.map);
-	draw_map(&cubed, cubed.map);
-	draw_player(&cubed, cubed.player->x, cubed.player->y);
 	mlx_hook(cubed.win, KeyPress, KeyPressMask, &events, &cubed);
-	mlx_hook(cubed.win, 17, 1L << 17, &ft_close, &cubed);
+	mlx_hook(cubed.win, DestroyNotify, StructureNotifyMask, &ft_close, &cubed);
 	mlx_loop_hook(cubed.mlx, &game_loop, &cubed);
 	mlx_loop(cubed.mlx);
-	//init_player(&cubed);
 	
 }
 /*int	**map;

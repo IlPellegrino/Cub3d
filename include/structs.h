@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/16 20:38:55 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 15:08:37 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct	s_cubed
 	char		**map;
 	void		*mlx;
 	void		*win;
-	void		*img;
+	t_img		*img;
 	t_player	*player;
 	t_raycast	*raycast;
 	t_game		*game;

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/16 20:38:51 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:12:23 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@
 # include <sys/time.h>
 # include <string.h>
 
-void	draw_map(t_cubed *cubed, char **map);
+void	better_pixel_put(t_img *img, int x, int y, int color);
+void	draw_map(t_img *img, char **map);
 char 	**set_map(void);
-void 	draw_player(t_cubed *cubed, int x, int y);
+void 	draw_player(t_img *img, int x, int y);
+int		is_wall(t_cubed *cubed, int x, int y);
+void 	draw_line(t_img *img, int x0, int y0, int x1, int y1, int color);
 
 // utils //
 int		ft_close(t_cubed *cubed, int err_status);
 int 	ft_error(char *error, t_cubed *cubed);
-t_img	*create_img(void *mlx, int size, int color);
+void	create_img(void *mlx, t_img *img);
 
 // events //
 //int		key_events(int key, t_cubed *cubed);

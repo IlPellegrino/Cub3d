@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/16 20:29:29 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:13:34 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	is_wall(t_cubed *cubed, int x, int y)
 {
-	(void)cubed;
-	(void)x;
-	(void)y;
-	/*
-	todo: devide the pos by tile size and round it
-		  then check if the result is a 1 in the map
-	*/
-	
-	return (1);
+	t_player	*plyr;
+	int			i;
+	int			j;
+	plyr = cubed->player;
+	j = floor((x) / TILE_SIZE );
+	i = floor((y) / TILE_SIZE);
+	if (cubed->map[i][j] == '1')
+		return (1);
+	return (0);
 }
 
 /* temp function*/
@@ -30,40 +30,52 @@ char **set_map(void)
 {
 	char	**map;
 
-	map = ft_calloc(sizeof(char*), 10);
+	map = ft_calloc(sizeof(char*), 10 + 1);
 	map[0] = ft_strdup("111111111111111111111");
 	map[1] = ft_strdup("100000000000000000001");
 	map[2] = ft_strdup("100000000000000000001");
-	map[3] = ft_strdup("100000000000000000001");
-	map[4] = ft_strdup("100000000000000000001");
+	map[3] = ft_strdup("100000111000000000001");
+	map[4] = ft_strdup("100000100000000000001");
 	map[5] = ft_strdup("100000000000000000001");
-	map[6] = ft_strdup("10000000000N000000001");
+	map[6] = ft_strdup("10000001110N000000001");
 	map[7] = ft_strdup("100000000000000000001");
-	map[8] = ft_strdup("100000000000000000001");
+	map[8] = ft_strdup("100000110000000000001");
 	map[9] = ft_strdup("111111111111111111111");
 	return (map);
 	
 }
 
-void draw_player(t_cubed *cubed, int x, int y)
+
+void	draw_shape(t_img *img, int x, int y, int size,  int color)
 {
-	t_img *player;
+	int	i;
+	int	j;
+	int	start_x;
 	
-	player = create_img(cubed->mlx, PLAYER_SIZE, red);
-	mlx_put_image_to_window(cubed->mlx, cubed->win, player->img, x, y);
+	start_x = x;
+	j = -1;
+	while (++j < size)
+	{
+		i = -1;
+		x = start_x;
+		while (++i < size)
+		{
+			better_pixel_put(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }
 
-void	draw_map(t_cubed *cubed, char **map)
+void draw_player(t_img *img, int x, int y)
 {
-	int		i;
-	int		j;
-	t_img 	*wall;
-	t_img 	*floor;
-	t_player *p;
+	draw_shape(img, x - PLAYER_SIZE / 2	, y - PLAYER_SIZE / 2, PLAYER_SIZE, yellow);
+}
+void	draw_map(t_img *img, char **map)
+{
+	int			i;
+	int			j;
 	
-	p = cubed->player;
-	floor = create_img(cubed->mlx, TILE_SIZE, black);
-	wall = create_img(cubed->mlx, TILE_SIZE, white);
 	i = -1;
 	j = -1;
 	while (map[++i])
@@ -72,9 +84,9 @@ void	draw_map(t_cubed *cubed, char **map)
 		while (map[i][++j])
 		{
 			if (map[i][j] == '1')
-				mlx_put_image_to_window(cubed->mlx, cubed->win, wall->img, j * TILE_SIZE, i * TILE_SIZE);
+				draw_shape(img, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, white);
 			else if (map[i][j] == '0' || map[i][j] == 'N')
-				mlx_put_image_to_window(cubed->mlx, cubed->win, floor->img, j * TILE_SIZE, i * TILE_SIZE);
+				draw_shape(img, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, black);
 		}
 	}
 }
@@ -82,8 +94,14 @@ void	draw_map(t_cubed *cubed, char **map)
 
 int	game_loop(t_cubed *cubed)
 {
-	(void)cubed;
-	//raycasting algorithm
+	t_img	*img;
 	
+	img = cubed->img;
+	//mlx_destroy_image(cubed->mlx, cubed->img->img);
+	//create_img(cubed->mlx, cubed->img);
+	draw_map(img, cubed->map);
+	draw_line(img, cubed->player->x, cubed->player->y, 300, 240, 0x00FF00);
+	draw_player(img, cubed->player->x, cubed->player->y);
+	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);
 }
