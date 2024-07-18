@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 18:17:05 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 11:51:38 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_close(t_cubed *cubed, int err_status)
 	free (cubed->player);
 	free (cubed->game);
 	free_matrix(cubed->map);
+	free (cubed->keys);
 	if (cubed->mlx)
 	{
 		mlx_destroy_display(cubed->mlx);

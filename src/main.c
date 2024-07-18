@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 00:17:06 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 17:46:40 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ int	main(int argc, char **argv)
 	//parsing(argv, argc, &cubed);
 	cubed.win = mlx_new_window(cubed.mlx, WIDTH, HEIGHT, "Cub3D");
 	game_loop(&cubed);
-	mlx_hook(cubed.win, KeyPress, KeyPressMask, &events, &cubed);
+	mlx_hook(cubed.win, KeyPress, KeyPressMask, &key_press, cubed.keys);
+	mlx_hook(cubed.win, KeyRelease, KeyReleaseMask, &key_release, cubed.keys);
 	mlx_hook(cubed.win, DestroyNotify, StructureNotifyMask, &ft_close, &cubed);
-	//mlx_loop_hook(cubed.mlx, &game_loop, &cubed);
+	mlx_loop_hook(cubed.mlx, &game_loop, &cubed);
 	mlx_loop(cubed.mlx);
 	
 }

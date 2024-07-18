@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 20:08:56 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 16:53:12 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 typedef	struct	s_img
 {
 	char	*name;
-	char	*pixel_ptr; //pointer to the pixels 
-	void	*img; // a pointer to the image
+	char	*pixel_ptr;
+	void	*img;
 	int		bits_per_pixel; 
 	int		endian;
 	int		line_len;
@@ -37,13 +37,24 @@ typedef	struct s_game
 	int		is_wall;
 }				t_game;
 
+typedef	struct s_keys
+{
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	left;
+	int	right;
+	int	esc;
+}				t_keys;
+
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 	float	angle;
-	float	d_x; //delta x of the player
-	float	d_y; //delta y of the player
+	double	d_x; //delta x of the player
+	double	d_y; //delta y of the player
 	int		map_x;
 	int		map_y;
 	float	fov;
@@ -51,13 +62,16 @@ typedef struct s_player
 
 typedef struct s_raycast
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	fov;
-	double	ray_x;
-	double	ray_y;
+	int		r;   //radiuds
+	int		mx;  //map x
+	int 	my;	 //map y
+	int		mp;	 //map position
+	int		dof; //depht of field
+	float	ra;  //ray angle
+	float	rx;  //ray x
+	float	ry;  //ray y
+	float	xo;  //x offset
+	float	yo;  //y offset
 }			t_raycast;
 
 typedef struct	s_cubed
@@ -71,6 +85,7 @@ typedef struct	s_cubed
 	t_player	*player;
 	t_raycast	*raycast;
 	t_game		*game;
+	t_keys		*keys;
 }				t_cubed;
 
 #endif

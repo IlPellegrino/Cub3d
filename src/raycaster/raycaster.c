@@ -6,36 +6,130 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 20:24:00 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:42:46 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-void    player_angle(void)
+void drawRays3D(t_cubed *cubed)
 {
-    return ;
-}
+    t_player    *p;
+    t_raycast   *ray;
+    int         map_w;
+    int         map_h;
 
-void draw_line(t_img *img, int x0, int y0, int x1, int y1, int color) {
-    int dx = abs(x1 - x0);
-    int sx = x0 < x1 ? 1 : -1;
-    int dy = - abs(y1 - y0);
-    int sy = y0 < y1 ? 1 : -1;
-    int err = dx + dy;  // error value e_xy
+    map_h = matrix_len(cubed->map);
+    map_w = ft_strlen(cubed->map[0]);
+    ray = cubed->raycast;
+    p = cubed->player;
+    ray->ra = fmod(p->angle, PI * 2);
+    if (ray->ra < 0) ray->ra += PI * 2;
+    ray->r = 0;
 
-    printf("x1 = %d\ny1 = %d\n", x1, y1);
-    while (1) {
-        better_pixel_put(img, x0, y0, color);
-        if (x0 == x1 && y0 == y1) break;
-        int e2 = 2 * err;
-        if (e2 >= dy) {
-            err += dy;
-            x0 += sx;
+    while (ray->r < 1)
+    {
+        ray->dof = 0;
+        double aTan = -1 / tan(ray->ra);
+        
+        // Calculate horizontal intersection
+        double horX, horY, horStepX, horStepY;
+        ray->dof = 0;
+        if (ray->ra > PI)
+        {
+            horY = (((int)p->y / TILE_SIZE) * TILE_SIZE) - 0.0001;
+            horX = (p->y - horY) * aTan + p->x;
+            horStepY = -TILE_SIZE;
+            horStepX = -horStepY * aTan;
         }
-        if (e2 <= dx) {
-            err += dx;
-            y0 += sy;
+        else if (ray->ra < PI)
+        {
+            horY = (((int)p->y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
+            horX = (p->y - horY) * aTan + p->x;
+            horStepY = TILE_SIZE;
+            horStepX = -horStepY * aTan;
         }
+        else
+        {
+            horX = p->x;
+            horY = p->y;
+            ray->dof = map_w; // Ensure we exit the loop
+        }
+
+        while (ray->dof < map_w)
+        {
+            int mapX = (int)(horX) / TILE_SIZE;
+            int mapY = (int)(horY) / TILE_SIZE;
+            
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
+            {
+                ray->rx = horX;
+                ray->ry = horY;
+                ray->dof = map_w; // Exit loop
+            }
+            else
+            {
+                horX += horStepX;
+                horY += horStepY;
+                ray->dof += 1;
+            }
+        }
+
+        // Calculate vertical intersection
+        double verX, verY, verStepX, verStepY;
+        ray->dof = 0;
+        double nTan = -tan(ray->ra);
+        if (ray->ra > PI / 2 && ray->ra < 3 * PI / 2)
+        {
+            verX = (((int)p->x / TILE_SIZE) * TILE_SIZE) - 0.0001;
+            verY = (p->x - verX) * nTan + p->y;
+            verStepX = -TILE_SIZE;
+            verStepY = -verStepX * nTan;
+        }
+        else
+        {
+            verX = (((int)p->x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
+            verY = (p->x - verX) * nTan + p->y;
+            verStepX = TILE_SIZE;
+            verStepY = -verStepX * nTan;
+        }
+
+        while (ray->dof < map_h)
+        {
+            int mapX = (int)(verX) / TILE_SIZE;
+            int mapY = (int)(verY) / TILE_SIZE;
+            
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
+            {
+                ray->rx = verX;
+                ray->ry = verY;
+                ray->dof = map_h; // Exit loop
+            }
+            else
+            {
+                verX += verStepX;
+                verY += verStepY;
+                ray->dof += 1;
+            }
+        }
+
+        // Select the closest hit
+        double distH = sqrt((p->x - horX) * (p->x - horX) + (p->y - horY) * (p->y - horY));
+        double distV = sqrt((p->x - verX) * (p->x - verX) + (p->y - verY) * (p->y - verY));
+        
+        if (distH < distV)
+        {
+            ray->rx = horX;
+            ray->ry = horY;
+        }
+        else
+        {
+            ray->rx = verX;
+            ray->ry = verY;
+        }
+
+        // Optionally, draw the ray on your 2D map here
+
+        ray->r++;
     }
 }
