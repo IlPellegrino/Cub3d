@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 19:40:11 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/18 19:44:58 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	t_cubed	cubed;
 
 	init_data(&cubed);
-	// cubed.map = set_map();
+	cubed.map = set_map();
 	parsing(argv, argc, &cubed);
 	cubed.win = mlx_new_window(cubed.mlx, WIDTH, HEIGHT, "Cub3D");
 	game_loop(&cubed);
