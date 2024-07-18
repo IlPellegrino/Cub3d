@@ -88,18 +88,6 @@ re: fclean all
 destroy: fclean
 		rm -rf mlx/
 
-ciuschi:	
-	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-	echo "(.)(.) CIUSCHI lavora o ti meno di BOTTE, mi devi una 4090RTX se non finiamo entro fine LUGLIO! (_!_)"
-	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-dog:
-	@echo "\n  / \__\n\
- (    @\___\n\
- /         O\n\
-/   (_____/\n\
-/_____/  U\n\
-"
-
 .DEFAULT:
 	@echo " \t =========\n\
 		 | \e[0;95mCUB3D\e[0m |\n\

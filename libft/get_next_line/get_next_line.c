@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 20:50:04 by ciusca            #+#    #+#             */
-/*   Updated: 2024/05/23 19:14:57 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 17:27:40 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char	*get_next_line(int fd)
 	}
 	if (!file[fd])
 		free(line);
-	if (file[fd][0] == 0)
+	if (file[fd][0] == 0 || fd == -42)
 	{
 		free(file[fd]);
 		file[fd] = NULL;

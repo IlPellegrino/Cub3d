@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:12:56 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/15 13:15:13 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 17:58:57 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5000
+#  define BUFFER_SIZE 1
 # endif
 
 # include <stddef.h>
@@ -76,6 +76,7 @@ void	free_matrix(char **mat);
 void	print_matrix(char **mat);
 
 /* memory functions */
+void	ft_free(void *__ptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);

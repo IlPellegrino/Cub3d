@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/17 20:23:03 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 16:45:37 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int		parsing(char **argv, int argc, t_cubed *cubed);
 int		check_file(char *map, t_cubed *cubed);
 
 /* checks */
-int		surfaces_check(char *line, t_cubed *cubed);
-int		textures_check(char *line, t_cubed *cubed);
+int		surfaces_check(char *line, t_cubed *cubed, int file);
+int		textures_check(char *line, t_cubed *cubed, int file);
 
 /* raycaster */
 // void	create_img(t_img *img, void *mlx, int size, int color);

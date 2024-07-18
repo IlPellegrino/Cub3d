@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 00:17:06 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:05:00 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ void	create_img(void *mlx, t_img *img)
 int	main(int argc, char **argv)
 {
 	t_cubed	cubed;
-	
-	(void)argc;
-	(void)argv;
+
 	init_data(&cubed);
-	cubed.map = set_map();
-	//parsing(argv, argc, &cubed);
+	// cubed.map = set_map();
+	parsing(argv, argc, &cubed);
 	cubed.win = mlx_new_window(cubed.mlx, WIDTH, HEIGHT, "Cub3D");
 	game_loop(&cubed);
 	mlx_hook(cubed.win, KeyPress, KeyPressMask, &events, &cubed);
