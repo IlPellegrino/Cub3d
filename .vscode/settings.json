@@ -12,6 +12,7 @@
 		"defines.h": "c",
 		"initializer_list": "c",
 		"colors.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"stdio.h": "c"
 	}
 }

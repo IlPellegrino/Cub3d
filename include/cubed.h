@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 16:45:37 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/18 19:40:05 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@
 # include <sys/time.h>
 # include <string.h>
 
+int		key_press(int pressed, t_keys *keys);
+int		key_release(int realesed, t_keys *keys);
 void	better_pixel_put(t_img *img, int x, int y, int color);
 void	draw_map(t_img *img, char **map);
 char 	**set_map(void);
 void 	draw_player(t_img *img, int x, int y);
 int		is_wall(t_cubed *cubed, int x, int y);
 void 	draw_line(t_img *img, int x0, int y0, int x1, int y1, int color);
+void    drawRays3D(t_cubed *cubed);
 
 /* close_and_err */
 int		ft_close(t_cubed *cubed, int err_status);
@@ -60,7 +63,7 @@ int		textures_check(char *line, t_cubed *cubed, int file);
 
 /* game loop */
 int		game_loop(t_cubed *cub);
-int		events(int key, t_cubed *cubed);
+int		events(t_cubed *cubed);
 
 //tutti qua coglione
 

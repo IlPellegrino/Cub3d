@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/18 00:53:10 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:32:04 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,10 @@ int	game_loop(t_cubed *cubed)
 	p = cubed->player;
 	//mlx_destroy_image(cubed->mlx, cubed->img->img);
 	//create_img(cubed->mlx, cubed->img);
+	events(cubed);
 	draw_map(img, cubed->map);
-	draw_line(img, p->x, p->y, (int)(p->x + p->d_x), (int)(p->y + p->d_y), red);
+	drawRays3D(cubed);
+	draw_line(img, p->x, p->y, cubed->raycast->rx, cubed->raycast->ry , red);
 	draw_player(img, cubed->player->x, cubed->player->y);
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);
