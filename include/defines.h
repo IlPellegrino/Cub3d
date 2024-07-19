@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/18 19:30:10 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/19 11:19:39 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define USAGE "\nInvalid argument\nUsage: ./cub3d path/to/map\n"
+# define USAGE "\nInvalid argument\nUsage: ./cub3D path/to/map\n"
 
 # define PI 3.14159265359
 
-# define WIDTH 1900 // screen width
+# define WIDTH 1920 // screen width
 # define HEIGHT 1080 // screen height
 
 # define TILE_SIZE 32 // tile size
@@ -26,7 +26,7 @@
 
 # define ROTATION_SPEED 0.015 // rotation speed
 # define PLAYER_SIZE 7 // player size
-# define PLAYER_SPEED 1 // player speed
+# define PLAYER_SPEED 2 // player speed
 
 # define F 1
 # define C 2

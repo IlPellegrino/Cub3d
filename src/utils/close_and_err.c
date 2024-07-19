@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_and_err.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 19:44:47 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/19 15:52:51 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	ft_close(t_cubed *cubed, int err_status)
 	free (cubed->raycast);
 	free (cubed->player);
 	free_game(cubed);
-	//if (cubed->map)
-	//	free_matrix(cubed->map);
+	if (cubed->map)
+		free_matrix(cubed->map);
 	free(cubed->keys);
 	if (cubed->mlx)
 	{
