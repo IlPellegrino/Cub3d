@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/19 15:22:09 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/20 13:18:34 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef	struct s_game
 	char	*so;
 	char	*we;
 	char	*ea;
+	char	**cub;
 	int		floor_cl;
 	int		ceiling_cl;
 	int		ht;

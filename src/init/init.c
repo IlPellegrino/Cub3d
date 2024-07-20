@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 19:41:38 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/20 19:05:05 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	init_data(t_cubed *cubed)
 	create_img(cubed->mlx, cubed->img);
 	cubed->raycast = malloc(sizeof (t_raycast));
 	cubed->game = ft_calloc(sizeof (t_game), 1);
+	cubed->map = 0;
+	cubed->game->counter = 0;
 	if (!cubed->raycast || !cubed->game)
 		return (0);
 	cubed->keys = ft_calloc(sizeof(t_keys), 1);

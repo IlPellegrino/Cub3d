@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/19 15:35:57 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/20 16:06:38 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ int		parsing(char **argv, int argc, t_cubed *cubed);
 int		check_file(char *map, t_cubed *cubed);
 int		count_map_columns(int fd, t_cubed *cubed);
 int		count_width(t_cubed *cubed);
+int		check_chars(char **map, int l, int col);
 void	check_map(t_cubed *cubed);
 
 /* checks */
-int		surfaces_check(char *line, t_cubed *cubed, int file);
-int		textures_check(char *line, t_cubed *cubed, int file);
-int		check_colors(char **color, t_cubed *cubed, int surface, int file);
+int		surfaces_check(char *line, t_cubed *cubed);
+int		textures_check(char *line, t_cubed *cubed);
+int		check_colors(char **color, t_cubed *cubed, int surface);
 
 /* raycaster */
 // void	create_img(t_img *img, void *mlx, int size, int color);
