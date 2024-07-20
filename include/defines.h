@@ -6,14 +6,14 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/19 14:30:47 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/20 19:07:39 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define USAGE "\nInvalid argument\nUsage: ./cub3d path/to/map\n"
+# define USAGE "\nInvalid argument\nUsage: ./cub3D path/to/map\n"
 
 # define PI 3.14159265359
 

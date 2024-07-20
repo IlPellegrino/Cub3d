@@ -14,7 +14,7 @@ CLONE_MLX = @if [ -d "mlx/" ]; then \
     			$(MLX_GIT) > /dev/null 2>&1; \
 			fi
 
-PARSING_SRC = parsing.c checks.c
+PARSING_SRC = parsing.c parsing_2.c checks_color.c checks_surface.c parsing_checks.c
 RAYCASTER_SRC = raycaster.c
 UTILS_SRC = close_and_err.c utils.c
 INIT_SRC = init.c

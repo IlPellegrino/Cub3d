@@ -6,109 +6,30 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 19:38:07 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/19 17:55:48 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	count_map_columns(int fd, t_cubed *cubed)
+char	*get_next_line_check(t_cubed *cubed, char *line, int fd)
 {
-	char	*line;
-
-	line = get_next_line(fd);
-	if (!line)
-	{
-		close(fd);
-		ft_error("Error: READ of file failed\n", cubed);
-	}
-	while (line)
-	{
-		if (ft_strchr(line, '1'))
-			cubed->game->ht += 1;
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	return (1);
-}
-
-void	check_pos(char **pos, t_cubed *cubed, int col, int l)
-{
-	static int	flag;
-
-	if (pos[col][0] != '1' && pos[col][ft_strlen(pos[col]) - 1] != '1') // check walls
-		ft_error("Error: invalid map\n", cubed);
-	if ((pos[col][l] == 'N' || pos[col][l] == 'S'
-		|| pos[col][l] == 'W' || pos[col][l] == 'E') && !flag) // player
-	{
-		flag++;
-		if (pos[col - 1][l] != '0' && pos[col - 1][l] != '1' // check line up
-				&& (pos[col - 1][l] != 'N' && pos[col - 1][l] != 'S'
-				&& pos[col - 1][l] != 'W' && pos[col - 1][l] != 'E'
-				&& cubed->game->p_flag == 1))
-			ft_error("Error: zio map\n", cubed);
-		if (pos[col + 1][l] != '0' && pos[col + 1][l] != '1'
-			&& (pos[col + 1][l] != 'N' && pos[col + 1][l] != 'S'
-			&& pos[col + 1][l] != 'W' && pos[col + 1][l] != 'E'
-			&& cubed->game->p_flag == 1)) // check line down
-			ft_error("Error: DIO map\n", cubed);
-	}
-	else if ((pos[col][l] == 'N' || pos[col][l] == 'S'
-		|| pos[col][l] == 'W' || pos[col][l] == 'E') && flag) //2 players
-		ft_error("Error: cacca map\n", cubed);
-	if (pos[col][l] == '0')     // zero
-	{
-		if (pos[col - 1][l] != '0' && pos[col - 1][l] != '1' // check line up
-				&& (pos[col - 1][l] != 'N' && pos[col - 1][l] != 'S'
-				&& pos[col - 1][l] != 'W' && pos[col - 1][l] != 'E'
-				&& cubed->game->p_flag == 1))
-			ft_error("Error: bella map\n", cubed);
-		if (pos[col + 1][l] != '0' && pos[col + 1][l] != '1'
-			&& (pos[col + 1][l] != 'N' && pos[col + 1][l] != 'S'
-			&& pos[col + 1][l] != 'W' && pos[col + 1][l] != 'E'
-			&& cubed->game->p_flag == 1)) // check line down
-			ft_error("Error: DIO map\n", cubed);
-	}
-}
-
-void	check_map(t_cubed *cubed)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (cubed->map[++i])
-	{
-		j = -1;
-		while (cubed->map[i][++j])
-		{
-			if (j == 0)
-				while (ft_isspace(cubed->map[i][j]))
-					j++;
-			if (i == 0 || i == cubed->game->ht) // prima e ultima riga della mappa
-			{
-				if (cubed->map[i][j] != '1')
-					ft_error("Error: zio map\n", cubed);
-			}
-			else // resto della mappa
-				check_pos(cubed->map, cubed, i, j);
-		}
-	}
-	cubed->game->counter += 1;
-}
-
-int	file_checker(int fd, t_cubed *cubed)
-{
-	char	*line;
-	int		i;
-	
 	line = get_next_line(fd);
 	if (!line)
 	{
 		close(fd);
 		ft_error("Error: reading of file failed\n", cubed);
 	}
+	return (line);
+}
+
+int	file_checker(int fd, t_cubed *cubed)
+{
+	char	*line;
+	int		i;
+
+	line = NULL;
+	line = get_next_line_check(cubed, line, fd);
 	while (line)
 	{
 		i = 0;
@@ -121,7 +42,8 @@ int	file_checker(int fd, t_cubed *cubed)
 			surfaces_check(line + i, cubed, fd);
 		else if (line[i] == '1')
 		{
-			line[ft_strlen(line) - 1] = '\0';
+			if (line[ft_strlen(line) - 1] == '\n')
+				line[ft_strlen(line) - 1] = '\0';
 			cubed->map[cubed->game->counter++] = ft_strdup(line);
 		}
 		free(line);
@@ -134,14 +56,14 @@ int	file_checker(int fd, t_cubed *cubed)
 int	check_type(char *map)
 {
 	int	i;
-	
+
 	i = -1;
 	while (map[++i])
 	{
 		if (map[i] == '.' && i != 0)
 		{
 			if (!ft_strncmp(map + i, ".cub", 5))
-				continue;
+				continue ;
 			else
 				return (0);
 		}
@@ -176,22 +98,16 @@ int	check_file(char *map, t_cubed *cubed)
 	return (0);
 }
 
-int	check_void_path(t_cubed *cubed)
-{
-	if (!cubed->game->no || !cubed->game->so || !cubed->game->ea
-		|| !cubed->game->we)
-		ft_error("Error: invalid texture direction\n", cubed);
-	return (1);
-}
-
 int	parsing(char **argv, int argc, t_cubed *cubed)
 {
 	if (argc != 2)
 		return (ft_error(USAGE, cubed), 0);
 	check_file(argv[1], cubed);
-	check_void_path(cubed);
-	// print_matrix(cubed->map);
-	check_map(cubed);
-	// count_width_height();
+	if (!cubed->game->no || !cubed->game->so
+		|| !cubed->game->ea || !cubed->game->we)
+		ft_error("Error: invalid texture direction\n", cubed);
+	print_matrix(cubed->map);
+	check_map(cubed); //TODO controllare parser per 0 1 della mappa alla fine e inizio
+	count_width(cubed);
 	return (1);
 }
