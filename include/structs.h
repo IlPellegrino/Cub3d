@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 16:53:12 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/20 18:08:35 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_player
 	double	d_y; //delta y of the player
 	int		map_x;
 	int		map_y;
-	float	fov;
 }				t_player;
 
 typedef struct s_raycast
@@ -72,6 +71,13 @@ typedef struct s_raycast
 	float	ry;  //ray y
 	float	xo;  //x offset
 	float	yo;  //y offset
+	double	vx;
+	double	vy;
+	double	hx;
+	double	hy;
+	int		hit;
+	double	angle;
+	double	distance;
 }			t_raycast;
 
 typedef struct	s_cubed

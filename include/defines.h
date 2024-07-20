@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/18 19:30:10 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/19 14:30:47 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 # define PI 3.14159265359
 
-# define WIDTH 1900 // screen width
-# define HEIGHT 1080 // screen height
+# define WIDTH 1080 // screen width
+# define HEIGHT 720 // screen height
 
 # define TILE_SIZE 32 // tile size
 
@@ -27,7 +27,7 @@
 # define ROTATION_SPEED 0.015 // rotation speed
 # define PLAYER_SIZE 7 // player size
 # define PLAYER_SPEED 1 // player speed
-
+# define DR 0.0174533 // degree to radian
 # define F 1
 # define C 2
 

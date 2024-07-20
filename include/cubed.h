@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 19:40:05 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/19 13:59:49 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/time.h>
 # include <string.h>
 
+void	draw_shape(t_img *img, int x, int y, int size,  int color);
 int		key_press(int pressed, t_keys *keys);
 int		key_release(int realesed, t_keys *keys);
 void	better_pixel_put(t_img *img, int x, int y, int color);
