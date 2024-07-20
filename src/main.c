@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/19 10:49:18 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/20 19:07:18 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	better_pixel_put(t_img *img, int x, int y, int color)
 	int offset;
 
 	offset = (img->line_len * y) + (x * (img->bits_per_pixel / 8));
+	if (offset < 0 || offset > WIDTH * HEIGHT * 4)
+		return ;
 	*((unsigned int *)(offset + img->pixel_ptr)) = color;
 }
 
@@ -30,11 +32,13 @@ int	main(int argc, char **argv)
 {
 	t_cubed	cubed;
 
+	(void)argv;
+	(void)argc;
 	init_data(&cubed);
 	// cubed.map = set_map();
 	parsing(argv, argc, &cubed);
 	cubed.win = mlx_new_window(cubed.mlx, WIDTH, HEIGHT, "Cub3D");
-	game_loop(&cubed);
+	//game_loop(&cubed);
 	mlx_hook(cubed.win, KeyPress, KeyPressMask, &key_press, cubed.keys);
 	mlx_hook(cubed.win, KeyRelease, KeyReleaseMask, &key_release, cubed.keys);
 	mlx_hook(cubed.win, DestroyNotify, StructureNotifyMask, &ft_close, &cubed);

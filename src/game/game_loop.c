@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/18 18:32:04 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/20 18:07:21 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	is_wall(t_cubed *cubed, int x, int y)
 	int			i;
 	int			j;
 
-	j = floor((x) / TILE_SIZE );
-	i = floor((y) / TILE_SIZE);
+	j = (x) / TILE_SIZE;
+	i = (y) / TILE_SIZE;
 	if (cubed->map[i][j] == '1')
 		return (1);
 	return (0);
@@ -98,12 +98,12 @@ int	game_loop(t_cubed *cubed)
 	
 	img = cubed->img;
 	p = cubed->player;
-	//mlx_destroy_image(cubed->mlx, cubed->img->img);
-	//create_img(cubed->mlx, cubed->img);
+	mlx_destroy_image(cubed->mlx, cubed->img->img);
+	create_img(cubed->mlx, cubed->img);
 	events(cubed);
+	//printf("cubed->raycast->rx = %f\ncubed->raycast->ry = %f\n", cubed->raycast->rx, cubed->raycast->ry);
 	draw_map(img, cubed->map);
 	drawRays3D(cubed);
-	draw_line(img, p->x, p->y, cubed->raycast->rx, cubed->raycast->ry , red);
 	draw_player(img, cubed->player->x, cubed->player->y);
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);
