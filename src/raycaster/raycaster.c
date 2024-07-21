@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 18:09:48 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/20 23:57:27 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,8 @@ void drawRays3D(t_cubed *cubed)
             ray->distance = h_inter;
             ray->hit = 1;
         }
+        // draw rays
+        //draw_line(cubed->img, p->x, p->y, h_inter, v_inter, red);
         render_walls(cubed, ray->r);
         ray->r++;
         ray->angle += (FOV / WIDTH);
