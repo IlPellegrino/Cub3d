@@ -6,27 +6,12 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 15:00:21 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 18:49:20 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubed.h"
 
-void	better_pixel_put(t_img *img, int x, int y, int color)
-{
-	int offset;
-
-	offset = (img->line_len * y) + (x * (img->bits_per_pixel / 8));
-	if (offset < 0 || offset > WIDTH * HEIGHT * 4)
-		return ;
-	*((unsigned int *)(offset + img->pixel_ptr)) = color;
-}
-
-void	create_img(void *mlx, t_img *img)
-{
-	img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_len, &img->endian);	
-}
 
 int	main(int argc, char **argv)
 {

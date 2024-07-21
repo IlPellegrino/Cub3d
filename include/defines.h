@@ -6,30 +6,61 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/21 16:53:24 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 23:40:48 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define USAGE "\nInvalid argument\nUsage: ./cub3D path/to/map\n"
-
+/**======================
+ *?    	 MATH
+ *========================**/
 # define PI 3.14159265359
-
-# define WIDTH 1080 // screen width
-# define HEIGHT 720 // screen height
-
-# define TILE_SIZE 32 // tile size
+# define DR 0.0174533
+# define RADIANS_FOV (FOV * (PI / 180))
+/**======================
+ *?    	 SCREEN
+ *========================**/
+# define WIDTH 1080
+# define HEIGHT 720
+/**======================
+ *?    	 TILES
+ *========================**/
+# define TILE_SIZE 32
 # define MINI_SIZE 12
-//# define FOV 60 // field of view
-
-# define ROTATION_SPEED 2 // rotation speed
-# define PLAYER_SIZE 7 // player size
-# define PLAYER_SPEED 10 // player speed
-# define DR 0.0174533 // degree to radian
+/**======================
+ *?   PLAYER SETTINGS
+ *========================**/
+# define ROTATION_SPEED 2
+# define PLAYER_SIZE 7
+# define PLAYER_SPEED 10
+# define FOV 60
+/* ------------------------*/
 # define F 1
 # define C 2
+/*-------------------------*/
+
+enum e_keys
+{
+	esc = 65307,
+	w = 119,
+	a = 97,
+	s = 115,
+	d = 100,
+	shift = 65505,
+	tab = 65289,
+	e = 101,
+	q = 113,
+	m = 109,
+	f = 102,
+	p = 112,
+	r = 114,
+	left = 65361,
+	up = 65362,
+	right = 65363,
+	down = 65364
+};
 
 enum e_colors
 {
@@ -53,23 +84,5 @@ enum e_colors
 	pastel = 0x00d1a6ff,
 };
 
-enum e_keys
-{
-	esc = 65307,
-	w = 119,
-	a = 97,
-	s = 115,
-	d = 100,
-	shift = 65505,
-	tab = 65289,
-	e = 101,
-	q = 113,
-	m = 109,
-	f = 102,
-	left = 65361,
-	up = 65362,
-	right = 65363,
-	down = 65364
-};
 
 #endif

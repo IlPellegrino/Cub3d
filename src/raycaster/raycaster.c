@@ -6,14 +6,11 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 16:53:54 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 23:02:49 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
-
-#define FOV (60 * (PI / 180)) // Field of view in radians
-#define NUM_RAYS 1080 // Number of rays to cast (resolution of the rendering)
 
 void draw_vertical_line(t_img *img, int x, int start, int end, int color)
 {
@@ -23,18 +20,18 @@ void draw_vertical_line(t_img *img, int x, int start, int end, int color)
     }
 }
 
-void drawRays3D(t_cubed *cubed)
+void rendering(t_cubed *cubed)
 {
     t_player *p = cubed->player;
     t_raycast *ray = cubed->raycast;
     int map_w = 44;
     int map_h = matrix_len(cubed->map);
-    double angle_step = FOV / NUM_RAYS;
-    double ray_angle = p->angle - (FOV / 2);
+    double angle_step = RADIANS_FOV / WIDTH;
+    double ray_angle = p->angle - (RADIANS_FOV / 2);
 
-    for (int r = 0; r < NUM_RAYS; r++, ray_angle += angle_step)
+    for (int r = 0; r < WIDTH; r++, ray_angle += angle_step)
     {
-        ray->ra = fmod(ray_angle, 2 * PI);
+        ray->ra = fmod(ray_angle, 2 * PI); 
         if (ray->ra < 0) ray->ra += 2 * PI;
         
         ray->dof = 0;
@@ -120,7 +117,7 @@ void drawRays3D(t_cubed *cubed)
                 ray->dof += 1;
             }
         }
-
+        int color;
         // Select the closest hit
         double distH = sqrt((p->x - horX) * (p->x - horX) + (p->y - horY) * (p->y - horY));
         double distV = sqrt((p->x - verX) * (p->x - verX) + (p->y - verY) * (p->y - verY));
@@ -128,18 +125,25 @@ void drawRays3D(t_cubed *cubed)
         double finalDist;
         if (distH < distV)
         {
+            if (ray->ra > 0 && ray->ra < PI)
+                color = red; // north
+            else
+                color = blue; //south
             ray->rx = horX;
             ray->ry = horY;
             finalDist = distH;
         }
         else
         {
+            if (ray->ra > PI / 2 && ray->ra < 3 * PI / 2)
+                color = yellow; // east
+            else
+                color = green; //ovest
             ray->rx = verX;
             ray->ry = verY;
             finalDist = distV;
         }
 
-        //draw_line(cubed->img, p->x, p->y, ray->rx, ray->ry, red);
         // Correct the distance for the fish-eye effect
         double correctedDist = finalDist * cos(p->angle - ray->ra);
 
@@ -158,9 +162,8 @@ void drawRays3D(t_cubed *cubed)
         // Draw the wall slice (a vertical line) on the screen
         // draw top half of the screen as the ceiling
         draw_vertical_line(cubed->img, r, 0, wallTop, cyan);
-        // draw bottom half of the scree as floor
+        // draw bottom half of the screen as floor
         draw_vertical_line(cubed->img, r, wallBottom, HEIGHT, brown);
-        draw_vertical_line(cubed->img, r, wallTop, wallBottom, pastel);
-        
+        draw_vertical_line(cubed->img, r, wallTop, wallBottom, color);
     }
 }

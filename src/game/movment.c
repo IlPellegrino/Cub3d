@@ -1,30 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   movment.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 16:48:04 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 23:54:30 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	player_new_pos(t_player *player, int new_x, int new_y)
-{
-	printf("delta x = %f\ndelta y = %f\n", player->d_x, player->d_y);
-	player->x = new_x;
-	player->y = new_y;
-	return (1);
-}
-
-int	mid_point(int point)
-{
-	point += PLAYER_SIZE / 2;
-	return (point);
-}
 
 int	check_rotate(t_cubed *cubed, t_keys *key)
 {
@@ -50,50 +37,37 @@ int	check_rotate(t_cubed *cubed, t_keys *key)
 	return (1);
 }
 
-int	validate_position(t_cubed *cubed, int new_x, int new_y)
-{
-	t_player	*player;
-
-	player = cubed->player;
-	if (!is_wall(cubed, new_x, new_y))
-	{
-		player->x = new_x;
-		player->y = new_y;
-		return (1);	
-	}
-	return (0);
-}
 
 int	check_move(t_cubed *cubed, t_keys *key)
 {
-	t_player	*p;
-	int			new_x;
-	int			new_y;
+	t_player		*p;
+	double			new_x;
+	double			new_y;
 
 	p = cubed->player;
 	if (key->w)
 	{
-		new_x = p->x += p->d_x * (PLAYER_SPEED * 0.1);
-		new_y = p->y += p->d_y * (PLAYER_SPEED * 0.1);
-		//validate_position(cubed, new_x, new_y);
+		new_x = p->x + p->d_x * (PLAYER_SPEED * 0.1);
+		new_y = p->y + p->d_y * (PLAYER_SPEED * 0.1);
+		validate_position(cubed, new_x, new_y);
 	}
 	if (key->s)
 	{
-		new_x = p->x -= p->d_x * (PLAYER_SPEED * 0.1);
-		new_y = p->y -= p->d_y * (PLAYER_SPEED * 0.1);
-		//validate_position(cubed, new_x, new_y);
+		new_x = p->x - p->d_x * (PLAYER_SPEED * 0.1);
+		new_y = p->y - p->d_y * (PLAYER_SPEED * 0.1);
+		validate_position(cubed, new_x, new_y);
 	}
 	if (key->a)
 	{
-		new_x = p->x += p->d_y * (PLAYER_SPEED * 0.1);
-		new_y = p->y -= p->d_x * (PLAYER_SPEED * 0.1);
-		//validate_position(cubed, new_x, new_y);
+		new_x = p->x + p->d_y * (PLAYER_SPEED * 0.1);
+		new_y = p->y - p->d_x * (PLAYER_SPEED * 0.1);
+		validate_position(cubed, new_x, new_y);
 	}
 	if (key->d)
 	{
-		new_x = p->x -= p->d_y * (PLAYER_SPEED * 0.1);
-		new_y = p->y += p->d_x * (PLAYER_SPEED * 0.1);
-		//validate_position(cubed, new_x, new_y);
+		new_x = p->x - p->d_y * (PLAYER_SPEED * 0.1);
+		new_y = p->y + p->d_x * (PLAYER_SPEED * 0.1);
+		validate_position(cubed, new_x, new_y);
 	}
 	return (1);
 }
@@ -114,6 +88,7 @@ int	key_release(int realesed, t_keys *key)
 		key->right = 0;
 	else if (key->esc)
 		key->esc = 0;
+		
 	//printf("release\n");
 	return (1);
 }
@@ -134,11 +109,15 @@ int	key_press(int pressed, t_keys *key)
 		key->right = 1;
 	else if (pressed == esc)
 		key->esc = 1;
+	else if (pressed == p && key->pause == 0)
+		key->pause = 1;
+	else if (pressed == p && key->pause == 1)
+		key->pause = 0;
 	return (0);
 	//printf("press\n");
 }
 
-int	events(t_cubed *cubed)
+int	move_handler(t_cubed *cubed)
 {
 	t_keys	*key;
 

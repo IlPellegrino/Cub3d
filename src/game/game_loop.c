@@ -6,23 +6,12 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/21 16:33:04 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 23:53:15 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	is_wall(t_cubed *cubed, int x, int y)
-{
-	int			i;
-	int			j;
-
-	j = (x) / TILE_SIZE;
-	i = (y) / TILE_SIZE;
-	if (cubed->map[i][j] == '1')
-		return (1);
-	return (0);
-}
 
 /* temp function*/
 char **set_map(void)
@@ -45,7 +34,7 @@ char **set_map(void)
 }
 
 
-void	draw_shape(t_img *img, int x, int y, int size,  int color)
+void	draw_shape(t_img *img, int x, int y, int size, int color)
 {
 	int	i;
 	int	j;
@@ -68,9 +57,9 @@ void	draw_shape(t_img *img, int x, int y, int size,  int color)
 
 void draw_player(t_img *img, int x, int y)
 {
-	draw_shape(img, x - PLAYER_SIZE / 2	, y - PLAYER_SIZE / 2, PLAYER_SIZE, yellow);
+	draw_shape(img, x - (PLAYER_SIZE / 2), y - (PLAYER_SIZE / 2), PLAYER_SIZE, yellow);
 }
-void	draw_map(t_img *img, char **map)
+void	minimap(t_img *img, char **map)
 {
 	int			i;
 	int			j;
@@ -94,16 +83,15 @@ void	draw_map(t_img *img, char **map)
 int	game_loop(t_cubed *cubed)
 {
 	t_img		*img;
-	t_player	*p;
 	
 	img = cubed->img;
-	p = cubed->player;
+	if (cubed->keys->pause)
+		return (0);
 	mlx_destroy_image(cubed->mlx, cubed->img->img);
 	create_img(cubed->mlx, cubed->img);
-	events(cubed);
-	//printf("cubed->raycast->rx = %f\ncubed->raycast->ry = %f\n", cubed->raycast->rx, cubed->raycast->ry);
-	drawRays3D(cubed);
-	draw_map(img, cubed->map);
+	move_handler(cubed);
+	rendering(cubed);
+	minimap(img, cubed->map);
 	//draw_player(img, cubed->player->x, cubed->player->y);
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);

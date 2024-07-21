@@ -14,11 +14,12 @@ CLONE_MLX = @if [ -d "mlx/" ]; then \
     			$(MLX_GIT) > /dev/null 2>&1; \
 			fi
 
-PARSING_SRC = parsing.c parsing_2.c checks_color.c checks_surface.c parsing_checks.c
+PARSING_SRC = 	parsing.c parsing_2.c checks_color.c checks_surface.c \
+				parsing_checks.c
 RAYCASTER_SRC = raycaster.c
-UTILS_SRC = close_and_err.c utils.c
-INIT_SRC = init.c
-GAME_SRC = game_loop.c events.c
+UTILS_SRC = 	close_and_err.c mlx_utils.c
+INIT_SRC = 		init.c
+GAME_SRC = 		game_loop.c movment.c collision_check.c
 
 GAME = $(addprefix game/, $(GAME_SRC))
 INIT = $(addprefix init/, $(INIT_SRC))
@@ -54,10 +55,10 @@ $(NAME): $(OBJS)
 		@make -C $(LIBFT_PATH)
 		@echo "\e[0;32mDone\e[0m"
 		@echo "\e[0;33mCompiling \e[0m-> \e[0;37mMLX\e[0m"
-		@make --silent -C $(MLX_PATH) > /dev/null 2>&1
+		@make --silent -C $(MLX_PATH) 2> /dev/null
 		@echo "\e[0;32mDone\e[0m"
 		$(COMPILE) $(OBJS) $(LIBFT) $(MLX) $(MLX_INCLUDE) -o $(NAME)
-		@CLR="\033[35m"; \
+		@CLR="\033[36m"; \
 		NC="\033[0m"; \
 		echo ""; \
 		echo "    █████████  █████  █████ ███████████ $${CLR}  ████████  ██████████ $${NC}"; \
@@ -74,7 +75,7 @@ clean:
 		@make --silent -C $(LIBFT_PATH) clean /dev/null 2>&1;
 		@if [ -d "mlx/" ]; then \
 				echo "\e[0;35mCleaning\e[0m -> \e[0;37mMLX\e[0m"; \
-				make --silent -C $(MLX_PATH) clean > /dev/null 2>&1; \
+				make --silent -C $(MLX_PATH) clean; \
 		fi
 		@echo "\e[0;35mCleaning\e[0m -> \e[0;37mOBJS\e[0m"
 		rm -rf $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 15:40:20 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 23:40:53 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef	struct s_keys
 	int	left;
 	int	right;
 	int	esc;
+	int	pause;
 }				t_keys;
 
 typedef struct s_player

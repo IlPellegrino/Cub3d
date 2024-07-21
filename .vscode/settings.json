@@ -13,6 +13,9 @@
 		"initializer_list": "c",
 		"colors.h": "c",
 		"mlx.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"compare": "c",
+		"type_traits": "c",
+		"utility": "c"
 	}
 }

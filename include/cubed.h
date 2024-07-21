@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 23:58:23 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/21 19:25:00 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <X11/X.h>
 # include "defines.h"
 # include "structs.h"
+# include "errors.h"
 # include "colors.h"
 # include <math.h>
 # include <stdio.h>
@@ -26,51 +27,59 @@
 # include <sys/time.h>
 # include <string.h>
 
-void	draw_shape(t_img *img, int x, int y, int size,  int color);
-int		key_press(int pressed, t_keys *keys);
-int		key_release(int realesed, t_keys *keys);
-void	better_pixel_put(t_img *img, int x, int y, int color);
-void	draw_map(t_img *img, char **map);
 char 	**set_map(void);
-void 	draw_player(t_img *img, int x, int y);
-int		is_wall(t_cubed *cubed, int x, int y);
-void 	draw_line(t_img *img, int x0, int y0, int x1, int y1, int color);
-void    drawRays3D(t_cubed *cubed);
-
-/* close_and_err */
+/**======================
+ *?    	CLOSE / ERROR
+ *========================**/
 int		ft_close(t_cubed *cubed, int err_status);
 int 	ft_error(char *error, t_cubed *cubed);
-void	create_img(void *mlx, t_img *img);
 
-/* utils */
+/**======================
+ *?    		UTILS
+ *========================**/
+int		is_wall(t_cubed *cubed, double x, double y);
 int		create_trgb(int t, int r, int g, int b);
+void 	draw_line(t_img *img, int x0, int y0, int x1, int y1, int color);
+void	better_pixel_put(t_img *img, int x, int y, int color);
 
-// events //
-//int		key_events(int key, t_cubed *cubed);
-
-/* init */
+/**======================
+ *?    		INIT
+ *========================**/
 int		init_data(t_cubed *cubed);
+void	create_img(void *mlx, t_img *img);
+//void	draw_shape(t_img *img, int x, int y, int size,  int color);
 
-/* parsing */
+/**======================
+ *?    	  PARSING
+ *========================**/
 int		parsing(char **argv, int argc, t_cubed *cubed);
 int		check_file(char *map, t_cubed *cubed);
 int		count_map_columns(int fd, t_cubed *cubed);
 int		count_width(t_cubed *cubed);
 int		check_chars(char **map, int l, int col);
 void	check_map(t_cubed *cubed);
-
-/* checks */
 int		surfaces_check(char *line, t_cubed *cubed);
 int		textures_check(char *line, t_cubed *cubed);
 int		check_colors(char **color, t_cubed *cubed, int surface);
 
-/* raycaster */
-// void	create_img(t_img *img, void *mlx, int size, int color);
-
-/* game loop */
+/**======================
+ *?    		GAME
+ *========================**/
 int		game_loop(t_cubed *cub);
-int		events(t_cubed *cubed);
+void    rendering(t_cubed *cubed);
+void 	draw_player(t_img *img, int x, int y);
+void	minimap(t_img *img, char **map);
 
-//tutti qua coglione
+/**======================
+ *?    	 MOVEMENT
+ *========================**/
+int		move_handler(t_cubed *cubed);
+int		validate_position(t_cubed *cubed, double new_x, double new_y);
+
+/**======================
+ *?    		KEYS
+ *========================**/
+int		key_press(int pressed, t_keys *keys);
+int		key_release(int realesed, t_keys *keys);
 
 #endif
