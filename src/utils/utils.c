@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:58:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/18 16:41:58 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 15:10:18 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void draw_line(t_img *img, int x0, int y0, int x1, int y1, int color) {
 
     //printf("x1 = %d\ny1 = %d\n", x1, y1);
     while (1) {
+       // printf("x0 = %d\ny0 = %d\n", x0, y0);
         better_pixel_put(img, x0, y0, color);
         if (x0 == x1 && y0 == y1) break;
         int e2 = 2 * err;

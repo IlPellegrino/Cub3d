@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/19 15:19:32 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 16:48:04 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_rotate(t_cubed *cubed, t_keys *key)
 	p = cubed->player;
 	if (key->left)
 	{
-		p->angle -= ROTATION_SPEED;
+		p->angle -= (ROTATION_SPEED * 0.01);
 		if (p->angle < 0)
 			p->angle += 2 * PI;
 		p->d_x = cos(p->angle);
@@ -41,7 +41,7 @@ int	check_rotate(t_cubed *cubed, t_keys *key)
 	}
 	else if (key->right)
 	{
-		p->angle += ROTATION_SPEED;
+		p->angle += (ROTATION_SPEED * 0.01);
 		if (p->angle > 2 * PI)
 			p->angle -= 2 * PI;
 		p->d_x = cos(p->angle);
@@ -73,26 +73,26 @@ int	check_move(t_cubed *cubed, t_keys *key)
 	p = cubed->player;
 	if (key->w)
 	{
-		new_x = p->x += p->d_x * PLAYER_SPEED;
-		new_y = p->y += p->d_y * PLAYER_SPEED;
+		new_x = p->x += p->d_x * (PLAYER_SPEED * 0.1);
+		new_y = p->y += p->d_y * (PLAYER_SPEED * 0.1);
 		//validate_position(cubed, new_x, new_y);
 	}
 	if (key->s)
 	{
-		new_x = p->x -= p->d_x * PLAYER_SPEED;
-		new_y = p->y -= p->d_y * PLAYER_SPEED;
+		new_x = p->x -= p->d_x * (PLAYER_SPEED * 0.1);
+		new_y = p->y -= p->d_y * (PLAYER_SPEED * 0.1);
 		//validate_position(cubed, new_x, new_y);
 	}
 	if (key->a)
 	{
-		new_x = p->x += p->d_y * PLAYER_SPEED;
-		new_y = p->y -= p->d_x * PLAYER_SPEED;
+		new_x = p->x += p->d_y * (PLAYER_SPEED * 0.1);
+		new_y = p->y -= p->d_x * (PLAYER_SPEED * 0.1);
 		//validate_position(cubed, new_x, new_y);
 	}
 	if (key->d)
 	{
-		new_x = p->x -= p->d_y * PLAYER_SPEED;
-		new_y = p->y += p->d_x * PLAYER_SPEED;
+		new_x = p->x -= p->d_y * (PLAYER_SPEED * 0.1);
+		new_y = p->y += p->d_x * (PLAYER_SPEED * 0.1);
 		//validate_position(cubed, new_x, new_y);
 	}
 	return (1);

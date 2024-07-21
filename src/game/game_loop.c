@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/20 18:07:21 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 16:33:04 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void	draw_map(t_img *img, char **map)
 		while (map[i][++j])
 		{
 			if (map[i][j] == '1')
-				draw_shape(img, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, white);
-			else if (map[i][j] == '0' || map[i][j] == 'N')
-				draw_shape(img, j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, black);
+				draw_shape(img, j * MINI_SIZE, i * MINI_SIZE, MINI_SIZE, white);
+			else
+				draw_shape(img, j * MINI_SIZE, i * MINI_SIZE, MINI_SIZE, black);
 		}
 	}
 }
@@ -102,9 +102,9 @@ int	game_loop(t_cubed *cubed)
 	create_img(cubed->mlx, cubed->img);
 	events(cubed);
 	//printf("cubed->raycast->rx = %f\ncubed->raycast->ry = %f\n", cubed->raycast->rx, cubed->raycast->ry);
-	draw_map(img, cubed->map);
 	drawRays3D(cubed);
-	draw_player(img, cubed->player->x, cubed->player->y);
+	draw_map(img, cubed->map);
+	//draw_player(img, cubed->player->x, cubed->player->y);
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);
 }

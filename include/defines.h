@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/20 19:07:39 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/21 16:53:24 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # define HEIGHT 720 // screen height
 
 # define TILE_SIZE 32 // tile size
+# define MINI_SIZE 12
+//# define FOV 60 // field of view
 
-# define FOV 60 // field of view
-
-# define ROTATION_SPEED 0.015 // rotation speed
+# define ROTATION_SPEED 2 // rotation speed
 # define PLAYER_SIZE 7 // player size
-# define PLAYER_SPEED 1 // player speed
+# define PLAYER_SPEED 10 // player speed
 # define DR 0.0174533 // degree to radian
 # define F 1
 # define C 2
@@ -46,10 +46,11 @@ enum e_colors
 	pink = 0x00ff69b4,
 	teal = 0x0000ffff,
 	magenta = 0x00ff00ff,
-	cyan = 0x00ffff00,
+	cyan = 0x0000ffff,
 	olive = 0x00808000,
 	maroon = 0x00800000,
 	navy = 0x00000080,
+	pastel = 0x00d1a6ff,
 };
 
 enum e_keys
