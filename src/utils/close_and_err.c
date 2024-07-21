@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/19 15:52:51 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/20 13:35:04 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int ft_error(char *error, t_cubed *cubed)
 
 int	free_game(t_cubed *cubed)
 {
+	if (cubed->game->cub)
+		free_matrix(cubed->game->cub);
 	if (cubed->game->ea)
 		free (cubed->game->ea);
 	if (cubed->game->no)

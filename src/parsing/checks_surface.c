@@ -6,17 +6,16 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:48:53 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/19 16:07:05 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/20 16:05:07 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	check_texture_error(t_cubed *cubed, char **splitted, int file)
+int	check_texture_error(t_cubed *cubed, char **splitted)
 {
 	if (!splitted || matrix_len(splitted) != 2)
 	{
-		close(file);
 		if (splitted)
 			free_matrix(splitted);
 		ft_error("Error: wrong texture syntax\n", cubed);
@@ -57,53 +56,48 @@ int	assign_path(char *prefix, t_cubed *cubed, char *path)
 	return (1);
 }
 
-int	surfaces_check(char *line, t_cubed *cubed, int file)
+int	surfaces_check(char *str, t_cubed *cubed)
 {
 	char	**colors;
 
-	colors = ft_split(line, ' ');
+	colors = ft_split(str, ' ');
 	if (!colors || matrix_len(colors) != 2)
 	{
 		if (colors)
 			free_matrix(colors);
-		close(file);
-		free(line);
 		ft_error("Error: invalid color\n", cubed);
 	}
 	if (!ft_strncmp(colors[0], "F", 2))
-		check_colors(colors, cubed, F, file);
+		check_colors(colors, cubed, F);
 	else if (!ft_strncmp(colors[0], "C", 2))
-		check_colors(colors, cubed, C, file);
+		check_colors(colors, cubed, C);
 	else
 	{
-		close(file);
 		free_matrix(colors);
 		ft_error("Error: invalid color\n", cubed);
 	}
 	return (1);
 }
 
-int	textures_check(char *line, t_cubed *cubed, int file)
+int	textures_check(char *line, t_cubed *cubed)
 {
 	char	**splitted;
 	int		h;
 	int		fd;
 
 	splitted = ft_split(line, ' ');
-	check_texture_error(cubed, splitted, file);
+	check_texture_error(cubed, splitted);
 	h = matrix_len(splitted) - 1;
 	splitted[h][ft_strlen(splitted[h]) - 1] = '\0';
 	fd = open(splitted[1], O_RDONLY);
 	if (fd < 0)
 	{
-		free(line);
 		free_matrix(splitted);
 		ft_error("Error: wrong path to file\n", cubed);
 	}
 	close(fd);
 	if (!check_path(splitted[1]))
 	{
-		free(line);
 		free_matrix(splitted);
 		ft_error("Error: wrong path for walls\n", cubed);
 	}

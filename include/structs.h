@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 19:41:08 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/20 23:58:26 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef	struct s_game
 	char	*so;
 	char	*we;
 	char	*ea;
+	char	**cub;
 	int		floor_cl;
 	int		ceiling_cl;
 	int		ht;
