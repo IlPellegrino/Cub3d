@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 23:02:49 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/22 20:13:15 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@ void rendering(t_cubed *cubed)
 {
     t_player *p = cubed->player;
     t_raycast *ray = cubed->raycast;
-    int map_w = 44;
+    int map_w = 30;
     int map_h = matrix_len(cubed->map);
     double angle_step = RADIANS_FOV / WIDTH;
-    double ray_angle = p->angle - (RADIANS_FOV / 2);
+    double initial_angle = p->angle - (RADIANS_FOV / 2);
 
-    for (int r = 0; r < WIDTH; r++, ray_angle += angle_step)
+    for (int r = 0; r < WIDTH; r++)
     {
-        ray->ra = fmod(ray_angle, 2 * PI); 
-        if (ray->ra < 0) ray->ra += 2 * PI;
-        
+        double ray_angle = initial_angle + r * angle_step;
+        if (ray_angle < 0) ray_angle += 2 * PI;
+        if (ray_angle >= 2 * PI) ray_angle -= 2 * PI;
+
+        ray->ra = ray_angle;
         ray->dof = 0;
         double aTan = -1 / tan(ray->ra);
 
@@ -117,6 +119,7 @@ void rendering(t_cubed *cubed)
                 ray->dof += 1;
             }
         }
+
         int color;
         // Select the closest hit
         double distH = sqrt((p->x - horX) * (p->x - horX) + (p->y - horY) * (p->y - horY));
@@ -138,12 +141,12 @@ void rendering(t_cubed *cubed)
             if (ray->ra > PI / 2 && ray->ra < 3 * PI / 2)
                 color = yellow; // east
             else
-                color = green; //ovest
+                color = green; //west
             ray->rx = verX;
             ray->ry = verY;
             finalDist = distV;
         }
-
+        //draw_line(cubed->img, p->x, p->y, ray->rx, ray->ry, red);
         // Correct the distance for the fish-eye effect
         double correctedDist = finalDist * cos(p->angle - ray->ra);
 

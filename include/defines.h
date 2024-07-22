@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/21 23:40:48 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/22 20:15:47 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@
  *?    	 TILES
  *========================**/
 # define TILE_SIZE 32
-# define MINI_SIZE 12
+# define MINI_SIZE 16
 /**======================
  *?   PLAYER SETTINGS
  *========================**/
 # define ROTATION_SPEED 2
 # define PLAYER_SIZE 7
-# define PLAYER_SPEED 10
+# define PLAYER_SPEED 7
 # define FOV 60
 /* ------------------------*/
 # define F 1
@@ -82,6 +82,14 @@ enum e_colors
 	maroon = 0x00800000,
 	navy = 0x00000080,
 	pastel = 0x00d1a6ff,
+	periwinkle = 0x00ccccff,
+	tea_green = 0x00d0f0c0,
+	jet = 0x00000099,
+	eggplant = 0x006D435A,
+	lion = 0x00C19A6B,
+	snow = 0x00FFFAFA,
+	claret = 0x00DC143C,
+	rich_black = 0x00004040,
 };
 
 
