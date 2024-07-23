@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/21 23:53:15 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/22 19:33:26 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	game_loop(t_cubed *cubed)
 		return (0);
 	mlx_destroy_image(cubed->mlx, cubed->img->img);
 	create_img(cubed->mlx, cubed->img);
+	load_texture(cubed);
 	move_handler(cubed);
 	rendering(cubed);
 	minimap(img, cubed->map);

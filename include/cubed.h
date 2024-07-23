@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 19:25:00 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/22 17:02:14 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,11 @@ int		validate_position(t_cubed *cubed, double new_x, double new_y);
  *========================**/
 int		key_press(int pressed, t_keys *keys);
 int		key_release(int realesed, t_keys *keys);
+
+/**======================
+ *?    	  TEXTURE
+ *========================**/
+int		get_texture(t_cubed *cubed);
+void	load_texture(t_cubed *cubed);
 
 #endif

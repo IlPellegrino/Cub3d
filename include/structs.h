@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 23:40:53 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/22 15:59:06 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ typedef	struct	s_img
 	char	*name;
 	char	*pixel_ptr;
 	void	*img;
+	int		*data;
+	int		w;
+	int		h;
 	int		bits_per_pixel; 
 	int		endian;
 	int		line_len;
@@ -92,6 +95,7 @@ typedef struct	s_cubed
 	void		*win;
 	t_img		*img;
 	t_player	*player;
+	t_img		texture[4];
 	t_raycast	*raycast;
 	t_game		*game;
 	t_keys		*keys;
