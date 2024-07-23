@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 16:09:42 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 16:14:49 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,94 @@ void draw_vertical_line(t_img *img, int x, int start, int end, int color)
         better_pixel_put(img, x, y, color);
     }
 }
+
+void draw_walls(t_cubed *cubed, int x, int start, int end, double wall_height, int color)
+{
+    t_img *texture;
+    int     tex_x;
+    int     tex_y;
+    double  tex_step;
+    double  tex_pos;
+
+    // Determine which texture to use based on the color
+    switch (color) {
+        case yellow:
+            texture = &cubed->texture[0]; // North
+            break;
+        case blue:
+            texture = &cubed->texture[1]; // South
+            break;
+        case red:
+            texture = &cubed->texture[2]; // East
+            break;
+        case green:
+            texture = &cubed->texture[3]; // West
+            break;
+        default:
+            texture = &cubed->texture[0]; // Default texture
+            break;
+    }
+
+    // Calculate the x coordinate on the texture
+    if (color == red || color == green) 
+    {
+        tex_x = (int)(cubed->raycast->ry) % TILE_SIZE;
+    }
+    else 
+    {
+        tex_x = (int)(cubed->raycast->rx) % TILE_SIZE;
+    }
+
+    // Normalize tex_x to be within the texture width
+    if (tex_x <= 0) {
+        tex_x += TILE_SIZE; // Handle negative tex_x
+    }
+    tex_x = (tex_x * texture->w) / TILE_SIZE;
+    tex_x = tex_x % texture->w; // Ensure tex_x is within texture width
+
+    // Calculate texture step and initial position
+    if (wall_height <= 0) {
+        wall_height = 1; // Handle invalid wall_height values
+    }
+    tex_step = (double)texture->h / wall_height;
+    if (tex_step <= 0) {
+        tex_step = 1; // Avoid zero or negative steps
+    }
+    tex_pos = (start - HEIGHT / 2 + wall_height / 2) * tex_step;
+	if (tex_pos <= 0)
+		tex_pos += tex_step;
+	printf("tex_step = %f\n", tex_step);
+	printf("tex_pos = %f\n", tex_pos);
+	printf("tex_x = %d\n", tex_x);
+
+    for (int y = start; y < end; y++)
+    {
+        tex_y = (int)tex_pos % texture->h;
+        if (tex_y < 0 || tex_y > texture->h) {
+            tex_y += texture->h; // Handle negative tex_y values
+        }
+
+        tex_pos += tex_step;
+
+        // Calculate the color index
+        int color_idx = tex_y * texture->w + tex_x;
+
+        // Ensure color_idx is within the bounds of the texture data array
+        if (color_idx >= 0 && color_idx < texture->w * texture->h)
+        {
+            // Get the color from the texture data
+            int tex_color = texture->data[color_idx];
+
+            // Put the pixel on the screen
+            better_pixel_put(cubed->img, x, y, tex_color);
+        }
+    }
+}
+
+
+
+
+
 
 void rendering(t_cubed *cubed)
 {
@@ -154,9 +242,9 @@ void rendering(t_cubed *cubed)
         int wallHeight = (TILE_SIZE * HEIGHT) / correctedDist;
 
         // Ensure wall height does not exceed the screen height
-        if (wallHeight > HEIGHT) {
-            wallHeight = HEIGHT;
-        }
+        // if (wallHeight > HEIGHT) {
+        //     wallHeight = HEIGHT;
+        // }
 
         // Calculate start and end positions for the wall slice
         int wallTop = (HEIGHT / 2) - (wallHeight / 2);
@@ -169,8 +257,7 @@ void rendering(t_cubed *cubed)
         draw_vertical_line(cubed->img, r, wallBottom, HEIGHT, brown);
         if (cubed->map[(int)(ray->ry / TILE_SIZE)][(int)(ray->rx / TILE_SIZE)] == 'D')
             color = purple;
-        if (ray->r % 10 == 0)
-            color = grey;
+
         draw_vertical_line(cubed->img, r, wallTop, wallBottom, color);
     }
 }
