@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/23 14:24:08 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/23 15:05:36 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_shape(t_img *img, double x, double y, int size, int color)
 	int	j;
 	int	start_x;
 	
-	printf("x = %f, y = %f\n", x, y);
+	// printf("x = %f, y = %f\n", x, y);
 	start_x = x;
 	j = -1;
 	while (++j < size)
@@ -132,7 +132,6 @@ int	game_loop(t_cubed *cubed)
 		return (0);
 	mlx_destroy_image(cubed->mlx, cubed->img->img);
 	create_img(cubed->mlx, cubed->img);
-	load_texture(cubed);
 	move_handler(cubed);
 	rendering(cubed);
 	minimap(cubed, cubed->map);

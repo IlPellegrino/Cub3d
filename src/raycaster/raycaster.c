@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 14:24:34 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:05:04 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,48 +42,57 @@ void draw_walls(t_cubed *cubed, int x, int start, int end, double wall_height, i
         case green:
             texture = &cubed->texture[3]; // West
             break;
-        // default:
-        //     // Default texture (if needed)
-        //     texture = &cubed->texture[0];
-        //     break;
+        default:
+            texture = &cubed->texture[0]; // Default texture
+            break;
     }
 
     // Calculate the x coordinate on the texture
-    // Determine tex_x based on wall side and ray position
     if (color == red || color == green) 
     {
-        // For vertical walls (East or West)
         tex_x = (int)(cubed->raycast->ry) % TILE_SIZE;
     }
     else 
     {
-        // For horizontal walls (North or South)
         tex_x = (int)(cubed->raycast->rx) % TILE_SIZE;
     }
 
-
     // Normalize tex_x to be within the texture width
-    if (tex_x < 0)
-        tex_x += TILE_SIZE; // Ensure positive value
+    if (tex_x <= 0) {
+        tex_x += TILE_SIZE; // Handle negative tex_x
+    }
     tex_x = (tex_x * texture->w) / TILE_SIZE;
+    tex_x = tex_x % texture->w; // Ensure tex_x is within texture width
 
-    tex_step = (double)texture->h / (wall_height);
+    // Calculate texture step and initial position
+    if (wall_height <= 0) {
+        wall_height = 1; // Handle invalid wall_height values
+    }
+    tex_step = (double)texture->h / wall_height;
+    if (tex_step <= 0) {
+        tex_step = 1; // Avoid zero or negative steps
+    }
     tex_pos = (start - HEIGHT / 2 + wall_height / 2) * tex_step;
-    printf("tex pos = %f\n", tex_pos);
-	printf("tex step = %f\n", tex_step);
+	if (tex_pos <= 0)
+		tex_pos += tex_step;
+	printf("tex_step = %f\n", tex_step);
+	printf("tex_pos = %f\n", tex_pos);
+	printf("tex_x = %d\n", tex_x);
 
     for (int y = start; y < end; y++)
     {
-        tex_pos += tex_step / 2;
         tex_y = (int)tex_pos % texture->h;
-		// printf("AFTER pos = %f\n", tex_pos);
-		// printf("AFTER step = %f\n", tex_step);
+        if (tex_y < 0 || tex_y > texture->h) {
+            tex_y += texture->h; // Handle negative tex_y values
+        }
+
+        tex_pos += tex_step;
 
         // Calculate the color index
         int color_idx = tex_y * texture->w + tex_x;
 
         // Ensure color_idx is within the bounds of the texture data array
-        if (color_idx > 0 && color_idx < texture->w * texture->h)
+        if (color_idx >= 0 && color_idx < texture->w * texture->h)
         {
             // Get the color from the texture data
             int tex_color = texture->data[color_idx];
@@ -93,6 +102,9 @@ void draw_walls(t_cubed *cubed, int x, int start, int end, double wall_height, i
         }
     }
 }
+
+
+
 
 
 
@@ -230,9 +242,9 @@ void rendering(t_cubed *cubed)
         int wallHeight = (TILE_SIZE * HEIGHT) / correctedDist;
 
         // Ensure wall height does not exceed the screen height
-        if (wallHeight > HEIGHT) {
-            wallHeight = HEIGHT;
-        }
+        // if (wallHeight > HEIGHT) {
+        //     wallHeight = HEIGHT;
+        // }
 
         // Calculate start and end positions for the wall slice
         int wallTop = (HEIGHT / 2) - (wallHeight / 2);
