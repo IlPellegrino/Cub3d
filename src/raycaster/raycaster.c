@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 17:14:17 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 17:30:47 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,10 +236,7 @@ void rendering(t_cubed *cubed)
         int wallHeight = (TILE_SIZE * HEIGHT) / correctedDist;
 
         // Ensure wall height does not exceed the screen height
-        //  if (wallHeight > HEIGHT)
-        //  {
-        //      wallHeight = HEIGHT;
-        //  }
+
 
         // Calculate start and end positions for the wall slice
         int wallTop = (HEIGHT / 2) - (wallHeight / 2);

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/23 17:06:34 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 17:26:09 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # define PI 3.14159265359
 # define DR 0.0174533
 # define RADIANS_FOV (FOV * (PI / 180))
+# define NORTH PI / 2
+# define SOUTH 3 * PI / 2
+# define WEST PI
+# define EAST 0
 /**======================
  *?    	 SCREEN
  *========================**/
@@ -27,14 +31,14 @@
 /**======================
  *?    	 TILES
  *========================**/
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define MINI_SIZE 12
 /**======================
  *?   PLAYER SETTINGS
  *========================**/
-# define ROTATION_SPEED 4
+# define ROTATION_SPEED 3
 # define PLAYER_SIZE 7
-# define PLAYER_SPEED 7
+# define PLAYER_SPEED 20
 # define FOV 60
 /* ------------------------*/
 # define F 1
