@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 16:11:30 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 16:56:12 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,26 @@ int	check_move(t_cubed *cubed, t_keys *key)
 	p = cubed->player;
 	if (key->w)
 	{
-		new_x = p->x + p->d_x * (PLAYER_SPEED + 6 * 0.1);
-		new_y = p->y + p->d_y * (PLAYER_SPEED + 6 * 0.1);
+		new_x = p->x + p->d_x * (PLAYER_SPEED * 0.1);
+		new_y = p->y + p->d_y * (PLAYER_SPEED * 0.1);
 		validate_position(cubed, new_x, new_y);
 	}
 	if (key->s)
 	{
-		new_x = p->x - p->d_x * (PLAYER_SPEED * 0.1);
-		new_y = p->y - p->d_y * (PLAYER_SPEED * 0.1);
+		new_x = p->x - p->d_x * ((PLAYER_SPEED) * 0.1);
+		new_y = p->y - p->d_y * ((PLAYER_SPEED) * 0.1);
 		validate_position(cubed, new_x, new_y);
 	}
 	if (key->a)
 	{
-		new_x = p->x + p->d_y * (PLAYER_SPEED * 0.1);
-		new_y = p->y - p->d_x * (PLAYER_SPEED * 0.1);
+		new_x = p->x + p->d_y * ((PLAYER_SPEED )* 0.1);
+		new_y = p->y - p->d_x * ((PLAYER_SPEED )* 0.1);
 		validate_position(cubed, new_x, new_y);
 	}
 	if (key->d)
 	{
-		new_x = p->x - p->d_y * (PLAYER_SPEED * 0.1);
-		new_y = p->y + p->d_x * (PLAYER_SPEED * 0.1);
+		new_x = p->x - p->d_y * ((PLAYER_SPEED )* 0.1);
+		new_y = p->y + p->d_x * ((PLAYER_SPEED )* 0.1);
 		validate_position(cubed, new_x, new_y);
 	}
 	return (1);
@@ -94,7 +94,6 @@ int	key_release(int realesed, t_keys *key)
 
 int	key_press(int pressed, t_keys *key)
 {
-	printf("key = %d\n", pressed);
 	if (pressed == w)
 		key->w = 1;
 	else if (pressed == s)

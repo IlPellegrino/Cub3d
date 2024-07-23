@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 16:14:49 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 17:14:17 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,10 @@ void draw_walls(t_cubed *cubed, int x, int start, int end, double wall_height, i
     tex_pos = (start - HEIGHT / 2 + wall_height / 2) * tex_step;
 	if (tex_pos <= 0)
 		tex_pos += tex_step;
-	printf("tex_step = %f\n", tex_step);
-	printf("tex_pos = %f\n", tex_pos);
-	printf("tex_x = %d\n", tex_x);
 
     for (int y = start; y < end; y++)
     {
+        //printf("y = %d\n", y);
         tex_y = (int)tex_pos % texture->h;
         if (tex_y < 0 || tex_y > texture->h) {
             tex_y += texture->h; // Handle negative tex_y values
@@ -102,10 +100,6 @@ void draw_walls(t_cubed *cubed, int x, int start, int end, double wall_height, i
         }
     }
 }
-
-
-
-
 
 
 void rendering(t_cubed *cubed)
@@ -217,7 +211,7 @@ void rendering(t_cubed *cubed)
         if (distH < distV)
         {
             if (ray->ra > 0 && ray->ra < PI)
-                color = red; // north
+                color = yellow; // north
             else
                 color = blue; //south
             ray->rx = horX;
@@ -227,7 +221,7 @@ void rendering(t_cubed *cubed)
         else
         {
             if (ray->ra > PI / 2 && ray->ra < 3 * PI / 2)
-                color = yellow; // east
+                color = red; // east
             else
                 color = green; //west
             ray->rx = verX;
@@ -242,13 +236,22 @@ void rendering(t_cubed *cubed)
         int wallHeight = (TILE_SIZE * HEIGHT) / correctedDist;
 
         // Ensure wall height does not exceed the screen height
-        // if (wallHeight > HEIGHT) {
-        //     wallHeight = HEIGHT;
-        // }
+        //  if (wallHeight > HEIGHT)
+        //  {
+        //      wallHeight = HEIGHT;
+        //  }
 
         // Calculate start and end positions for the wall slice
         int wallTop = (HEIGHT / 2) - (wallHeight / 2);
         int wallBottom = wallTop + wallHeight;
+        if (wallBottom > HEIGHT)
+        {
+            wallBottom = HEIGHT;
+        }
+        if (wallTop < 0)
+        {
+            wallTop = 0;
+        }
 
         // Draw the wall slice (a vertical line) on the screen
         // draw top half of the screen as the ceiling
@@ -258,6 +261,6 @@ void rendering(t_cubed *cubed)
         if (cubed->map[(int)(ray->ry / TILE_SIZE)][(int)(ray->rx / TILE_SIZE)] == 'D')
             color = purple;
 
-        draw_vertical_line(cubed->img, r, wallTop, wallBottom, color);
+        draw_walls(cubed, r, wallTop, wallBottom, wallHeight, color);
     }
 }

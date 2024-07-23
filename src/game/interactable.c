@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:11:16 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/23 14:23:42 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 16:45:38 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	interactable(t_cubed *cubed)
 	p = cubed->player;
 	i = (int)((p->y + p->d_y * 20) / TILE_SIZE);
 	j = (int)((p->x + p->d_x * 20) / TILE_SIZE);
-	printf("d_x = %f, d_y = %f\n", p->d_x, p->d_y);
-	printf("i = %d, j = %d\n", i, j);
 	if (cubed->map[i][j] == 'D' && cubed->keys->space)
 	{
 		cubed->map[i][j] = 'C';

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/23 16:13:37 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 17:06:34 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@
 /**======================
  *?    	 TILES
  *========================**/
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define MINI_SIZE 12
 /**======================
  *?   PLAYER SETTINGS
  *========================**/
 # define ROTATION_SPEED 4
 # define PLAYER_SIZE 7
-# define PLAYER_SPEED 3
+# define PLAYER_SPEED 7
 # define FOV 60
 /* ------------------------*/
 # define F 1
