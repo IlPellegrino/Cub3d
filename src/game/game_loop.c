@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/23 14:21:53 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 15:05:06 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ int	game_loop(t_cubed *cubed)
 		return (0);
 	mlx_destroy_image(cubed->mlx, cubed->img->img);
 	create_img(cubed->mlx, cubed->img);
+
 	move_handler(cubed);
 	interactable(cubed);
 	rendering(cubed);

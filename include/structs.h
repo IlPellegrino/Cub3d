@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 12:08:36 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 15:00:41 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ typedef	struct	s_img
 	char	*name;
 	char	*pixel_ptr;
 	void	*img;
+	int		*data;
+	int		w;
+	int		h;
 	int		bits_per_pixel; 
 	int		endian;
 	int		line_len;
@@ -93,6 +96,7 @@ typedef struct	s_cubed
 	void		*win;
 	t_img		*img;
 	t_player	*player;
+	t_img		texture[4];
 	t_raycast	*raycast;
 	t_game		*game;
 	t_keys		*keys;

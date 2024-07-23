@@ -1,7 +1,7 @@
 NO ./src/textures/wall_north.xpm
-SO ./src/textures/wall_south.xpm
-WE ./src/textures/wall_west.xpm
-EA ./src/textures/wall_east.xpm
+SO ./src/textures/wall_north.xpm
+WE ./src/textures/wall_north.xpm
+EA ./src/textures/wall_north.xpm
 
 C 0,39,47
 F 225,0,5

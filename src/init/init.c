@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 12:29:58 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 14:53:48 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ int	init_data(t_cubed *cubed)
 		return (0);
 	cubed->keys = ft_calloc(sizeof(t_keys), 1);
 	cubed->keys->space = 0;
+	cubed->texture[0].w = WIDTH;
+	cubed->texture[0].h = HEIGHT;
+	cubed->texture[1].w = WIDTH;
+	cubed->texture[1].h = HEIGHT;
+	cubed->texture[2].w = WIDTH;
+	cubed->texture[2].h = HEIGHT;
+	cubed->texture[3].w = WIDTH;
+	cubed->texture[3].h = HEIGHT;
 	init_player(cubed);
 	return (1);
 }

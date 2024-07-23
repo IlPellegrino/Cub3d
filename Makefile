@@ -19,7 +19,7 @@ PARSING_SRC = 	parsing.c parsing_2.c checks_color.c checks_surface.c \
 RAYCASTER_SRC = raycaster.c
 UTILS_SRC = 	close_and_err.c mlx_utils.c
 INIT_SRC = 		init.c
-GAME_SRC = 		game_loop.c movment.c collision_check.c interactable.c
+GAME_SRC = 		texture.c game_loop.c movment.c collision_check.c interactable.c
 
 GAME = $(addprefix game/, $(GAME_SRC))
 INIT = $(addprefix init/, $(INIT_SRC))

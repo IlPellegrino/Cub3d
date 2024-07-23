@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 18:49:20 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 15:05:14 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	init_data(&cubed);
 	// cubed.map = set_map();
 	parsing(argv, argc, &cubed);
+	load_texture(&cubed);
 	cubed.win = mlx_new_window(cubed.mlx, WIDTH, HEIGHT, "Cub3D");
 	//game_loop(&cubed);
 	//printf("ht = %d\nwd = %d\n", cubed.game->ht, cubed.game->wd);
