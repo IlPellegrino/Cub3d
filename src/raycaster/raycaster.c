@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/22 20:13:15 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 14:00:15 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void rendering(t_cubed *cubed)
             int mapX = (int)(horX) / TILE_SIZE;
             int mapY = (int)(horY) / TILE_SIZE;
 
-            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == '1' || cubed->map[mapY][mapX] == 'D'))
             {
                 ray->hx = horX;
                 ray->hy = horY;
@@ -167,6 +167,8 @@ void rendering(t_cubed *cubed)
         draw_vertical_line(cubed->img, r, 0, wallTop, cyan);
         // draw bottom half of the screen as floor
         draw_vertical_line(cubed->img, r, wallBottom, HEIGHT, brown);
+        if (cubed->map[(int)(ray->ry / TILE_SIZE)][(int)(ray->rx / TILE_SIZE)] == 'D')
+            color = purple;
         draw_vertical_line(cubed->img, r, wallTop, wallBottom, color);
     }
 }

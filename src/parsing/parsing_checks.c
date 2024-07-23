@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 23:56:35 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/23 12:02:12 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,22 @@ int	is_double_player(t_cubed *cubed, int *flag, int l, int col)
 	return (0);
 }
 
+int is_acceptable(char c)
+{
+	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D')
+		return (1);
+	return (0);
+}
+
 int	is_a_player(t_cubed *cubed, int *flag, int l, int col)
 {
 	if ((cubed->map[l][col] == 'N' || cubed->map[l][col] == 'S'
 		|| cubed->map[l][col] == 'W' || cubed->map[l][col] == 'E') && !(*flag))
 	{
 		(*flag)++;
-		if ((cubed->map[l - 1][col] != '0' && cubed->map[l - 1][col] != '1')
-			&& (cubed->map[l - 1][col] != 'N' && cubed->map[l - 1][col] != 'S'
-			&& cubed->map[l - 1][col] != 'W' && cubed->map[l - 1][col] != 'E'))
+		if (!is_acceptable(cubed->map[l - 1][col]))
 			return (0);
-		if ((cubed->map[l + 1][col] != '0' && cubed->map[l + 1][col] != '1')
-			&& (cubed->map[l + 1][col] != 'N' && cubed->map[l + 1][col] != 'S'
-			&& cubed->map[l + 1][col] != 'W' && cubed->map[l + 1][col] != 'E'))
+		if (!is_acceptable(cubed->map[l + 1][col]))
 			return (0);
 	}
 	else if (is_double_player(cubed, flag, l, col))
@@ -44,13 +47,9 @@ int	is_a_zero(t_cubed *cubed, int l, int col)
 {
 	if (cubed->map[l][col] == '0')
 	{
-		if (cubed->map[l - 1][col] != '0' && cubed->map[l - 1][col] != '1'
-			&& cubed->map[l - 1][col] != 'N' && cubed->map[l - 1][col] != 'S'
-			&& cubed->map[l - 1][col] != 'W' && cubed->map[l - 1][col] != 'E')
+		if (!is_acceptable(cubed->map[l - 1][col]))
 			return (0);
-		if (cubed->map[l + 1][col] != '0' && cubed->map[l + 1][col] != '1'
-			&& cubed->map[l + 1][col] != 'N' && cubed->map[l + 1][col] != 'S'
-			&& cubed->map[l + 1][col] != 'W' && cubed->map[l + 1][col] != 'E')
+		if (!is_acceptable(cubed->map[l + 1][col]))
 			return (0);
 	}
 	return (1);

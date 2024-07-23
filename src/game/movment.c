@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/21 23:54:30 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 14:06:01 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ int	key_release(int realesed, t_keys *key)
 		key->right = 0;
 	else if (key->esc)
 		key->esc = 0;
-		
 	//printf("release\n");
 	return (1);
 }
 
 int	key_press(int pressed, t_keys *key)
 {
+	printf("key = %d\n", pressed);
 	if (pressed == w)
 		key->w = 1;
 	else if (pressed == s)
@@ -113,6 +113,8 @@ int	key_press(int pressed, t_keys *key)
 		key->pause = 1;
 	else if (pressed == p && key->pause == 1)
 		key->pause = 0;
+	else if (pressed == space)
+		key->space = 1;
 	return (0);
 	//printf("press\n");
 }

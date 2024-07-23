@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/22 12:35:52 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:29:58 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	init_data(t_cubed *cubed)
 	if (!cubed->raycast || !cubed->game)
 		return (0);
 	cubed->keys = ft_calloc(sizeof(t_keys), 1);
+	cubed->keys->space = 0;
 	init_player(cubed);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/22 15:01:33 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:13:21 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		game_loop(t_cubed *cub);
 void    rendering(t_cubed *cubed);
 void 	draw_player(t_img *img, double x, double y, t_cubed *cubed);
 void	minimap(t_cubed *cubed, char **map);
-
+void	interactable(t_cubed *cubed);
 /**======================
  *?    	 MOVEMENT
  *========================**/

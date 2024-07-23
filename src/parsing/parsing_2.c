@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:39:31 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 18:17:44 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/23 11:55:10 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	check_chars(char **map, int l, int col)
 	if (map[l][col] == 'S')
 		return (1);
 	if (map[l][col] == ' ')
+		return (1);
+	if (map[l][col] == 'D')
 		return (1);
 	return (0);
 }

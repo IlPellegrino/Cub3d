@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/22 20:15:50 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 14:21:53 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_shape(t_img *img, double x, double y, int size, int color)
 	int	j;
 	int	start_x;
 	
-	printf("x = %f, y = %f\n", x, y);
+	//printf("x = %f, y = %f\n", x, y);
 	start_x = x;
 	j = -1;
 	while (++j < size)
@@ -90,20 +90,23 @@ void	draw_minimap(t_cubed *cubed, char **map)
 	p = cubed->player;
 	img = cubed->img;
 	i = -1;
-	
 	while (++i < MINIMAP_SIZE)
 	{
 		j = -1;
-		y = (p->y - MINI_SIZE / 2 + i) / 32;
+		y = (p->y - MINIMAP_SIZE / 2 + i) / TILE_SIZE;
 		while (++j < MINIMAP_SIZE)
 		{
-			x = (p->x - MINI_SIZE / 2 + j) / 32;
+			x = (p->x - MINIMAP_SIZE / 2 + j) / TILE_SIZE;
 			if (j < 5 || j > MINIMAP_SIZE - 6 || i < 5 || i > MINIMAP_SIZE - 6)
 				color = eggplant;
 			else if (x < 0 || y < 0 || y >= matrix_len(map) || x >= (int)ft_strlen(map[y]))
 				color = claret;
 			else if (map[y][x] == '1')
 				color = lion;
+			else if (map[y][x] == 'D')
+				color = purple;
+			else if (map[y][x] == 'C')
+				color = green;
 			else
 				color = snow;
 			better_pixel_put(img, i, j, color);
@@ -114,8 +117,17 @@ void	draw_minimap(t_cubed *cubed, char **map)
 
 void	minimap(t_cubed *cubed, char **map)
 {
+	int	delta_y;
+	int	delta_x;
+	int	half_map;
+	
+	(void)half_map;
 	draw_minimap(cubed, map);
-	draw_shape(cubed->img, 97, 97, 5, rich_black);
+	draw_shape(cubed->img, 98, 98, 5, rich_black);
+
+	delta_x = cos(cubed->player->angle - PI / 2) * 10;
+	delta_y = sin(cubed->player->angle + PI / 2) * 10;
+	draw_line(cubed->img, 100, 100, 100 + delta_x, 100 + delta_y, rich_black);
 }
 
 
@@ -133,6 +145,7 @@ int	game_loop(t_cubed *cubed)
 	mlx_destroy_image(cubed->mlx, cubed->img->img);
 	create_img(cubed->mlx, cubed->img);
 	move_handler(cubed);
+	interactable(cubed);
 	rendering(cubed);
 	minimap(cubed, cubed->map);
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);

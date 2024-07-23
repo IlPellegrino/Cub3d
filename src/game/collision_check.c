@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:58:34 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/21 19:29:01 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:06:01 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_wall(t_cubed *cubed, double x, double y)
 
 	j = (int)(x / TILE_SIZE);
 	i = (int)(y / TILE_SIZE);
-	if (cubed->map[i][j] == '1')
+	if (cubed->map[i][j] == '1' || cubed->map[i][j] == 'D')
 		return (1);
 	return (0);
 }
