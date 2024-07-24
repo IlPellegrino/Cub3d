@@ -6,16 +6,16 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 20:27:46 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 20:32:30 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	is_double_player(t_cubed *cubed, int *flag, int l, int col)
+int	is_double_player(t_cubed *cubed, int *flag, int rows, int col)
 {
-	if ((cubed->map[l][col] == 'N' || cubed->map[l][col] == 'S'
-		|| cubed->map[l][col] == 'W' || cubed->map[l][col] == 'E') && (*flag))
+	if ((cubed->map[rows][col] == 'N' || cubed->map[rows][col] == 'S'
+		|| cubed->map[rows][col] == 'W' || cubed->map[rows][col] == 'E') && (*flag))
 		return (1);
 	return (0);
 }
@@ -27,53 +27,70 @@ int is_acceptable(char c)
 	return (0);
 }
 
-int	is_a_player(t_cubed *cubed, int *flag, int l, int col)
+void	set_player(t_cubed *cubed, char c)
 {
-	if ((cubed->map[l][col] == 'N' || cubed->map[l][col] == 'S'
-		|| cubed->map[l][col] == 'W' || cubed->map[l][col] == 'E') && !(*flag))
+	if (c == 'N')
+		cubed->player->angle = NORTH;
+	else if (c == 'S')
+		cubed->player->angle = SOUTH;
+	else if (c == 'W')
+		cubed->player->angle = WEST;
+	else if (c == 'E')
+		cubed->player->angle = EAST;
+}
+
+int	is_a_player(t_cubed *cubed, int *flag, int rows, int col)
+{
+	if ((cubed->map[rows][col] == 'N' || cubed->map[rows][col] == 'S'
+		|| cubed->map[rows][col] == 'W' || cubed->map[rows][col] == 'E') && !(*flag))
 	{
 		(*flag)++;
-		if (!is_acceptable(cubed->map[l - 1][col]))
+		set_player(cubed, cubed->map[rows][col]);
+		cubed->player->map_x = col;
+		cubed->player->map_y = rows;
+		if (!is_acceptable(cubed->map[rows - 1][col]))
 			return (0);
-		if (!is_acceptable(cubed->map[l + 1][col]))
+		if (!is_acceptable(cubed->map[rows + 1][col]))
 			return (0);
 	}
-	else if (is_double_player(cubed, flag, l, col))
+	else if (is_double_player(cubed, flag, rows, col))
 		return (0);
 	return (1);
 }
 
-int	is_a_zero(t_cubed *cubed, int l, int col)
+int	is_a_zero(t_cubed *cubed, int rows, int col)
 {
-	if (cubed->map[l][col] == '0')
+	if (cubed->map[rows][col] == '0')
 	{
-		if (!is_acceptable(cubed->map[l - 1][col]))
+		if (!is_acceptable(cubed->map[rows - 1][col]))
 			return (0);
-		if (!is_acceptable(cubed->map[l + 1][col]))
+		if (!is_acceptable(cubed->map[rows + 1][col]))
 			return (0);
 	}
 	return (1);
 }
 
-static int	check_pos(t_cubed *cubed, int l, int col)
+static int	check_pos(t_cubed *cubed, int rows, int col)
 {
 	int			len;
 	static int	flag;
 	char		*tr_tmp;
 
-	tr_tmp = ft_rev_trim(cubed->map[l], " ");
-	free(cubed->map[l]);
-	cubed->map[l] = ft_strdup(tr_tmp);
-	len = ft_strlen(cubed->map[l]);
-	if (cubed->map[l][col] != '1' || cubed->map[l][len - 1] != '1')
+	tr_tmp = ft_rev_trim(cubed->map[rows], " ");
+	free(cubed->map[rows]);
+	cubed->map[rows] = ft_strdup(tr_tmp);
+	free(tr_tmp);
+	len = ft_strlen(cubed->map[rows]);
+	printf("cubed->map[rows][col] = %c\n", cubed->map[rows][col]);
+	if (cubed->map[rows][col] != '1' || cubed->map[rows][len - 1] != '1')
 		ft_error("Error: invalid map\n", cubed);
-	while (cubed->map[l][col])
+	while (cubed->map[rows][col])
 	{
-		if (!check_chars(cubed->map, l, col))
+		if (!check_chars(cubed->map, rows, col))
 			ft_error("Error: IN map\n", cubed);
-		if (!is_a_player(cubed, &flag, l, col))
+		if (!is_a_player(cubed, &flag, rows, col))
 			ft_error("Error: invalid map\n", cubed);
-		if (!is_a_zero(cubed, l, col))
+		if (!is_a_zero(cubed, rows, col))
 			ft_error("Error: invalid map\n", cubed);
 		col++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 14:29:55 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 20:29:37 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void draw_vertical_line(t_img *img, int x, int start, int end, int color)
     }
 }
 
-void draw_walls(t_cubed *cubed, int x, int start, int end, double wall_height, int color)
+void draw_walls(t_cubed *cubed, int start, int end, double wall_height, int flag)
 {
     t_img *texture;
     int     tex_x;
@@ -29,26 +29,19 @@ void draw_walls(t_cubed *cubed, int x, int start, int end, double wall_height, i
     double  tex_pos;
 
     // Determine which texture to use based on the color
-    switch (color) {
-        case yellow:
-            texture = &cubed->texture[0]; // North
-            break;
-        case blue:
-            texture = &cubed->texture[1]; // South
-            break;
-        case red:
-            texture = &cubed->texture[2]; // East
-            break;
-        case green:
-            texture = &cubed->texture[3]; // West
-            break;
-        default:
-            texture = &cubed->texture[0]; // Default texture
-            break;
-    }
+	if (flag == yellow)
+		texture = &cubed->texture[0];
+	else if (flag == blue)
+		texture = &cubed->texture[1];
+	else if (flag == red)
+		texture = &cubed->texture[2];
+	else if (flag == green)
+		texture = &cubed->texture[3];
+	else
+		texture = &cubed->texture[0];
 
     // Calculate the x coordinate on the texture
-    if (color == red || color == green) 
+    if (flag == red || flag == green) 
     {
         tex_x = (int)(cubed->raycast->ry) % TILE_SIZE;
     }
@@ -96,7 +89,7 @@ void draw_walls(t_cubed *cubed, int x, int start, int end, double wall_height, i
             int tex_color = texture->data[color_idx];
 
             // Put the pixel on the screen
-            better_pixel_put(cubed->img, x, y, tex_color);
+            better_pixel_put(cubed->img, cubed->raycast->r, y, tex_color);
         }
     }
 }
@@ -110,10 +103,9 @@ void rendering(t_cubed *cubed)
     int map_h = matrix_len(cubed->map);
     double angle_step = RADIANS_FOV / WIDTH;
     double initial_angle = p->angle - (RADIANS_FOV / 2);
-
-    for (int r = 0; r < WIDTH; r++)
+    for (ray->r = 0; ray->r < WIDTH; ray->r++)
     {
-        double ray_angle = initial_angle + r * angle_step;
+        double ray_angle = initial_angle + ray->r * angle_step;
         if (ray_angle < 0) ray_angle += 2 * PI;
         if (ray_angle >= 2 * PI) ray_angle -= 2 * PI;
 
@@ -252,11 +244,12 @@ void rendering(t_cubed *cubed)
 
         // Draw the wall slice (a vertical line) on the screen
         // draw top half of the screen as the ceiling
-        draw_vertical_line(cubed->img, r, 0, wallTop, cyan);
+        draw_vertical_line(cubed->img, ray->r, 0, wallTop, cyan);
         // draw bottom half of the screen as floor
-        draw_vertical_line(cubed->img, r, wallBottom, HEIGHT, brown);
+        draw_vertical_line(cubed->img, ray->r, wallBottom, HEIGHT, brown);
         if (cubed->map[(int)(ray->ry / TILE_SIZE)][(int)(ray->rx / TILE_SIZE)] == 'D')
             color = purple;
-        draw_walls(cubed, r, wallTop, wallBottom, wallHeight, color);
+
+        draw_walls(cubed, wallTop, wallBottom, wallHeight, color);
     }
 }

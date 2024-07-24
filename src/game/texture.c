@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:36:45 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 11:04:29 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 20:28:14 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,4 @@ void	load_texture(t_cubed *cubed)
 		cubed->texture[i].data = (int *)mlx_get_data_addr(cubed->texture[i].img, &cubed->texture[i].bits_per_pixel, &cubed->texture[i].line_len, &cubed->texture[i].endian);
 		i++;
 	}
-}
-
-int	get_texture(t_cubed *cubed)
-{
-	t_img	*text;
-	int	color;
-	int	y;
-	int	x;
-
-	y = -1;
-	text = cubed->texture;
-	while (++y < cubed->texture[0].h)
-	{
-		x = -1;
-		while (++x < cubed->texture[0].w)
-		{
-			color = text[0].data[y * cubed->texture[0].w + x];
-            // printf("Pixel at (%d, %d) has color: %#x\n", x, y, color);
-		}
-	}
-	return (color);
 }
