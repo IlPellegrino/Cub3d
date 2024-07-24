@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 15:00:41 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 12:27:03 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ typedef	struct s_keys
 
 typedef struct s_player
 {
-	double		x;
-	double		y;
-	float	angle;
-	double	d_x; //delta x of the player
-	double	d_y; //delta y of the player
 	int		map_x;
 	int		map_y;
+	float	angle;
+	double	x;
+	double	y;
+	double	d_x; //delta x of the player
+	double	d_y; //delta y of the player
 }				t_player;
 
 typedef struct s_raycast
@@ -85,6 +85,9 @@ typedef struct s_raycast
 	int		hit;
 	double	angle;
 	double	distance;
+	int		wall_top;
+	int		wall_bottom;
+	int		wall_height;
 }			t_raycast;
 
 typedef struct	s_cubed

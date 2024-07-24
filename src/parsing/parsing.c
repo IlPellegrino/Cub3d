@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 19:06:32 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/24 18:17:46 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,16 @@ int	syntax_checker(t_cubed *cubed)
 			textures_check(cubed->game->cub[i], cubed);
 		else if (cubed->game->cub[i][k] == 'F' || cubed->game->cub[i][k] == 'C')
 			surfaces_check(cubed->game->cub[i], cubed);
-		else if (cubed->game->cub[i][k] == '1' || cubed->game->cub[i][k] == '0')
+		else if (is_acceptable(cubed->game->cub[i][k]))
 		{
-			if (cubed->game->cub[i][ft_strlen(cubed->game->cub[i]) - 1] == '\n')
-				cubed->game->cub[i][ft_strlen(cubed->game->cub[i]) - 1] = '\0';
+			while (cubed->game->cub[i][k])
+			{
+				if (!is_acceptable(cubed->game->cub[i][k]))
+					ft_error("Error: invalid character in map\n", cubed);
+				k++;
+			}
+			if (cubed->game->cub[i][k - 1] == '\n')
+				cubed->game->cub[i][k - 1] = '\0';
 			cubed->map[cubed->game->counter++] = ft_strdup(cubed->game->cub[i]);
 		}
 	}
@@ -108,10 +114,27 @@ int	check_file(char *map, t_cubed *cubed)
 	return (0);
 }
 
+int	partial_init(t_cubed *cubed)
+{
+	cubed->player = malloc(sizeof(t_player));
+	if (!cubed->player)
+		ft_error("Error: malloc failed\n", cubed);
+	cubed->game = ft_calloc(sizeof (t_game), 1);
+	cubed->map = 0;
+	cubed->game->counter = 0;
+	cubed->img = 0;
+	cubed->win = 0;
+	cubed->raycast = 0;
+	cubed->keys = 0;
+	cubed->mlx = 0;
+	return (1);
+}
+
 int	parsing(char **argv, int argc, t_cubed *cubed)
 {
 	if (argc != 2)
 		return (ft_error(USAGE, cubed), 0);
+	partial_init(cubed);
 	check_file(argv[1], cubed);
 	cubed->map = ft_calloc(sizeof (char **), cubed->game->ht + 1);
 	syntax_checker(cubed);

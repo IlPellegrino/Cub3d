@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:06:11 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 23:52:00 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/24 17:35:28 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	check_colors(char **color, t_cubed *cubed, int surface)
 	h = matrix_len(rgb) - 1;
 	if (rgb)
 		rgb[h][ft_strlen(rgb[h]) - 1] = 0;
-	print_matrix(rgb);
 	check_error_color(cubed, rgb);
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);

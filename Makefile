@@ -49,7 +49,8 @@ all: $(NAME)
 
 %.o: %.c
 		$(CLONE_MLX)
-		$(COMPILE) -c $< -o $@	
+		$(COMPILE) -c $< -o $@
+
 $(NAME): $(OBJS)
 		@echo "\e[0;33mCompiling\e[0m -> \e[0;37mLIBFT\e[0m"
 		@make -C $(LIBFT_PATH)

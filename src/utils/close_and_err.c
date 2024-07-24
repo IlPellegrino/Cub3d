@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 13:35:04 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/24 18:15:09 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,16 @@ int	ft_close(t_cubed *cubed, int err_status)
 	free (cubed->img);
 	if (cubed->win)
 		mlx_destroy_window(cubed->mlx, cubed->win);
-	free (cubed->raycast);
-	free (cubed->player);
+	if (cubed->raycast)
+		free (cubed->raycast);
+	if (cubed->player)
+		free (cubed->player);
 	free_game(cubed);
 	if (cubed->map)
+	{
 		free_matrix(cubed->map);
+		cubed->map = NULL;
+	}
 	free(cubed->keys);
 	if (cubed->mlx)
 	{
