@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 18:17:46 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/24 21:23:19 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	syntax_checker(t_cubed *cubed)
 		{
 			while (cubed->game->cub[i][k])
 			{
-				if (!is_acceptable(cubed->game->cub[i][k]))
+				printf("cubed->game->cub[i][k] = %c\n", cubed->game->cub[i][k]);
+				if (!is_acceptable(cubed->game->cub[i][k]) && !ft_isspace(cubed->game->cub[i][k]))
 					ft_error("Error: invalid character in map\n", cubed);
 				k++;
 			}
