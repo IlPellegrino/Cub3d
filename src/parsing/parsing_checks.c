@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 12:02:12 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 20:27:46 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static int	check_pos(t_cubed *cubed, int l, int col)
 	free(cubed->map[l]);
 	cubed->map[l] = ft_strdup(tr_tmp);
 	len = ft_strlen(cubed->map[l]);
-	printf("map[%d][%d] = %c\n", l, len - 1, cubed->map[l][col]);
 	if (cubed->map[l][col] != '1' || cubed->map[l][len - 1] != '1')
 		ft_error("Error: invalid map\n", cubed);
 	while (cubed->map[l][col])
@@ -95,7 +94,6 @@ void	check_map(t_cubed *cubed)
 			j++;
 		if (i == 0 || i == cubed->game->ht - 1)
 		{
-			printf("stringa ultima = %s\n", cubed->map[i]);
 			while ((cubed->map[i][j] == '1'  || cubed->map[i][j] == ' ')
 				&& cubed->map[i][j])
 				j++;

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 17:30:47 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:29:55 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,7 +257,6 @@ void rendering(t_cubed *cubed)
         draw_vertical_line(cubed->img, r, wallBottom, HEIGHT, brown);
         if (cubed->map[(int)(ray->ry / TILE_SIZE)][(int)(ray->rx / TILE_SIZE)] == 'D')
             color = purple;
-
         draw_walls(cubed, r, wallTop, wallBottom, wallHeight, color);
     }
 }

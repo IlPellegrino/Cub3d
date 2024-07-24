@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 16:14:08 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:19:37 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	load_texture(&cubed);
 	cubed.win = mlx_new_window(cubed.mlx, WIDTH, HEIGHT, "Cub3D");
 	//game_loop(&cubed);
+	cubed.map[4][7] = 'E';
 	//printf("ht = %d\nwd = %d\n", cubed.game->ht, cubed.game->wd);
 	mlx_hook(cubed.win, KeyPress, KeyPressMask, &key_press, cubed.keys);
 	mlx_hook(cubed.win, KeyRelease, KeyReleaseMask, &key_release, cubed.keys);

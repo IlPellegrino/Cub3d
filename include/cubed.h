@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 14:55:08 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 19:09:41 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		is_wall(t_cubed *cubed, double x, double y);
 int		create_trgb(int t, int r, int g, int b);
 void 	draw_line(t_img *img, int x0, int y0, int x1, int y1, int color);
 void	better_pixel_put(t_img *img, int x, int y, int color);
+int		validate_position(t_cubed *cubed, double new_x, double new_y);
 
 /**======================
  *?    		INIT
@@ -70,11 +71,20 @@ void    rendering(t_cubed *cubed);
 void 	draw_player(t_img *img, double x, double y, t_cubed *cubed);
 void	minimap(t_cubed *cubed, char **map);
 void	interactable(t_cubed *cubed);
+
 /**======================
  *?    	 MOVEMENT
  *========================**/
+void	move_up(t_cubed *cubed, double dist);
+void	move_down(t_cubed *cubed, double dist);
+void	move_left(t_cubed *cubed, double dist);
+void	move_right(t_cubed *cubed, double dist);
+int		rotate_player(t_cubed *cubed, t_keys *key);
+
+/**======================
+ *?    INPUT MANAGER
+ *========================**/
 int		move_handler(t_cubed *cubed);
-int		validate_position(t_cubed *cubed, double new_x, double new_y);
 
 /**======================
  *?    		KEYS

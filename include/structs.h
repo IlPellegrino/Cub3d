@@ -6,12 +6,21 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 15:00:41 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:19:08 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef	struct	s_settings
+{
+	int	mini_size;
+	int	player_speed;
+	int	rotation_speed;
+	int	player_size;
+	int	fov;
+}			t_settings;
 
 typedef	struct	s_img
 {
@@ -48,6 +57,8 @@ typedef	struct s_keys
 	int	s;
 	int	a;
 	int	d;
+	int	plus;
+	int	minus;
 	int	left;
 	int	right;
 	int	esc;
@@ -96,10 +107,11 @@ typedef struct	s_cubed
 	void		*win;
 	t_img		*img;
 	t_player	*player;
-	t_img		texture[4];
+	t_img		texture[5];
 	t_raycast	*raycast;
 	t_game		*game;
 	t_keys		*keys;
+	t_settings	*settings;
 }				t_cubed;
 
 #endif

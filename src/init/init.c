@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 17:26:11 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:26:34 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ int	init_player(t_cubed *cubed)
 	p->d_y = sin(p->angle);
 	//draw_line(cubed->img, p->x, p->y, p->x + p->d_x * 50, p->y + p->d_y * 50, 0x00FF00);
 	return (1);
+}
+
+void	init_settings(t_cubed *cubed)
+{
+	t_settings	*settings;
+
+	cubed->settings = malloc(sizeof(t_settings));
+	settings = cubed->settings;
+	settings->mini_size = MINI_SIZE;
+	settings->player_speed = PLAYER_SPEED;
+	settings->rotation_speed = ROTATION_SPEED;
+	settings->player_size = PLAYER_SIZE;
+	settings->fov = FOV;
 }
 
 int	init_data(t_cubed *cubed)
@@ -51,6 +64,7 @@ int	init_data(t_cubed *cubed)
 	cubed->texture[2].h = HEIGHT;
 	cubed->texture[3].w = WIDTH;
 	cubed->texture[3].h = HEIGHT;
+	init_settings(cubed);
 	init_player(cubed);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/23 16:14:01 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/24 19:13:01 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,23 @@ void	draw_minimap(t_cubed *cubed, char **map)
 	int		color;
 	int		x;
 	int		y;
+	t_settings *settings;
 
+	settings = cubed->settings;
 	p = cubed->player;
 	img = cubed->img;
 	i = -1;
 	while (++i < MINIMAP_SIZE)
 	{
 		j = -1;
-		y = (p->y - MINIMAP_SIZE / 2 + i) / TILE_SIZE;
+		double plyr_x = p->x / TILE_SIZE;
+		double plyr_y = p->y / TILE_SIZE;
+		plyr_x = plyr_x * settings->mini_size;
+		plyr_y = plyr_y * settings->mini_size;
+		y = (plyr_y - MINIMAP_SIZE / 2 + i) / settings->mini_size;
 		while (++j < MINIMAP_SIZE)
 		{
-			x = (p->x - MINIMAP_SIZE / 2 + j) / TILE_SIZE;
+			x = (plyr_x - MINIMAP_SIZE / 2 + j) / settings->mini_size;
 			if (j < 5 || j > MINIMAP_SIZE - 6 || i < 5 || i > MINIMAP_SIZE - 6)
 				color = eggplant;
 			else if (x < 0 || y < 0 || y >= matrix_len(map) || x >= (int)ft_strlen(map[y]))
@@ -109,7 +115,7 @@ void	draw_minimap(t_cubed *cubed, char **map)
 				color = green;
 			else
 				color = snow;
-			better_pixel_put(img, i, j, color);
+			better_pixel_put(img, j, i, color);
 		}
 	}
 	
@@ -117,17 +123,17 @@ void	draw_minimap(t_cubed *cubed, char **map)
 
 void	minimap(t_cubed *cubed, char **map)
 {
-	int	delta_y;
-	int	delta_x;
-	int	half_map;
-	
-	(void)half_map;
+	t_settings	*sett;
+	double		x_len;
+	double		y_len;
+
+	sett = cubed->settings;
 	draw_minimap(cubed, map);
 	draw_shape(cubed->img, 98, 98, 5, rich_black);
-
-	delta_x = cos(cubed->player->angle - PI / 2) * 10;
-	delta_y = sin(cubed->player->angle + PI / 2) * 10;
-	draw_line(cubed->img, 100, 100, 100 + delta_x, 100 + delta_y, rich_black);
+	// scale d_x and d_y to minimap size increasing and decreasing to sett->mini_siz
+	x_len = cubed->player->d_x * 10;
+	y_len = cubed->player->d_y * 10;
+	draw_line(cubed->img, 100, 100, (int)(100 +  x_len), (int)(100 + y_len), rich_black);
 }
 
 
