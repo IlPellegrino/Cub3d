@@ -6,33 +6,11 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/24 19:13:01 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 19:08:33 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
-
-
-/* temp function*/
-char **set_map(void)
-{
-	char	**map;
-
-	map = ft_calloc(sizeof(char*), 10 + 1);
-	map[0] = ft_strdup("111111111111111111111");
-	map[1] = ft_strdup("100000000000000000001");
-	map[2] = ft_strdup("100000000000000000001");
-	map[3] = ft_strdup("100000111000000000001");
-	map[4] = ft_strdup("100000100000000000001");
-	map[5] = ft_strdup("100000000000000000001");
-	map[6] = ft_strdup("10000001110N000000001");
-	map[7] = ft_strdup("100000000000000000001");
-	map[8] = ft_strdup("100000110000000000001");
-	map[9] = ft_strdup("111111111111111111111");
-	return (map);
-	
-}
-//draw a triagnle pointint to the player direction
 
 void	draw_shape(t_img *img, double x, double y, int size, int color)
 {
@@ -136,15 +114,45 @@ void	minimap(t_cubed *cubed, char **map)
 	draw_line(cubed->img, 100, 100, (int)(100 +  x_len), (int)(100 + y_len), rich_black);
 }
 
+void	draw_crosshair(t_cubed	*cubed)
+{
+	int	i;
+	int	j;
+	int	color;
+	int	x;
+	int	y;
+
+	x = WIDTH / 2 - 1;
+	y = HEIGHT / 2 - CROSS_SIZE / 2;
+
+	color = white;
+	i = -1;
+	
+	while (++i < CROSS_SIZE)
+	{
+		j = -1;
+		while (++j < 2)
+			better_pixel_put(cubed->img, x + j, y + i, color);
+	}
+	x  = WIDTH / 2 - CROSS_SIZE / 2;
+	y = HEIGHT / 2 - 1;
+	i = -1;
+	j = -1;
+	while (++i < CROSS_SIZE)
+	{
+		j = -1;
+		while (++j < 2)
+			better_pixel_put(cubed->img, x + i, y + j, color);
+	}
+	
+}
+
+#include <X11/Xlib.h>
 
 int	game_loop(t_cubed *cubed)
 {
 	t_img		*img;
-	// t_player	*p;
-	// t_raycast	*ray;
-	
-	// ray = cubed->raycast;
-	// p = cubed->player;
+
 	img = cubed->img;
 	if (cubed->keys->pause)
 		return (0);
@@ -154,6 +162,7 @@ int	game_loop(t_cubed *cubed)
 	interactable(cubed);
 	rendering(cubed);
 	minimap(cubed, cubed->map);
+	draw_crosshair(cubed);
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);
 }

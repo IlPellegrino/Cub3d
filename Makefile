@@ -57,8 +57,7 @@ $(NAME): $(OBJS)
 	@make -C $(LIBFT_PATH)
 	@echo "\e[0;32mDone\e[0m"
 	@echo "\e[0;33mCompiling \e[0m-> \e[0;37mMLX\e[0m"
-	@make -C $(MLX_PATH)
-	@echo "\e[0;32mDone\e[0m"
+	@make -C $(MLX_PATH) 2> /dev/null
 	$(COMPILE) $(OBJS) $(LIBFT) $(MLX) $(MLX_INCLUDE) -o $(NAME)
 	@CLR="\033[36m"; \
 	NC="\033[0m"; \

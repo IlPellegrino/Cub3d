@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/24 14:30:40 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 17:56:32 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /**======================
  *?    	 SCREEN
  *========================**/
-# define WIDTH 1080
+# define WIDTH 1280
 # define HEIGHT 720
 /**======================
  *?    	 TILES
@@ -40,6 +40,7 @@
 # define PLAYER_SIZE 7
 # define PLAYER_SPEED 20
 # define FOV 60
+# define CROSS_SIZE 14
 /* ------------------------*/
 # define F 1
 # define C 2

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 20:29:37 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 17:02:35 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void rendering(t_cubed *cubed)
 {
     t_player *p = cubed->player;
     t_raycast *ray = cubed->raycast;
-    int map_w = 30;
-    int map_h = matrix_len(cubed->map);
+    int map_h = cubed->game->ht;
+    int map_w;
     double angle_step = RADIANS_FOV / WIDTH;
     double initial_angle = p->angle - (RADIANS_FOV / 2);
     for (ray->r = 0; ray->r < WIDTH; ray->r++)
@@ -141,7 +141,11 @@ void rendering(t_cubed *cubed)
         {
             int mapX = (int)(horX) / TILE_SIZE;
             int mapY = (int)(horY) / TILE_SIZE;
-
+            if (mapY < 0)
+                mapY = 0;
+            if (mapY >= map_h)
+                mapY = map_h - 1;
+            map_w = ft_strlen(cubed->map[mapY]);
             if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == '1' || cubed->map[mapY][mapX] == 'D'))
             {
                 ray->hx = horX;
@@ -247,8 +251,8 @@ void rendering(t_cubed *cubed)
         draw_vertical_line(cubed->img, ray->r, 0, wallTop, cyan);
         // draw bottom half of the screen as floor
         draw_vertical_line(cubed->img, ray->r, wallBottom, HEIGHT, brown);
-        if (cubed->map[(int)(ray->ry / TILE_SIZE)][(int)(ray->rx / TILE_SIZE)] == 'D')
-            color = purple;
+        //if (cubed->map[(int)(ray->ry / TILE_SIZE)][(int)(ray->rx / TILE_SIZE)] == 'D')
+         //   color = purple;
 
         draw_walls(cubed, wallTop, wallBottom, wallHeight, color);
     }

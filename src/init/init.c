@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 20:29:27 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 17:49:37 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	init_data(t_cubed *cubed)
 {
 	cubed->mlx = mlx_init();
 	cubed->img = malloc(sizeof(t_img));
-	cubed->win = 0;
+	cubed->win = mlx_new_window(cubed->mlx, WIDTH, HEIGHT, "Cub3D");
 	create_img(cubed->mlx, cubed->img);
 	cubed->raycast = malloc(sizeof (t_raycast));
 	if (!cubed->raycast)

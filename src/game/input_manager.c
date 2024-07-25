@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 19:11:04 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 18:08:53 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	move_handler(t_cubed *cubed)
 	key = cubed->keys;
 	if (key->esc)
 		ft_close(cubed, 0);
+	mlx_mouse_get_pos(cubed->mlx, cubed->win, &cubed->game->mouse_x, &cubed->game->mouse_y);
 	check_move(cubed, key);
 	rotate_player(cubed, key);
 	// maybe move this function
