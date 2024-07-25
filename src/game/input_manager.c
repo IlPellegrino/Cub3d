@@ -6,46 +6,34 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 20:48:25 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 21:21:53 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int mouse_rotate_pov(t_cubed *cubed)
+int	mouse_rotate_pov(t_cubed *cubed)
 {
-    t_player    *p;
-    int         x, y;
-    int         center_x, delta_x;
-    double      rotation;
-
+	t_player	*p;
+	int			x;
+	int			y;
+	
+	p = cubed->player;
 	x = cubed->game->mouse_x;
 	y = cubed->game->mouse_y;
-    p = cubed->player;
-    center_x = WIDTH / 2;
-    //mlx_mouse_get_pos(cubed->mlx, cubed->win, &x, &y); // Get current mouse position
-    delta_x = x - center_x; // Calculate the difference from the center
-
-    if (abs(delta_x) > 2) // To prevent jitter, ignore very small movements
-    {
-        rotation = delta_x * SENSITIVITY;
-        p->angle += rotation;
-
-        // Ensure the angle stays within [0, 2*PI]
-        if (p->angle > 2 * PI)
-            p->angle -= 2 * PI;
-        else if (p->angle < 0)
-            p->angle += 2 * PI;
-
-        // Update direction vectors
-        p->d_x = cos(p->angle);
-        p->d_y = sin(p->angle);
-
-        // Reset mouse position to the center
-        mlx_mouse_move(cubed->mlx, cubed->win, center_x, HEIGHT / 2);
-    }
-
-    return (1);
+	if (x > WIDTH / 2)
+		p->angle += SENSITIVITY * 0.01;
+	else if (x < WIDTH / 2)
+		p->angle -= SENSITIVITY * 0.01;
+	if (p->angle > 2 * PI)
+		p->angle = 0;
+	if (p->angle < 0)
+		p->angle = 2 * PI;
+	p->d_x = cos(p->angle);
+	p->d_y = sin(p->angle);
+	if (x != WIDTH / 2)
+		mlx_mouse_move(cubed->mlx, cubed->win, WIDTH / 2, HEIGHT / 2);
+	return (1);
 }
 
 int	move_player(t_cubed *cubed, t_keys *key)

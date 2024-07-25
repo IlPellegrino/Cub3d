@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/25 20:44:27 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 21:16:51 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,9 @@ void	draw_minimap(t_cubed *cubed, char **map)
 
 void	minimap(t_cubed *cubed, char **map)
 {
-	t_settings	*sett;
 	double		x_len;
 	double		y_len;
 
-	sett = cubed->settings;
 	draw_minimap(cubed, map);
 	draw_shape(cubed->img, 98, 98, 5, rich_black);
 	// scale d_x and d_y to minimap size increasing and decreasing to sett->mini_siz

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/25 20:50:23 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 21:20:56 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
  *?   PLAYER SETTINGS
  *========================**/
 # define ROTATION_SPEED 3
-# define SENSITIVITY 2
+# define SENSITIVITY 6
 # define PLAYER_SIZE 7
 # define PLAYER_SPEED 20
 # define FOV 60

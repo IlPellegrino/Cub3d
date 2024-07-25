@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 18:15:09 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 17:10:18 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,21 @@ int ft_error(char *error, t_cubed *cubed)
 	return (0);
 }
 
-int	free_game(t_cubed *cubed)
+int	free_texture(t_cubed *cubed)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		if (cubed->texture[i].img)
+			mlx_destroy_image(cubed->mlx, cubed->texture[i].img);
+		// free(cubed->texture[i].img);
+	}
+	return (1);
+}
+
+int	free_game_texture(t_cubed *cubed)
 {
 	if (cubed->game->cub)
 		free_matrix(cubed->game->cub);
@@ -40,6 +54,7 @@ int	free_game(t_cubed *cubed)
 		free (cubed->game->so);
 	if (cubed->game->we)
 		free (cubed->game->we);
+	free_texture(cubed);
 	free(cubed->game);
 	return (1);
 }
@@ -55,7 +70,7 @@ int	ft_close(t_cubed *cubed, int err_status)
 		free (cubed->raycast);
 	if (cubed->player)
 		free (cubed->player);
-	free_game(cubed);
+	free_game_texture(cubed);
 	if (cubed->map)
 	{
 		free_matrix(cubed->map);
