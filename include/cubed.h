@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 17:55:22 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 16:58:34 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int		surfaces_check(char *line, t_cubed *cubed);
 int		textures_check(char *line, t_cubed *cubed);
 int		check_colors(char **color, t_cubed *cubed, int surface);
 int 	is_acceptable(char c);
+int		is_legal(char c);
 
 /**======================
  *?    		GAME

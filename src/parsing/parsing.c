@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 21:23:19 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 17:10:47 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ int	syntax_checker(t_cubed *cubed)
 			textures_check(cubed->game->cub[i], cubed);
 		else if (cubed->game->cub[i][k] == 'F' || cubed->game->cub[i][k] == 'C')
 			surfaces_check(cubed->game->cub[i], cubed);
-		else if (is_acceptable(cubed->game->cub[i][k]))
+		else if (is_legal(cubed->game->cub[i][k]))
 		{
 			while (cubed->game->cub[i][k])
 			{
-				printf("cubed->game->cub[i][k] = %c\n", cubed->game->cub[i][k]);
-				if (!is_acceptable(cubed->game->cub[i][k]) && !ft_isspace(cubed->game->cub[i][k]))
+				if (!is_legal(cubed->game->cub[i][k]) && !ft_isspace(cubed->game->cub[i][k]))
 					ft_error("Error: invalid character in map\n", cubed);
 				k++;
 			}

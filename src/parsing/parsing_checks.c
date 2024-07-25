@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 21:21:09 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 17:11:01 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ int	is_double_player(t_cubed *cubed, int *flag, int rows, int col)
 }
 
 int is_acceptable(char c)
+{
+	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D')
+		return (1);
+	return (0);
+}
+
+int is_legal(char c)
 {
 	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D' || c == ' ')
 		return (1);
@@ -66,6 +73,14 @@ int	is_a_zero(t_cubed *cubed, int rows, int col)
 			return (0);
 		if (!is_acceptable(cubed->map[rows + 1][col]))
 			return (0);
+		if (!is_acceptable(cubed->map[rows - 1][col + 1]))
+			return (0);
+		if (!is_acceptable(cubed->map[rows + 1][col + 1]))
+			return (0);
+		if (!is_acceptable(cubed->map[rows - 1][col - 1]))
+			return (0);
+		if (!is_acceptable(cubed->map[rows + 1][col - 1]))
+			return (0);
 	}
 	return (1);
 }
@@ -81,7 +96,6 @@ static int	check_pos(t_cubed *cubed, int rows, int col)
 	cubed->map[rows] = ft_strdup(tr_tmp);
 	free(tr_tmp);
 	len = ft_strlen(cubed->map[rows]);
-	printf("cubed->map[rows][col] = %c\n", cubed->map[rows][col]);
 	if (cubed->map[rows][col] != '1' || cubed->map[rows][len - 1] != '1')
 		ft_error("Error: invalid map\n", cubed);
 	while (cubed->map[rows][col])
