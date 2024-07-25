@@ -60,11 +60,11 @@ void draw_player(t_img *img, double x, double y, t_cubed *cubed)
 {
 	double		plyr_x;
 	double		plyr_y;
-	t_raycast	*ray;
+	// t_raycast	*ray;
 	t_player	*p;
 
 	p = cubed->player;
-	ray = cubed->raycast;
+	// ray = cubed->raycast;
 	plyr_x = x * MINI_SIZE;
 	plyr_y = y * MINI_SIZE; 
 
@@ -140,11 +140,11 @@ void	minimap(t_cubed *cubed, char **map)
 int	game_loop(t_cubed *cubed)
 {
 	t_img		*img;
-	t_player	*p;
-	t_raycast	*ray;
+	// t_player	*p;
+	// t_raycast	*ray;
 	
-	ray = cubed->raycast;
-	p = cubed->player;
+	// ray = cubed->raycast;
+	// p = cubed->player;
 	img = cubed->img;
 	if (cubed->keys->pause)
 		return (0);

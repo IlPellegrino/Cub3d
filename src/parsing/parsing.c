@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 18:17:46 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 14:32:53 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	syntax_checker(t_cubed *cubed)
 		{
 			while (cubed->game->cub[i][k])
 			{
-				if (!is_acceptable(cubed->game->cub[i][k]))
+				printf("cubed->game->cub[i][k] = %c\n", cubed->game->cub[i][k]);
+				if (!is_acceptable(cubed->game->cub[i][k]) && !ft_isspace(cubed->game->cub[i][k]))
 					ft_error("Error: invalid character in map\n", cubed);
 				k++;
 			}
@@ -133,7 +134,7 @@ int	partial_init(t_cubed *cubed)
 int	parsing(char **argv, int argc, t_cubed *cubed)
 {
 	if (argc != 2)
-		return (ft_error(USAGE, cubed), 0);
+		return (ft_putendl_fd(USAGE, 0), 0);
 	partial_init(cubed);
 	check_file(argv[1], cubed);
 	cubed->map = ft_calloc(sizeof (char **), cubed->game->ht + 1);

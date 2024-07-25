@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 20:32:30 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 14:27:37 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_double_player(t_cubed *cubed, int *flag, int rows, int col)
 
 int is_acceptable(char c)
 {
-	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D')
+	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D' || c == ' ')
 		return (1);
 	return (0);
 }
