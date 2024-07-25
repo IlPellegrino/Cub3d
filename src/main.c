@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 19:02:02 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 20:42:17 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,17 @@ void	mask_manager(t_cubed *cubed)
 	mlx_hook(cubed->win, KeyRelease, KeyReleaseMask, &key_release, cubed->keys);
 	mlx_hook(cubed->win, DestroyNotify, StructureNotifyMask, &ft_close, &cubed);
 }
-#include <X11/Xlib.h>
+
 int	main(int argc, char **argv)
 {
 	t_cubed	cubed;
 
-
 	if (!parsing(argv, argc, &cubed))
 		return (1);
 	init_data(&cubed);
+	mlx_mouse_hide(cubed.mlx, cubed.win);	
 	load_texture(&cubed);
 	mask_manager(&cubed);
-	
 	mlx_loop_hook(cubed.mlx, &game_loop, &cubed);
 	mlx_loop(cubed.mlx);
 }

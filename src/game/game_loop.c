@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/25 19:08:33 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 20:44:27 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,17 +147,17 @@ void	draw_crosshair(t_cubed	*cubed)
 	
 }
 
-#include <X11/Xlib.h>
-
 int	game_loop(t_cubed *cubed)
 {
 	t_img		*img;
 
 	img = cubed->img;
 	if (cubed->keys->pause)
-		return (0);
-	mlx_destroy_image(cubed->mlx, cubed->img->img);
-	create_img(cubed->mlx, cubed->img);
+	{
+		return (1);
+	}
+	//mlx_destroy_image(cubed->mlx, cubed->img->img);
+	//create_img(cubed->mlx, cubed->img);
 	move_handler(cubed);
 	interactable(cubed);
 	rendering(cubed);
