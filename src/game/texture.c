@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:36:45 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 11:05:20 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:28:14 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	load_texture(t_cubed *cubed)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (i == 0)
 			cubed->texture[i].img = mlx_xpm_file_to_image(cubed->mlx, cubed->game->no, &cubed->texture[i].w , &cubed->texture[i].h);
@@ -27,6 +27,8 @@ void	load_texture(t_cubed *cubed)
 			cubed->texture[i].img = mlx_xpm_file_to_image(cubed->mlx, cubed->game->we, &cubed->texture[i].w , &cubed->texture[i].h);
 		else if (i == 3)
 			cubed->texture[i].img = mlx_xpm_file_to_image(cubed->mlx, cubed->game->ea, &cubed->texture[i].w , &cubed->texture[i].h);
+		else if (i == 4)
+			cubed->texture[i].img = mlx_xpm_file_to_image(cubed->mlx, "src/textures/mguard_s_1.xpm", &cubed->texture[i].w , &cubed->texture[i].h);
 		if (!cubed->texture[i].img)
 			ft_error("Error: Failed to load xpm file\n", cubed);
 		cubed->texture[i].data = (int *)mlx_get_data_addr(cubed->texture[i].img, &cubed->texture[i].bits_per_pixel, &cubed->texture[i].line_len, &cubed->texture[i].endian);

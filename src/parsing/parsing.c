@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 17:10:47 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 19:22:33 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	partial_init(t_cubed *cubed)
 int	parsing(char **argv, int argc, t_cubed *cubed)
 {
 	if (argc != 2)
-		return (ft_error(USAGE, cubed), 0);
+		return (ft_putendl_fd(USAGE, 0), 0);
 	partial_init(cubed);
 	check_file(argv[1], cubed);
 	cubed->map = ft_calloc(sizeof (char **), cubed->game->ht + 1);

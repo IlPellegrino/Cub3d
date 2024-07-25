@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:58:34 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/23 16:45:09 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 19:22:24 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,5 @@ int	is_wall(t_cubed *cubed, double x, double y)
 
 int	validate_position(t_cubed *cubed, double new_x, double new_y)
 {
-	t_player	*player;
-
-	player = cubed->player;
-	if (!is_wall(cubed, new_x, new_y))
-	{
-		player->x = new_x;
-		player->y = new_y;
-		return (1);	
-	}
-	return (0);
+	return (!is_wall(cubed, new_x, new_y));
 }
