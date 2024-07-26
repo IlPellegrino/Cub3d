@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/26 20:11:49 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/27 01:28:06 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,20 @@ typedef struct s_raycast
 	int		r;   //radiuds
 	int		mx;  //map x
 	int 	my;	 //map y
-	int		mp;	 //map position
 	int		dof; //depht of field
 	float	ra;  //ray angle
 	float	rx;  //ray x
 	float	ry;  //ray y
-	float	xo;  //x offset
-	float	yo;  //y offset
 	double	vx;
 	double	vy;
 	double	hx;
 	double	hy;
-	int		wall_top;
-	int		wall_bottom;
-	int		wall_height;
+	double	stepX;
+	double	stepY;
+	double 	verX;
+	double	horX;
+	double 	horY;
+	double 	verY;
 }			t_raycast;
 
 typedef struct s_gui

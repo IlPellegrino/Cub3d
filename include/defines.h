@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/26 20:02:06 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/27 00:53:10 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
  *========================**/
 # define PI 3.14159265359
 # define DR 0.0174533
+# define ANGLE_STEP (RADIANS_FOV / WIDTH)
 # define RADIANS_FOV (FOV * (PI / 180))
 # define NORTH PI / 2
 # define SOUTH 3 * PI / 2

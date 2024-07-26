@@ -14,14 +14,16 @@ CLONE_MLX = @if [ -d "mlx/" ]; then \
 				$(MLX_GIT) > /dev/null 2>&1; \
 			fi
 
-PARSING_SRC = 	parsing.c parsing_2.c checks_color.c checks_surface.c \
-				parsing_checks.c
-RAYCASTER_SRC = raycaster.c
-UTILS_SRC = 	close_and_err.c mlx_utils.c
-INIT_SRC = 		init.c
-GAME_SRC = 		texture.c game_loop.c input_manager.c collision_check.c interactable.c \
-				input_keys.c controls.c gui.c
+# Sources
+PARSING_SRC		= 	parsing.c parsing_2.c checks_color.c checks_surface.c \
+					parsing_checks.c
+RAYCASTER_SRC	= 	raycaster.c ray_cast_utils.c
+UTILS_SRC		= 	close_and_err.c mlx_utils.c
+INIT_SRC 		= 	init.c
+GAME_SRC		= 	texture.c game_loop.c input_manager.c collision_check.c \
+				 	interactable.c input_keys.c controls.c gui.c 
 
+# Folders
 GAME = $(addprefix game/, $(GAME_SRC))
 INIT = $(addprefix init/, $(INIT_SRC))
 RAYCASTER = $(addprefix raycaster/, $(RAYCASTER_SRC))
