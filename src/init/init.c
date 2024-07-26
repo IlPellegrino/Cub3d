@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 19:22:46 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 21:17:02 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	init_data(t_cubed *cubed)
 {
 	cubed->mlx = mlx_init();
 	cubed->img = malloc(sizeof(t_img));
-	cubed->win = 0;
+	cubed->win = mlx_new_window(cubed->mlx, WIDTH, HEIGHT, "Cub3D");
 	create_img(cubed->mlx, cubed->img);
 	cubed->raycast = malloc(sizeof (t_raycast));
 	if (!cubed->raycast)

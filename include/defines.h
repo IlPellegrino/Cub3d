@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/25 21:54:02 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/26 11:33:36 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@
  *?   PLAYER SETTINGS
  *========================**/
 # define ROTATION_SPEED 3
+# define SENSITIVITY 6
 # define PLAYER_SIZE 7
 # define PLAYER_SPEED 20
 # define FOV 60
+# define CROSS_SIZE 14
 /* ------------------------*/
 # define F 1
 # define C 2

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 20:28:21 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/25 18:07:32 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef	struct	s_settings
 	int	rotation_speed;
 	int	player_size;
 	int	fov;
+	int	crosshair_color;
 }			t_settings;
 
 typedef	struct	s_img
@@ -46,6 +47,8 @@ typedef	struct s_game
 	int		ceiling_cl;
 	int		ht;
 	int		wd;
+	int		mouse_x;
+	int		mouse_y;
 	int		counter;
 	int		p_flag;
 	int		is_wall;
@@ -93,9 +96,6 @@ typedef struct s_raycast
 	double	vy;
 	double	hx;
 	double	hy;
-	int		hit;
-	double	angle;
-	double	distance;
 	int		wall_top;
 	int		wall_bottom;
 	int		wall_height;
