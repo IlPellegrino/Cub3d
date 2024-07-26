@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 17:10:18 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 22:25:49 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	free_texture(t_cubed *cubed)
 	int	i;
 
 	i = -1;
-	while (++i < 4)
+	while (++i < 5)
 	{
 		if (cubed->texture[i].img)
 			mlx_destroy_image(cubed->mlx, cubed->texture[i].img);

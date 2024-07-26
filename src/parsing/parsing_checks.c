@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 19:22:39 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 22:19:22 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,19 @@ int	is_a_zero(t_cubed *cubed, int rows, int col)
 	return (1);
 }
 
+int	is_a_door(t_cubed *cubed, int rows, int col)
+{
+	if (cubed->map[rows][col] == 'D')
+	{
+		if (cubed->map[rows - 1][col] == '1'
+			&& cubed->map[rows + 1][col] == '1'
+			&& cubed->map[rows][col + 1] == '1'
+			&& cubed->map[rows][col - 1] == '1')
+			return (0);
+	}
+	return (1);
+}
+
 static int	check_pos(t_cubed *cubed, int rows, int col)
 {
 	int			len;
@@ -101,10 +114,12 @@ static int	check_pos(t_cubed *cubed, int rows, int col)
 	while (cubed->map[rows][col])
 	{
 		if (!check_chars(cubed->map, rows, col))
-			ft_error("Error: IN map\n", cubed);
+			ft_error("Error: invalid map\n", cubed);
 		if (!is_a_player(cubed, &flag, rows, col))
 			ft_error("Error: invalid map\n", cubed);
 		if (!is_a_zero(cubed, rows, col))
+			ft_error("Error: invalid map\n", cubed);
+		if (!is_a_door(cubed, rows, col))
 			ft_error("Error: invalid map\n", cubed);
 		col++;
 	}
