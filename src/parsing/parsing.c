@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 19:22:33 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/25 22:26:47 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,9 @@ int	check_file(char *map, t_cubed *cubed)
 
 int	partial_init(t_cubed *cubed)
 {
+	int	i;
+	
+	i = -1;
 	cubed->player = malloc(sizeof(t_player));
 	if (!cubed->player)
 		ft_error("Error: malloc failed\n", cubed);
@@ -127,6 +130,8 @@ int	partial_init(t_cubed *cubed)
 	cubed->raycast = 0;
 	cubed->keys = 0;
 	cubed->mlx = 0;
+	while (++i < 5)
+		cubed->texture[i].img = 0;
 	return (1);
 }
 

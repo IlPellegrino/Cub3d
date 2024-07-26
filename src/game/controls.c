@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 19:03:01 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/25 21:18:48 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:22:52 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	rotate_player(t_cubed *cubed, t_keys *key)
 		p->d_x = cos(p->angle);
 		p->d_y = sin(p->angle);
 	}
-	else if (key->right)
+	if (key->right)
 	{
 		p->angle += (ROTATION_SPEED * 0.01);
 		if (p->angle > 2 * PI)

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 21:22:10 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:25:46 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,22 @@ int	mouse_rotate_pov(t_cubed *cubed)
 {
 	t_player	*p;
 	int			x;
-	int			y;
-	
+	double	target;
+
 	p = cubed->player;
 	x = cubed->game->mouse_x;
-	y = cubed->game->mouse_y;
 	if (x > WIDTH / 2)
-		p->angle += SENSITIVITY * 0.01;
-	else if (x < WIDTH / 2)
-		p->angle -= SENSITIVITY * 0.01;
+	{
+		target = p->angle + SENSITIVITY * 0.01;
+		while (p->angle < target)
+			p->angle++;
+	}
+	if (x < WIDTH / 2)
+	{
+		target = p->angle - SENSITIVITY * 0.01;
+		while (p->angle > target)
+			p->angle--;
+	}
 	if (p->angle > 2 * PI)
 		p->angle = 0;
 	if (p->angle < 0)
@@ -38,13 +45,13 @@ int	mouse_rotate_pov(t_cubed *cubed)
 
 int	move_player(t_cubed *cubed, t_keys *key)
 {
-	t_player		*p;
+	// t_player		*p;
 	int			    coll_len;
-	double			dist;
+	// double			dist;
 
 	coll_len = 17;
-	dist = ((PLAYER_SPEED + coll_len) * 0.1);
-	p = cubed->player;
+	// dist = ((PLAYER_SPEED + coll_len) * 0.1);
+	// p = cubed->player;
 	if (key->w)
 		move_up(cubed, coll_len);
 	if (key->s)
@@ -61,17 +68,15 @@ int	check_map_size(t_cubed *cubed)
 {
 	t_settings	*settings;
 	t_keys		*key;
-	int			i;
+	// int			i;
 
-	i = 0;			
+	// i = 0;			
 	settings = cubed->settings;
 	key = cubed->keys;
 	if (key->plus == 1)
 	{
 		if (settings->mini_size < 64)
-			settings->mini_size++;
-
-	
+			settings->mini_size++;	
 	}
 	else if (key->minus == 1)
 	{
