@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/26 11:33:36 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/26 20:02:06 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
+#define door 234
 /**======================
  *?    	 MATH
  *========================**/
@@ -26,8 +27,8 @@
 /**======================
  *?    	 SCREEN
  *========================**/
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 /**======================
  *?    	 TILES
  *========================**/
@@ -37,7 +38,7 @@
  *?   PLAYER SETTINGS
  *========================**/
 # define ROTATION_SPEED 3
-# define SENSITIVITY 6
+# define SENSITIVITY 2
 # define PLAYER_SIZE 7
 # define PLAYER_SPEED 20
 # define FOV 60

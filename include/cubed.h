@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 19:19:53 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/26 17:30:56 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@
 # include <sys/time.h>
 # include <string.h>
 
-char 	**set_map(void);
+int blend_color(t_cubed *cubed, int x, int y, int color, float alpha);
+unsigned long get_color(t_img *img, int x, int y);
+void	text_gui(t_cubed *cubed);
 /**======================
  *?    	CLOSE / ERROR
  *========================**/

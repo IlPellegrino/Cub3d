@@ -6,15 +6,25 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:58:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 17:52:03 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 17:30:51 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
+
+
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+unsigned long get_color(t_img *img, int x, int y)
+{
+    int offset;
+
+    offset = (img->line_len * y) + (x * (img->bits_per_pixel / 8));
+    return (*((unsigned int *)(offset + img->pixel_ptr)));
 }
 
 void	better_pixel_put(t_img *img, int x, int y, int color)

@@ -16,6 +16,7 @@
 		"stdio.h": "c",
 		"compare": "c",
 		"type_traits": "c",
-		"utility": "c"
+		"utility": "c",
+		"time.h": "c"
 	}
 }

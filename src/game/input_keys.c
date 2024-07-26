@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 18:54:57 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/25 20:36:15 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:44:20 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	key_press(int pressed, t_keys *key)
 	else if (pressed == esc)
 		key->esc = 1;
 	else if (pressed == p && key->pause == 0)
-		key->pause++;
+		key->pause = 1;
 	else if (pressed == p && key->pause)
 		key->pause = 0;
 	else if (pressed == space)

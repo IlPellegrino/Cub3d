@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 18:07:32 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 20:11:49 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@ typedef struct s_raycast
 	int		wall_height;
 }			t_raycast;
 
+typedef struct s_gui
+{
+	int		open_door;
+	int		close_door;
+}			t_gui;
+
 typedef struct	s_cubed
 {
 	int			map_h;
@@ -115,6 +121,7 @@ typedef struct	s_cubed
 	t_game		*game;
 	t_keys		*keys;
 	t_settings	*settings;
+	t_gui		*gui;
 }				t_cubed;
 
 #endif

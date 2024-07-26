@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/25 21:16:51 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 17:27:58 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,37 @@ void draw_player(t_img *img, double x, double y, t_cubed *cubed)
 
 #define MINIMAP_SIZE 200
 
+int blend_color(t_cubed *cubed, int x, int y, int color, float alpha)
+{
+    unsigned long bg_color;
+    int red, green, blue;
+    
+    // Clamp alpha to the range [0, 1]
+    if (alpha < 0.0) alpha = 0.0;
+    if (alpha > 1.0) alpha = 1.0;
+
+    // Get the background color
+    bg_color = get_color(cubed->img, x, y);
+
+    // Extract RGB components from the input color
+    int input_red = ((color >> 16) & 0xFF);
+    int input_green = ((color >> 8) & 0xFF);
+    int input_blue = (color & 0xFF);
+
+    // Extract RGB components from the background color
+    int bg_red = ((bg_color >> 16) & 0xFF);
+    int bg_green = ((bg_color >> 8) & 0xFF);
+    int bg_blue = (bg_color & 0xFF);
+
+    // Perform the blending based on the alpha value
+    red = (int)((input_red * alpha) + (bg_red * (1 - alpha)));
+    green = (int)((input_green * alpha) + (bg_green * (1 - alpha)));
+    blue = (int)((input_blue * alpha) + (bg_blue * (1 - alpha)));
+
+    // Return the blended color
+    return ((red << 16) | (green << 8) | blue);
+}
+
 void	draw_minimap(t_cubed *cubed, char **map)
 {
 
@@ -82,17 +113,17 @@ void	draw_minimap(t_cubed *cubed, char **map)
 		{
 			x = (plyr_x - MINIMAP_SIZE / 2 + j) / settings->mini_size;
 			if (j < 5 || j > MINIMAP_SIZE - 6 || i < 5 || i > MINIMAP_SIZE - 6)
-				color = eggplant;
+				color = blend_color(cubed, j, i, eggplant, 0.9);
 			else if (x < 0 || y < 0 || y >= matrix_len(map) || x >= (int)ft_strlen(map[y]))
-				color = claret;
+				color = blend_color(cubed, j, i, claret, 0.9);
 			else if (map[y][x] == '1')
-				color = lion;
+				color = blend_color(cubed, j, i, lion, 0.9);
 			else if (map[y][x] == 'D')
-				color = purple;
+				color = blend_color(cubed, j, i, purple, 0.9);
 			else if (map[y][x] == 'C')
-				color = green;
+				color = blend_color(cubed, j, i, green, 0.9);
 			else
-				color = snow;
+				color = blend_color(cubed, j, i, snow, 0.9);
 			better_pixel_put(img, j, i, color);
 		}
 	}
@@ -145,22 +176,31 @@ void	draw_crosshair(t_cubed	*cubed)
 	
 }
 
+int	pause_game(t_cubed *cubed)
+{
+	if (cubed->keys->pause)
+	{
+		mlx_string_put(cubed->mlx, cubed->win, WIDTH / 2 - 50, HEIGHT / 2, white, "PAUSE");
+		return (0);
+	}
+	return (1);
+}
+
 int	game_loop(t_cubed *cubed)
 {
 	t_img		*img;
-
 	img = cubed->img;
-	if (cubed->keys->pause)
-	{
-		return (1);
-	}
+	if (!pause_game(cubed))
+		return (0);
 	//mlx_destroy_image(cubed->mlx, cubed->img->img);
 	//create_img(cubed->mlx, cubed->img);
+	text_gui(cubed);
 	move_handler(cubed);
-	interactable(cubed);
 	rendering(cubed);
+	interactable(cubed);
 	minimap(cubed, cubed->map);
 	draw_crosshair(cubed);
+	text_gui(cubed);
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);
 }

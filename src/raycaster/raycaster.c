@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 17:02:35 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 20:33:10 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void draw_vertical_line(t_img *img, int x, int start, int end, int color)
     }
 }
 
-void draw_walls(t_cubed *cubed, int start, int end, double wall_height, int flag)
-{
+void draw_walls(t_cubed *cubed, int start, int end, double wall_height, int flag) {
     t_img *texture;
     int     tex_x;
     int     tex_y;
@@ -29,71 +28,37 @@ void draw_walls(t_cubed *cubed, int start, int end, double wall_height, int flag
     double  tex_pos;
 
     // Determine which texture to use based on the color
-	if (flag == yellow)
-		texture = &cubed->texture[0];
-	else if (flag == blue)
-		texture = &cubed->texture[1];
-	else if (flag == red)
-		texture = &cubed->texture[2];
-	else if (flag == green)
-		texture = &cubed->texture[3];
-	else
-		texture = &cubed->texture[0];
+    if (flag == yellow)
+        texture = &cubed->texture[0];
+    else if (flag == blue)
+        texture = &cubed->texture[1];
+    else if (flag == red)
+        texture = &cubed->texture[2];
+    else if (flag == green)
+        texture = &cubed->texture[3];
+    else
+        texture = &cubed->texture[4];
 
     // Calculate the x coordinate on the texture
-    if (flag == red || flag == green) 
-    {
-        tex_x = (int)(cubed->raycast->ry) % TILE_SIZE;
-    }
-    else 
-    {
-        tex_x = (int)(cubed->raycast->rx) % TILE_SIZE;
-    }
-
-    // Normalize tex_x to be within the texture width
-    if (tex_x <= 0) {
-        tex_x += TILE_SIZE; // Handle negative tex_x
-    }
+    tex_x = (int)(flag == red || flag == green ? cubed->raycast->ry : cubed->raycast->rx) % TILE_SIZE;
     tex_x = (tex_x * texture->w) / TILE_SIZE;
-    tex_x = tex_x % texture->w; // Ensure tex_x is within texture width
+    tex_x = tex_x % texture->w;
 
-    // Calculate texture step and initial position
-    if (wall_height <= 0) {
-        wall_height = 1; // Handle invalid wall_height values
-    }
     tex_step = (double)texture->h / wall_height;
-    if (tex_step <= 0) {
-        tex_step = 1; // Avoid zero or negative steps
-    }
     tex_pos = (start - HEIGHT / 2 + wall_height / 2) * tex_step;
-	if (tex_pos <= 0)
-		tex_pos += tex_step;
 
-    for (int y = start; y < end; y++)
-    {
-        //printf("y = %d\n", y);
+    for (int y = start; y < end; y++) {
         tex_y = (int)tex_pos % texture->h;
-        if (tex_y < 0 || tex_y > texture->h) {
-            tex_y += texture->h; // Handle negative tex_y values
-        }
-
         tex_pos += tex_step;
 
-        // Calculate the color index
         int color_idx = tex_y * texture->w + tex_x;
 
-        // Ensure color_idx is within the bounds of the texture data array
-        if (color_idx >= 0 && color_idx < texture->w * texture->h)
-        {
-            // Get the color from the texture data
+        if (color_idx >= 0 && color_idx < texture->w * texture->h) {
             int tex_color = texture->data[color_idx];
-
-            // Put the pixel on the screen
             better_pixel_put(cubed->img, cubed->raycast->r, y, tex_color);
         }
     }
 }
-
 
 void rendering(t_cubed *cubed)
 {
@@ -183,8 +148,12 @@ void rendering(t_cubed *cubed)
         {
             int mapX = (int)(verX) / TILE_SIZE;
             int mapY = (int)(verY) / TILE_SIZE;
-
-            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
+            if (mapY < 0)
+                mapY = 0;
+            if (mapY >= map_h)
+                mapY = map_h - 1;
+            map_w = ft_strlen(cubed->map[mapY]);
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h &&( cubed->map[mapY][mapX] == '1' || cubed->map[mapY][mapX] == 'D'))
             {
                 ray->vx = verX;
                 ray->vy = verY;
@@ -251,9 +220,6 @@ void rendering(t_cubed *cubed)
         draw_vertical_line(cubed->img, ray->r, 0, wallTop, cyan);
         // draw bottom half of the screen as floor
         draw_vertical_line(cubed->img, ray->r, wallBottom, HEIGHT, brown);
-        //if (cubed->map[(int)(ray->ry / TILE_SIZE)][(int)(ray->rx / TILE_SIZE)] == 'D')
-         //   color = purple;
-
         draw_walls(cubed, wallTop, wallBottom, wallHeight, color);
     }
 }

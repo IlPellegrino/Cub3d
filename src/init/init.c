@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 21:17:02 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:37:36 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ int	init_data(t_cubed *cubed)
 		return (0);
 	cubed->keys = ft_calloc(sizeof(t_keys), 1);
 	cubed->keys->space = 0;
+	cubed->gui = malloc(sizeof(t_gui));
+	cubed->gui->open_door = 0;
+	cubed->gui->close_door = 0;
 	init_settings(cubed);
 	init_texture(cubed);
 	init_player(cubed);

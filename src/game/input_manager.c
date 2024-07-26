@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/26 13:25:46 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:33:38 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,23 @@
 
 int	mouse_rotate_pov(t_cubed *cubed)
 {
-	t_player	*p;
-	int			x;
-	double	target;
+    t_player	*p;
+    int			x;
+    double		rotation;
 
-	p = cubed->player;
-	x = cubed->game->mouse_x;
-	if (x > WIDTH / 2)
-	{
-		target = p->angle + SENSITIVITY * 0.01;
-		while (p->angle < target)
-			p->angle++;
-	}
-	if (x < WIDTH / 2)
-	{
-		target = p->angle - SENSITIVITY * 0.01;
-		while (p->angle > target)
-			p->angle--;
-	}
-	if (p->angle > 2 * PI)
-		p->angle = 0;
-	if (p->angle < 0)
-		p->angle = 2 * PI;
-	p->d_x = cos(p->angle);
-	p->d_y = sin(p->angle);
-	if (x != WIDTH / 2)
-		mlx_mouse_move(cubed->mlx, cubed->win, WIDTH / 2, HEIGHT / 2);
-	return (1);
+    p = cubed->player;
+    x = cubed->game->mouse_x;
+    rotation = (x - (WIDTH / 2)) * SENSITIVITY * 0.001;
+    p->angle += rotation;
+    if (p->angle > 2 * PI)
+        p->angle -= 2 * PI;
+    if (p->angle < 0)
+        p->angle += 2 * PI;
+    p->d_x = cos(p->angle);
+    p->d_y = sin(p->angle);
+    if (x != WIDTH / 2)
+        mlx_mouse_move(cubed->mlx, cubed->win, WIDTH / 2, HEIGHT / 2);
+    return (1);
 }
 
 int	move_player(t_cubed *cubed, t_keys *key)
