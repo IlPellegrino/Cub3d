@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:10:45 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:48:12 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		validate_position(t_cubed *cubed, double new_x, double new_y);
  *?    		INIT
  *========================**/
 int		init_data(t_cubed *cubed);
+int		partial_init(t_cubed *cubed);
 void	create_img(void *mlx, t_img *img);
 //void	draw_shape(t_img *img, int x, int y, int size,  int color);
 
@@ -65,6 +66,9 @@ void	check_map(t_cubed *cubed);
 int		surfaces_check(char *line, t_cubed *cubed);
 int		textures_check(char *line, t_cubed *cubed);
 int		check_colors(char **color, t_cubed *cubed, int surface);
+int		is_double_player(t_cubed *cubed, int *flag, int rows, int col);
+int		syntax_checker(t_cubed *cubed);
+void	set_player(t_cubed *cubed, char c);
 int 	is_acceptable(char c);
 int		is_legal(char c);
 

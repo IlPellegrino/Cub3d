@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:39:31 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/23 11:55:10 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 18:32:03 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,22 @@ int	check_chars(char **map, int l, int col)
 	if (map[l][col] == ' ')
 		return (1);
 	if (map[l][col] == 'D')
+		return (1);
+	return (0);
+}
+
+int	is_acceptable(char c)
+{
+	if (c == '1' || c == '0' || c == 'N' || c == 'S'
+		|| c == 'W' || c == 'E' || c == 'D')
+		return (1);
+	return (0);
+}
+
+int	is_legal(char c)
+{
+	if (c == '1' || c == '0' || c == 'N' || c == 'S'
+		|| c == 'W' || c == 'E' || c == 'D' || c == ' ')
 		return (1);
 	return (0);
 }

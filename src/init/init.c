@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/26 14:37:36 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 18:34:10 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	init_player(t_cubed *cubed)
 	p->y = p->map_y * TILE_SIZE + TILE_SIZE / 2 - PLAYER_SIZE / 2;
 	p->d_x = cos(p->angle);
 	p->d_y = sin(p->angle);
-	//draw_line(cubed->img, p->x, p->y, p->x + p->d_x * 50, p->y + p->d_y * 50, 0x00FF00);
 	return (1);
 }
 
@@ -48,6 +47,27 @@ int	init_texture(t_cubed *cubed)
 		cubed->texture[i].w = WIDTH;
 		cubed->texture[i].h = HEIGHT;
 	}
+	return (1);
+}
+
+int	partial_init(t_cubed *cubed)
+{
+	int	i;
+
+	i = -1;
+	cubed->player = malloc(sizeof(t_player));
+	if (!cubed->player)
+		ft_error("Error: malloc failed\n", cubed);
+	cubed->game = ft_calloc(sizeof (t_game), 1);
+	cubed->map = 0;
+	cubed->game->counter = 0;
+	cubed->img = 0;
+	cubed->win = 0;
+	cubed->raycast = 0;
+	cubed->keys = 0;
+	cubed->mlx = 0;
+	while (++i < 5)
+		cubed->texture[i].img = 0;
 	return (1);
 }
 
