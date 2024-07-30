@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/27 01:22:38 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 18:10:45 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ int		is_legal(char c);
  *?    		GAME
  *========================**/
 int		game_loop(t_cubed *cub);
-void    rendering(t_cubed *cubed);
+void 	draw_walls(t_cubed *cubed, t_wall *wall, int flag);
+void	draw_vertical_line(t_cubed *cubed, int start, int end, int color);
+void	rendering(t_cubed *cubed);
 void 	draw_player(t_img *img, double x, double y, t_cubed *cubed);
 void	minimap(t_cubed *cubed, char **map);
 void	interactable(t_cubed *cubed);
@@ -100,7 +102,6 @@ int		key_release(int realesed, t_keys *keys);
 /**======================
  *?    	  TEXTURE
  *========================**/
-int		get_texture(t_cubed *cubed);
 void	load_texture(t_cubed *cubed);
 
 #endif

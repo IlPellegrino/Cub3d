@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/27 01:28:06 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 18:03:07 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ typedef	struct	s_img
 	int		endian;
 	int		line_len;
 }				t_img;
+
+typedef struct s_wall
+{
+	int		wall_top;
+	int		wall_bottom;
+	int		wall_height;
+	int		tex_x;
+	double	tex_pos;
+	double	tex_step;
+}			t_wall;
+
 
 typedef	struct s_game
 {
@@ -96,9 +107,9 @@ typedef struct s_raycast
 	double	stepX;
 	double	stepY;
 	double 	verX;
+	double 	verY;
 	double	horX;
 	double 	horY;
-	double 	verY;
 }			t_raycast;
 
 typedef struct s_gui
