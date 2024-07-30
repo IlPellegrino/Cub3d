@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 19:03:01 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/26 13:22:52 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 15:44:48 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	move_up(t_cubed *cubed, double dist)
 	p = cubed->player;
 	new_x = p->x + p->d_x * (PLAYER_SPEED * 0.1);
 	new_y = p->y + p->d_y * (PLAYER_SPEED * 0.1);
-	if (validate_position(cubed, p->x + p->d_x * dist, p->y + p->d_y * dist))
+	if (validate_position(cubed, dist, NORTH))
 	{
 		p->x = new_x;
 		p->y = new_y;
@@ -38,7 +38,7 @@ void	move_down(t_cubed *cubed, double dist)
 	p = cubed->player;
 	new_x = p->x - p->d_x * (PLAYER_SPEED * 0.1);
 	new_y = p->y - p->d_y * (PLAYER_SPEED * 0.1);
-	if (validate_position(cubed, p->x - p->d_x * dist, p->y - p->d_y * dist))
+	if (validate_position(cubed, dist, SOUTH))
 	{
 		p->x = new_x;
 		p->y = new_y;
@@ -55,7 +55,7 @@ void	move_left(t_cubed *cubed, double dist)
 	p = cubed->player;
 	new_x = p->x - p->d_y * (PLAYER_SPEED * 0.1);
 	new_y = p->y + p->d_x * (PLAYER_SPEED * 0.1);
-	if (validate_position(cubed, p->x - p->d_y * dist, p->y + p->d_x * dist))
+	if (validate_position(cubed, dist, WEST))
 	{
 		p->x = new_x;
 		p->y = new_y;
@@ -72,7 +72,7 @@ void	move_right(t_cubed *cubed, double dist)
 	p = cubed->player;
 	new_x = p->x + p->d_y * (PLAYER_SPEED * 0.1);
 	new_y = p->y - p->d_x * (PLAYER_SPEED * 0.1);
-	if (validate_position(cubed, p->x + p->d_y * dist, p->y - p->d_x * dist))
+	if (validate_position(cubed, dist, EAST))
 	{
 		p->x = new_x;
 		p->y = new_y;

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/27 01:38:53 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 18:42:45 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void draw_walls(t_cubed *cubed, int start, int end, double wall_height, int flag
 
         if (color_idx >= 0 && color_idx < texture->w * texture->h) {
             int tex_color = texture->data[color_idx];
-            if (tex_color != black)
+            if (tex_color != green)
                 better_pixel_put(cubed->img, cubed->raycast->r, y, tex_color);
         }
     }
@@ -69,6 +69,7 @@ void render_doors(t_cubed *cubed)
     int map_w;
     double angle_step = RADIANS_FOV / WIDTH;
     double initial_angle = p->angle - (RADIANS_FOV / 2);
+    int is_wall = 0;
     
     for (ray->r = 0; ray->r < WIDTH; ray->r++)
     {
@@ -113,7 +114,8 @@ void render_doors(t_cubed *cubed)
             if (mapY >= map_h)
                 mapY = map_h - 1;
             map_w = ft_strlen(cubed->map[mapY]);
-            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == 'D')
+    
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == 'D' || cubed->map[mapY][mapX] == '1' || cubed->map[mapY][mapX] == 'C'))
             {
                 ray->hx = horX;
                 ray->hy = horY;
@@ -155,7 +157,9 @@ void render_doors(t_cubed *cubed)
             if (mapY >= map_h)
                 mapY = map_h - 1;
             map_w = ft_strlen(cubed->map[mapY]);
-            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == 'D'))
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
+                is_wall = 1;
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == 'D' || cubed->map[mapY][mapX] == '1' || cubed->map[mapY][mapX] == 'C'))
             {
                 ray->vx = verX;
                 ray->vy = verY;
@@ -227,9 +231,9 @@ void render_doors(t_cubed *cubed)
 
         i = (int)(ray->rx / TILE_SIZE);
         j = (int)(ray->ry / TILE_SIZE);
-        if (i >= 0 && i < map_w && j >= 0 && j < map_h && cubed->map[j][i] == 'D')
+        is_wall = 0;
+        if (i >= 0 && i < map_w && j >= 0 && j < map_h && (cubed->map[j][i] == 'D' || cubed->map[j][i] == 'C'))
             draw_walls(cubed, wallTop, wallBottom, wallHeight, color);
-        
     }
 }
 
@@ -282,7 +286,7 @@ void rendering(t_cubed *cubed)
                 mapY = 0;
             if (mapY >= map_h)
                 mapY = map_h - 1;
-            map_w = ft_strlen(cubed->map[mapY]);
+            map_w = 40;
             if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
             {
                 ray->hx = horX;
@@ -324,7 +328,7 @@ void rendering(t_cubed *cubed)
                 mapY = 0;
             if (mapY >= map_h)
                 mapY = map_h - 1;
-            map_w = ft_strlen(cubed->map[mapY]);
+            map_w = 40;
             if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
             {
                 ray->vx = verX;
@@ -365,7 +369,7 @@ void rendering(t_cubed *cubed)
             ray->ry = verY;
             finalDist = distV;
         }
-        //draw_line(cubed->img, p->x, p->y, ray->rx, ray->ry, red);
+        draw_line(cubed->img, p->x, p->y, ray->rx, ray->ry, red);
         // Correct the distance for the fish-eye effect
         double correctedDist = finalDist * cos(p->angle - ray->ra);
 
@@ -394,5 +398,5 @@ void rendering(t_cubed *cubed)
         draw_vertical_line(cubed->img, ray->r, wallBottom, HEIGHT, brown);
         draw_walls(cubed, wallTop, wallBottom, wallHeight, color);
     }
-      render_doors(cubed);
+    render_doors(cubed);
 }

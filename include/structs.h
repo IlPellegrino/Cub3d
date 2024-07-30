@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/27 01:28:06 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 19:36:15 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef	struct	s_img
 	int		bits_per_pixel; 
 	int		endian;
 	int		line_len;
+	int		frame;
 }				t_img;
 
 typedef	struct s_game
@@ -47,6 +48,7 @@ typedef	struct s_game
 	int		ceiling_cl;
 	int		ht;
 	int		wd;
+	int		anim_state;
 	int		mouse_x;
 	int		mouse_y;
 	int		counter;
@@ -117,6 +119,8 @@ typedef struct	s_cubed
 	t_img		*img;
 	t_player	*player;
 	t_img		texture[5];
+	t_img		door_anim[FRAME_NUMBER];
+	time_t		time;
 	t_raycast	*raycast;
 	t_game		*game;
 	t_keys		*keys;

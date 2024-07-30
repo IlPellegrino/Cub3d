@@ -17,6 +17,7 @@
 		"compare": "c",
 		"type_traits": "c",
 		"utility": "c",
-		"time.h": "c"
+		"time.h": "c",
+		"errors.h": "c"
 	}
 }

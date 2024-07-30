@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/27 00:35:16 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 14:43:49 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	draw_minimap(t_cubed *cubed, char **map)
 			x = (plyr_x - MINIMAP_SIZE / 2 + j) / settings->mini_size;
 			if (j < 5 || j > MINIMAP_SIZE - 6 || i < 5 || i > MINIMAP_SIZE - 6)
 				color = blend_color(cubed, j, i, eggplant, 0.9);
-			else if (x < 0 || y < 0 || y >= matrix_len(map) || x >= (int)ft_strlen(map[y]))
+			else if (x < 0 || y < 0 || y >= matrix_len(map) || x >= (int)ft_strlen(map[y]) || map[y][x] == ' ')
 				color = blend_color(cubed, j, i, claret, 0.9);
 			else if (map[y][x] == '1')
 				color = blend_color(cubed, j, i, lion, 0.9);

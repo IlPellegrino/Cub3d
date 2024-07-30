@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/27 01:22:38 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 18:15:14 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <string.h>
 
 
+time_t 	get_curr_time(time_t initial_time);
 int blend_color(t_cubed *cubed, int x, int y, int color, float alpha);
 unsigned long get_color(t_img *img, int x, int y);
 void	text_gui(t_cubed *cubed);
@@ -44,7 +45,7 @@ int		is_wall(t_cubed *cubed, double x, double y);
 int		create_trgb(int t, int r, int g, int b);
 void 	draw_line(t_img *img, int x0, int y0, int x1, int y1, int color);
 void	better_pixel_put(t_img *img, int x, int y, int color);
-int		validate_position(t_cubed *cubed, double new_x, double new_y);
+int		validate_position(t_cubed *cubed, double dist, double dir);
 
 /**======================
  *?    		INIT
