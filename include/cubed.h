@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:15:14 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/30 20:56:58 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <string.h>
 
 
-time_t 	get_curr_time(time_t initial_time);
+clock_t 	get_curr_time(time_t initial_time);
 int blend_color(t_cubed *cubed, int x, int y, int color, float alpha);
 unsigned long get_color(t_img *img, int x, int y);
 void	text_gui(t_cubed *cubed);
