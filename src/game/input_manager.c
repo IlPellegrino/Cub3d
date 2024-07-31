@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:50:04 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 20:58:17 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	move_player(t_cubed *cubed, t_keys *key)
 	int			    coll_len;
 	// double			dist;
 
-	coll_len = 17;
+	coll_len = 20;
 	// dist = ((PLAYER_SPEED + coll_len) * 0.1);
 	// p = cubed->player;
 	if (key->w)

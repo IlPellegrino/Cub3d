@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:58:34 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/30 18:18:02 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 20:58:35 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	validate_position(t_cubed *cubed, double dist, double dir)
 	if (new_angle > 2 * PI)
 		new_angle -= 2 * PI;
 	if (dir != NORTH && dir != SOUTH)
-		new_dist = 6;
+		new_dist = 10;
 	if (is_wall(cubed, p->x + cos(new_angle) * new_dist, p->y + sin(new_angle) * new_dist)
 	|| is_wall(cubed, p->x + cos(new_angle + 0.1) * new_dist, p->y + sin(new_angle + 0.1) * new_dist)
 	|| is_wall(cubed, p->x + cos(new_angle - 0.1) * new_dist, p->y + sin(new_angle - 0.1) * new_dist))

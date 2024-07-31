@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:07:38 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 19:14:09 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 20:25:50 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	y_loop(t_cubed *cubed, t_wall *wall, t_img *texture)
 		if (color_idx >= 0 && color_idx < texture->w * texture->h)
 		{
 			tex_color = texture->data[color_idx];
-			if (tex_color != black)
+			if (tex_color != green)
 				better_pixel_put(cubed->img, cubed->raycast->r, y, tex_color);
 		}
 		y++;
@@ -61,9 +61,16 @@ void draw_walls(t_cubed *cubed, t_wall *wall, int flag)
     else if (flag == 3)
         texture = &cubed->texture[3];
     else
-        texture = &cubed->texture[4];
+	{
+		if (cubed->map[(int)cubed->raycast->ry / TILE_SIZE][(int)cubed->raycast->rx / TILE_SIZE] == 'D')
+        	texture = &cubed->door_anim[0];
+		else if (cubed->map[(int)cubed->raycast->ry / TILE_SIZE][(int)cubed->raycast->rx / TILE_SIZE] == 'C')
+			texture = &cubed->door_anim[FRAME_NUMBER - 1];
+		else
+			texture = &cubed->texture[4];
+	}
     // Calculate the x coordinate on the texture
-    if (flag == 2 || flag == 3)
+    if (flag == 2 || flag == 3 || flag == 4)
     	wall->tex_x = (int)cubed->raycast->ry % TILE_SIZE;
 	else
 		wall->tex_x = (int)cubed->raycast->rx % TILE_SIZE;

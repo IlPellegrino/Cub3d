@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 20:56:58 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 19:15:41 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		validate_position(t_cubed *cubed, double dist, double dir);
  *?    		INIT
  *========================**/
 int		init_data(t_cubed *cubed);
+int		partial_init(t_cubed *cubed);
 void	create_img(void *mlx, t_img *img);
 //void	draw_shape(t_img *img, int x, int y, int size,  int color);
 
@@ -66,6 +67,9 @@ void	check_map(t_cubed *cubed);
 int		surfaces_check(char *line, t_cubed *cubed);
 int		textures_check(char *line, t_cubed *cubed);
 int		check_colors(char **color, t_cubed *cubed, int surface);
+int		is_double_player(t_cubed *cubed, int *flag, int rows, int col);
+int		syntax_checker(t_cubed *cubed);
+void	set_player(t_cubed *cubed, char c);
 int 	is_acceptable(char c);
 int		is_legal(char c);
 
@@ -73,7 +77,9 @@ int		is_legal(char c);
  *?    		GAME
  *========================**/
 int		game_loop(t_cubed *cub);
-void    rendering(t_cubed *cubed);
+void 	draw_walls(t_cubed *cubed, t_wall *wall, int flag);
+void	draw_vertical_line(t_cubed *cubed, int start, int end, int color);
+void	rendering(t_cubed *cubed);
 void 	draw_player(t_img *img, double x, double y, t_cubed *cubed);
 void	minimap(t_cubed *cubed, char **map);
 void	interactable(t_cubed *cubed);
@@ -101,7 +107,6 @@ int		key_release(int realesed, t_keys *keys);
 /**======================
  *?    	  TEXTURE
  *========================**/
-int		get_texture(t_cubed *cubed);
 void	load_texture(t_cubed *cubed);
 
 #endif

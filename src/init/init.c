@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:30:13 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 19:24:00 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	init_player(t_cubed *cubed)
 	p->y = p->map_y * TILE_SIZE + TILE_SIZE / 2 - PLAYER_SIZE / 2;
 	p->d_x = cos(p->angle);
 	p->d_y = sin(p->angle);
-	//draw_line(cubed->img, p->x, p->y, p->x + p->d_x * 50, p->y + p->d_y * 50, 0x00FF00);
 	return (1);
 }
 

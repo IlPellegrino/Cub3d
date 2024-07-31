@@ -6,51 +6,17 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:34:08 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 20:30:18 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	syntax_checker(t_cubed *cubed)
-{
-	int	i;
-	int	k;
-
-	i = -1;
-	while (cubed->game->cub[++i])
-	{
-		k = 0;
-		while (ft_isspace(cubed->game->cub[i][k]))
-			k++;
-		if (!ft_strncmp(cubed->game->cub[i] + k, "NO", 2)
-			|| !ft_strncmp(cubed->game->cub[i] + k, "SO", 2)
-			|| !ft_strncmp(cubed->game->cub[i] + k, "EA", 2)
-			|| !ft_strncmp(cubed->game->cub[i] + k, "WE", 2))
-			textures_check(cubed->game->cub[i], cubed);
-		else if (cubed->game->cub[i][k] == 'F' || cubed->game->cub[i][k] == 'C')
-			surfaces_check(cubed->game->cub[i], cubed);
-		else if (is_legal(cubed->game->cub[i][k]))
-		{
-			while (cubed->game->cub[i][k])
-			{
-				if (!is_legal(cubed->game->cub[i][k]) && !ft_isspace(cubed->game->cub[i][k]))
-					ft_error("Error: invalid character in map\n", cubed);
-				k++;
-			}
-			if (cubed->game->cub[i][k - 1] == '\n')
-				cubed->game->cub[i][k - 1] = '\0';
-			cubed->map[cubed->game->counter++] = ft_strdup(cubed->game->cub[i]);
-		}
-	}
-	return (1);
-}
-
 int	copy_file(int fd, t_cubed *cubed)
 {
-	char	*line;
 	int		i;
-	
+	char	*line;
+
 	i = -1;
 	line = get_next_line(fd);
 	if (!line)

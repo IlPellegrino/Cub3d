@@ -6,50 +6,17 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/25 22:19:22 by nromito          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:47:38 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-int	is_double_player(t_cubed *cubed, int *flag, int rows, int col)
-{
-	if ((cubed->map[rows][col] == 'N' || cubed->map[rows][col] == 'S'
-		|| cubed->map[rows][col] == 'W' || cubed->map[rows][col] == 'E') && (*flag))
-		return (1);
-	return (0);
-}
-
-int is_acceptable(char c)
-{
-	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D')
-		return (1);
-	return (0);
-}
-
-int is_legal(char c)
-{
-	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D' || c == ' ')
-		return (1);
-	return (0);
-}
-
-void	set_player(t_cubed *cubed, char c)
-{
-	if (c == 'N')
-		cubed->player->angle = NORTH;
-	else if (c == 'S')
-		cubed->player->angle = SOUTH;
-	else if (c == 'W')
-		cubed->player->angle = WEST;
-	else if (c == 'E')
-		cubed->player->angle = EAST;
-}
-
 int	is_a_player(t_cubed *cubed, int *flag, int rows, int col)
 {
 	if ((cubed->map[rows][col] == 'N' || cubed->map[rows][col] == 'S'
-		|| cubed->map[rows][col] == 'W' || cubed->map[rows][col] == 'E') && !(*flag))
+		|| cubed->map[rows][col] == 'W' || cubed->map[rows][col] == 'E')
+			&& !(*flag))
 	{
 		(*flag)++;
 		set_player(cubed, cubed->map[rows][col]);
@@ -130,7 +97,7 @@ void	check_map(t_cubed *cubed)
 {
 	int	i;
 	int	j;
-	int flag;
+	int	flag;
 
 	i = -1;
 	while (cubed->map[++i])
@@ -140,7 +107,7 @@ void	check_map(t_cubed *cubed)
 			j++;
 		if (i == 0 || i == cubed->game->ht - 1)
 		{
-			while ((cubed->map[i][j] == '1'  || cubed->map[i][j] == ' ')
+			while ((cubed->map[i][j] == '1' || cubed->map[i][j] == ' ')
 				&& cubed->map[i][j])
 				j++;
 			if (cubed->map[i][j])
@@ -151,5 +118,4 @@ void	check_map(t_cubed *cubed)
 	}
 	if (!flag)
 		ft_error("Error: no player found\n", cubed);
-	// cubed->game->counter += 1;
 }

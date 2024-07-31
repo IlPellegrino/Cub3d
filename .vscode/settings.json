@@ -17,7 +17,17 @@
 		"compare": "c",
 		"type_traits": "c",
 		"utility": "c",
+<<<<<<< HEAD
 		"time.h": "c",
 		"errors.h": "c"
 	}
+=======
+		"time.h": "c"
+	},
+	"editor.tokenColorCustomizations": {
+		"comments": "",
+		"textMateRules": []
+	},
+	"comments.openView": "file"
+>>>>>>> adec068b686791cebc50856cb972781647939abb
 }

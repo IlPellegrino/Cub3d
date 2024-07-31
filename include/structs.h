@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 19:36:15 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 19:50:15 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ typedef	struct	s_img
 	int		frame;
 }				t_img;
 
+typedef struct s_wall
+{
+	int		wall_top;
+	int		wall_bottom;
+	int		wall_height;
+	int		tex_x;
+	double	tex_pos;
+	double	tex_step;
+}			t_wall;
+
+
 typedef	struct s_game
 {
 	char	*no;
@@ -48,6 +59,7 @@ typedef	struct s_game
 	int		ceiling_cl;
 	int		ht;
 	int		wd;
+	int		frame;
 	int		anim_state;
 	int		mouse_x;
 	int		mouse_y;
@@ -98,9 +110,9 @@ typedef struct s_raycast
 	double	stepX;
 	double	stepY;
 	double 	verX;
+	double 	verY;
 	double	horX;
 	double 	horY;
-	double 	verY;
 }			t_raycast;
 
 typedef struct s_gui

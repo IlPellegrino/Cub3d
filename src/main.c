@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 15:45:43 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 21:03:03 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ time_t 	get_curr_time(time_t initial_time)
 	time_t	curr_time;
 
 	time(&curr_time);
+	printf("curr_time: %ld\n", curr_time - initial_time);
 	return (curr_time - initial_time);
 }
 
