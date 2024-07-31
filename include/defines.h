@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/30 19:34:56 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:15:09 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
  *========================**/
 # define PI 3.14159265359
 # define DR 0.0174533
-# define ANGLE_STEP (RADIANS_FOV / WIDTH)
-# define RADIANS_FOV (FOV * (PI / 180))
+# define ANGLE_STEP (double)(RADIANS_FOV / WIDTH)
+# define RADIANS_FOV (FOV * PI / 180)
 # define NORTH PI / 2
 # define SOUTH 3 * PI / 2
 # define WEST PI
@@ -33,7 +33,7 @@
 /**======================
  *?    	 TILES
  *========================**/
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define MINI_SIZE 12
 # define FRAME_NUMBER 11
 /**======================
@@ -43,7 +43,7 @@
 # define SENSITIVITY 2
 # define PLAYER_SIZE 7
 # define PLAYER_SPEED 20
-# define FOV 60
+# define FOV 80
 # define CROSS_SIZE 14
 /* ------------------------*/
 # define F 1

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 21:01:23 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:45:43 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	if (!parsing(argv, argc, &cubed))
 		return (1);
 	init_data(&cubed);
-	mlx_mouse_hide(cubed.mlx, cubed.win);	
+	mlx_mouse_hide(cubed.mlx, cubed.win);
 	load_texture(&cubed);
 	time(&cubed.time);
 	mask_manager(&cubed);

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:42:45 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/07/31 19:15:07 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void draw_walls(t_cubed *cubed, int start, int end, double wall_height, int flag
         texture = &cubed->texture[4];
 
     // Calculate the x coordinate on the texture
-    tex_x = (int)(flag == red || flag == green ? cubed->raycast->ry : cubed->raycast->rx) % TILE_SIZE;
+    tex_x = (int)(flag == red || flag == green || flag == purple ? cubed->raycast->ry : cubed->raycast->rx) % TILE_SIZE;
     tex_x = (tex_x * texture->w) / TILE_SIZE;
     tex_x = tex_x % texture->w;
 
@@ -67,16 +67,17 @@ void render_doors(t_cubed *cubed)
     t_raycast *ray = cubed->raycast;
     int map_h = cubed->game->ht;
     int map_w;
-    double angle_step = RADIANS_FOV / WIDTH;
-    double initial_angle = p->angle - (RADIANS_FOV / 2);
+    //double angle_step = RADIANS_FOV / WIDTH;
+    //double initial_angle = p->angle - (RADIANS_FOV / 2);
     int is_wall = 0;
-    
+    double half_fov = RADIANS_FOV / 2;
+    double half_screen = WIDTH / 2;
     for (ray->r = 0; ray->r < WIDTH; ray->r++)
     {
-        double ray_angle = initial_angle + ray->r * angle_step;
-        if (ray_angle < 0) ray_angle += 2 * PI;
-        if (ray_angle >= 2 * PI) ray_angle -= 2 * PI;
+        double ray_angle = p->angle + atan((ray->r - half_screen) / half_screen * tan(half_fov));
 
+    // Normalize the angle
+        ray_angle = fmod(ray_angle + 2 * PI, 2 * PI);
         ray->ra = ray_angle;
         ray->dof = 0;
         double aTan = -1 / tan(ray->ra);
@@ -182,9 +183,9 @@ void render_doors(t_cubed *cubed)
         if (distH < distV)
         {
             if (ray->ra > 0 && ray->ra < PI)
-                color = purple; // north
+                color = black; // north
             else
-                color = purple; //south
+                color = black; //south
             ray->rx = horX;
             ray->ry = horY;
             finalDist = distH;
@@ -201,7 +202,7 @@ void render_doors(t_cubed *cubed)
         }
         //draw_line(cubed->img, p->x, p->y, ray->rx, ray->ry, red);
         // Correct the distance for the fish-eye effect
-        double correctedDist = finalDist * cos(p->angle - ray->ra);
+        double correctedDist = finalDist * cos(ray_angle - p->angle);
 
         // Calculate wall height
         int wallHeight = (TILE_SIZE * HEIGHT) / correctedDist;
@@ -227,13 +228,13 @@ void render_doors(t_cubed *cubed)
         // draw bottom half of the screen as floor
         //draw_vertical_line(cubed->img, ray->r, wallBottom, HEIGHT, brown);
         int    i;
-        int     j;
+        int    j;
 
         i = (int)(ray->rx / TILE_SIZE);
         j = (int)(ray->ry / TILE_SIZE);
         is_wall = 0;
-        if (i >= 0 && i < map_w && j >= 0 && j < map_h && (cubed->map[j][i] == 'D' || cubed->map[j][i] == 'C'))
-            draw_walls(cubed, wallTop, wallBottom, wallHeight, color);
+        if (i >= 0 && i < map_w && j >= 0 && j < map_h && (cubed->map[j][i] == 'D'))
+            draw_walls(cubed, &wall, flag);
     }
 }
 
@@ -243,13 +244,15 @@ void rendering(t_cubed *cubed)
     t_raycast *ray = cubed->raycast;
     int map_h = cubed->game->ht;
     int map_w;
-    double initial_angle = p->angle - (RADIANS_FOV / 2);
+    double half_fov = RADIANS_FOV / 2;
+    double half_screen = WIDTH / 2;
+    //double initial_angle = p->angle - (RADIANS_FOV / 2);
     for (ray->r = 0; ray->r < WIDTH; ray->r++)
     {
-        double ray_angle = initial_angle + ray->r * ANGLE_STEP;
-        if (ray_angle < 0) ray_angle += 2 * PI;
-        if (ray_angle >= 2 * PI) ray_angle -= 2 * PI;
+        double ray_angle = p->angle + atan((ray->r - half_screen) / half_screen * tan(half_fov));
 
+    // Normalize the angle
+        ray_angle = fmod(ray_angle + 2 * PI, 2 * PI);
         ray->ra = ray_angle;
         ray->dof = 0;
         double aTan = -1 / tan(ray->ra);
@@ -369,9 +372,9 @@ void rendering(t_cubed *cubed)
             ray->ry = verY;
             finalDist = distV;
         }
-        draw_line(cubed->img, p->x, p->y, ray->rx, ray->ry, red);
+        //draw_line(cubed->img, p->x, p->y, ray->rx, ray->ry, red);
         // Correct the distance for the fish-eye effect
-        double correctedDist = finalDist * cos(p->angle - ray->ra);
+        double correctedDist = finalDist * cos(ray_angle - p->angle);
 
         // Calculate wall height
         int wallHeight = (TILE_SIZE * HEIGHT) / correctedDist;
@@ -396,7 +399,7 @@ void rendering(t_cubed *cubed)
         draw_vertical_line(cubed->img, ray->r, 0, wallTop, cyan);
         // draw bottom half of the screen as floor
         draw_vertical_line(cubed->img, ray->r, wallBottom, HEIGHT, brown);
-        draw_walls(cubed, wallTop, wallBottom, wallHeight, color);
+        draw_walls(cubed, &wall, flag);
     }
     render_doors(cubed);
 }
