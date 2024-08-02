@@ -6,11 +6,11 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 19:03:01 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/30 15:44:48 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 15:11:07 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cubed.h"
+#include "../../../include/cubed.h"
 
 void	move_up(t_cubed *cubed, double dist)
 {
