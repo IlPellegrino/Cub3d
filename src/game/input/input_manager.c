@@ -6,11 +6,11 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:19:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 20:58:17 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 15:02:31 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cubed.h"
+#include "../../../include/cubed.h"
 
 int	mouse_rotate_pov(t_cubed *cubed)
 {
@@ -35,13 +35,9 @@ int	mouse_rotate_pov(t_cubed *cubed)
 
 int	move_player(t_cubed *cubed, t_keys *key)
 {
-	// t_player		*p;
 	int			    coll_len;
-	// double			dist;
 
 	coll_len = 20;
-	// dist = ((PLAYER_SPEED + coll_len) * 0.1);
-	// p = cubed->player;
 	if (key->w)
 		move_up(cubed, coll_len);
 	if (key->s)

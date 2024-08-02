@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:47:46 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 21:03:03 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 14:01:11 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	mask_manager(t_cubed *cubed)
 	mlx_hook(cubed->win, KeyRelease, KeyReleaseMask, &key_release, cubed->keys);
 	mlx_hook(cubed->win, DestroyNotify, StructureNotifyMask, &ft_close, &cubed);
 }
+
 
 int	main(int argc, char **argv)
 {

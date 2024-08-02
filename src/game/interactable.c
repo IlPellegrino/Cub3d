@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:11:16 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/31 21:05:34 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 12:57:34 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,21 @@ int	player_in_door(int player_x, int player_y, char **map)
 	return (0);
 }
 
+int	*save_door_pos(int i, int j)
+{
+	static int door_pos[2];
+	
+	door_pos[0] = i;
+	door_pos[1] = j;
+	return (door_pos);
+}
+
 void	interactable(t_cubed *cubed)
 {
-	t_player	*p;
-	int	i;
-	int	j;
+	t_player		*p;
+	int				i;
+	int				j;
+	static int		door_pos[2];
 
 	p = cubed->player;
 	cubed->gui->close_door = 0;
@@ -99,11 +109,22 @@ void	interactable(t_cubed *cubed)
 	if (cubed->map[i][j] == 'D')
 		cubed->gui->open_door = 1;
 	if (cubed->map[i][j] == 'D' && cubed->keys->space)
+	{
+		door_pos[0] = i;
+		door_pos[1] = j;
 		cubed->game->anim_state = 1;
+	}
 	else if (cubed->map[i][j] == 'C' && cubed->keys->space && !player_in_door(p->x, p->y, cubed->map))
+	{
+		door_pos[0] = i;
+		door_pos[1] = j;
 		cubed->game->anim_state = 0;
-	
+	}
+	if (door_pos[0] != 0 && door_pos[1] != 0)
+	{
+		i = door_pos[0];
+		j = door_pos[1];
+	}
 	get_frame(cubed, cubed->game->anim_state, i, j);
-	//handle_doors(cubed->map, i, j);
 	cubed->keys->space = 0;
 }

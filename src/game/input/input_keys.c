@@ -6,11 +6,11 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 18:54:57 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/26 13:44:20 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 15:02:38 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cubed.h"
+#include "../../../include/cubed.h"
 
 int	key_press(int pressed, t_keys *key)
 {

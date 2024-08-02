@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 19:15:41 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 15:03:02 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,13 @@ int		key_release(int realesed, t_keys *keys);
  *========================**/
 void	load_texture(t_cubed *cubed);
 
+/**======================
+ *?    	  	GUI
+ *========================**/
+void	draw_crosshair(t_cubed *cubed);
+void	draw_minimap(t_cubed *cubed, char **map);
+void	minimap(t_cubed *cubed, char **map);
+void	draw_shape(t_img *img, double x, double y, int size, int color);
+void	draw_player(t_img *img, double x, double y, t_cubed *cubed);
+int		blend_color(t_cubed *cubed, int x, int y, int color, float alpha);
 #endif
