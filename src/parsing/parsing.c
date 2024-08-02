@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 20:30:18 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 00:36:08 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	check_file(char *map, t_cubed *cubed)
 int	partial_init(t_cubed *cubed)
 {
 	int	i;
-	
+
 	i = -1;
 	cubed->player = malloc(sizeof(t_player));
 	if (!cubed->player)

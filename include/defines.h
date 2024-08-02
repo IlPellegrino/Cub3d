@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/02 16:13:30 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 00:15:04 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define F 1
 # define C 2
 /*-------------------------*/
+# define DOOR_PATH "src/textures/door animation/frame_"
 
 enum e_keys
 {

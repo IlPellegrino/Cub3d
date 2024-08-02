@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 18:54:57 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/02 15:02:38 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 00:31:45 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ int	key_release(int realesed, t_keys *key)
 		key->minus = 0;
 	else if (realesed == plus)
 		key->plus = 0;
-	//printf("release\n");
 	return (1);
 }

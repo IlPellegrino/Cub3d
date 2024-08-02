@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:58:34 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/02 16:26:37 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 21:58:40 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	is_wall(t_cubed *cubed, double x, double y)
 	return (0);
 }
 
-int	validate_position(t_cubed *cubed, double dist, double dir)
+int	validate_position(t_cubed *cub, double dist, double dir)
 {
 	t_player	*p;
 	double		ndst;
 	double		ang;
-	
+
 	ndst = dist;
-	p = cubed->player;
+	p = cub->player;
 	if (dir == NORTH)
 		ang = p->angle;
 	else if (dir == SOUTH)
@@ -46,9 +46,11 @@ int	validate_position(t_cubed *cubed, double dist, double dir)
 		ang -= 2 * PI;
 	if (dir != NORTH && dir != SOUTH)
 		ndst = 10;
-	if (is_wall(cubed, p->x + cos(ang) * ndst, p->y + sin(ang) * ndst)
-		|| is_wall(cubed, p->x + cos(ang + 0.1) * ndst, p->y + sin(ang + 0.1) * ndst)
-		|| is_wall(cubed, p->x + cos(ang - 0.1) * ndst, p->y + sin(ang - 0.1) * ndst))
+	if (is_wall(cub, p->x + cos(ang) * ndst, p->y + sin(ang) * ndst)
+		|| is_wall(cub, p->x + cos(ang + 0.1) * ndst,
+			p->y + sin(ang + 0.1) * ndst)
+		|| is_wall(cub, p->x + cos(ang - 0.1) * ndst,
+			p->y + sin(ang - 0.1) * ndst))
 		return (0);
 	return (1);
 }

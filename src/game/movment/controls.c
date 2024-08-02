@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 19:03:01 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/02 15:11:07 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 00:35:05 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	move_up(t_cubed *cubed, double dist)
 {
-	double	new_x;
-	double	new_y;
+	double		new_x;
+	double		new_y;
 	t_player	*p;
-	
+
 	p = cubed->player;
 	new_x = p->x + p->d_x * (PLAYER_SPEED * 0.1);
 	new_y = p->y + p->d_y * (PLAYER_SPEED * 0.1);
@@ -25,16 +25,15 @@ void	move_up(t_cubed *cubed, double dist)
 	{
 		p->x = new_x;
 		p->y = new_y;
-	
 	}
 }
 
 void	move_down(t_cubed *cubed, double dist)
 {
-	double	new_x;
-	double	new_y;
+	double		new_x;
+	double		new_y;
 	t_player	*p;
-	
+
 	p = cubed->player;
 	new_x = p->x - p->d_x * (PLAYER_SPEED * 0.1);
 	new_y = p->y - p->d_y * (PLAYER_SPEED * 0.1);
@@ -42,16 +41,15 @@ void	move_down(t_cubed *cubed, double dist)
 	{
 		p->x = new_x;
 		p->y = new_y;
-	
 	}
 }
 
 void	move_left(t_cubed *cubed, double dist)
 {
-	double	new_x;
-	double	new_y;
+	double		new_x;
+	double		new_y;
 	t_player	*p;
-	
+
 	p = cubed->player;
 	new_x = p->x - p->d_y * (PLAYER_SPEED * 0.1);
 	new_y = p->y + p->d_x * (PLAYER_SPEED * 0.1);
@@ -59,16 +57,15 @@ void	move_left(t_cubed *cubed, double dist)
 	{
 		p->x = new_x;
 		p->y = new_y;
-	
 	}
 }
 
 void	move_right(t_cubed *cubed, double dist)
 {
-	double	new_x;
-	double	new_y;
+	double		new_x;
+	double		new_y;
 	t_player	*p;
-	
+
 	p = cubed->player;
 	new_x = p->x + p->d_y * (PLAYER_SPEED * 0.1);
 	new_y = p->y - p->d_x * (PLAYER_SPEED * 0.1);
@@ -76,7 +73,6 @@ void	move_right(t_cubed *cubed, double dist)
 	{
 		p->x = new_x;
 		p->y = new_y;
-	
 	}
 }
 

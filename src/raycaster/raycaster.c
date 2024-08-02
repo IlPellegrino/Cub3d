@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 20:33:38 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 22:06:25 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,10 @@ void render_doors(t_cubed *cubed, t_wall *wall)
 	t_raycast *ray;
 	int map_w;
 	int map_h;
-	double angle_step;
 
-    double is_wall;
-
-    is_wall = 0;
 	ray = cubed->raycast;
 	p = cubed->player;
 	map_h = cubed->game->ht;
-	angle_step = RADIANS_FOV / WIDTH;
     double half_fov = RADIANS_FOV / 2;
     double half_screen = WIDTH / 2;
     for (ray->r = 0; ray->r < WIDTH; ray->r++)
@@ -116,8 +111,6 @@ void render_doors(t_cubed *cubed, t_wall *wall)
             if (mapY >= map_h)
                 mapY = map_h - 1;
             map_w = ft_strlen(cubed->map[mapY]);
-            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
-                is_wall = 1;
             if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == 'A' || cubed->map[mapY][mapX] == 'D' || cubed->map[mapY][mapX] == 'C' || cubed->map[mapY][mapX] == '1'))
             {
                 ray->vx = verX;
@@ -183,7 +176,6 @@ void render_doors(t_cubed *cubed, t_wall *wall)
 
         i = (int)(ray->rx / TILE_SIZE);
         j = (int)(ray->ry / TILE_SIZE);
-        is_wall = 0;
         if (i >= 0 && i < map_w && j >= 0 && j < map_h && (cubed->map[j][i] == 'A' || cubed->map[j][i] == 'D' || cubed->map[j][i] == 'C'))
             draw_walls(cubed, wall, color);
     }
