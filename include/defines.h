@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/31 20:59:42 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 18:58:58 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 /**======================
  *?    	 SCREEN
  *========================**/
-# define WIDTH 680
-# define HEIGHT 420
+# define WIDTH 1080
+# define HEIGHT 720
 /**======================
  *?    	 TILES
  *========================**/
@@ -39,10 +39,10 @@
 /**======================
  *?   PLAYER SETTINGS
  *========================**/
-# define ROTATION_SPEED 3
+# define ROTATION_SPEED 5
 # define SENSITIVITY 2
 # define PLAYER_SIZE 7
-# define PLAYER_SPEED 20
+# define PLAYER_SPEED 30
 # define FOV 80
 # define CROSS_SIZE 14
 /* ------------------------*/

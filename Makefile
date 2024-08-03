@@ -17,7 +17,8 @@ CLONE_MLX = @if [ -d "mlx/" ]; then \
 # Sources
 PARSING_SRC		= 	parsing.c parsing_2.c checks_color.c checks_surface.c \
 					parsing_checks.c parsing_utils.c
-RAYCASTER_SRC	= 	raycaster.c ray_cast_utils.c walls.c
+RAYCASTER_SRC	= 	raycaster.c raycast_utils.c walls.c vertical_raycast.c \
+					horizontal_raycast.c
 UTILS_SRC		= 	close_and_err.c mlx_utils.c
 INIT_SRC 		= 	init.c
 GAME_SRC		= 	texture.c game_loop.c input/input_manager.c collision_check.c \

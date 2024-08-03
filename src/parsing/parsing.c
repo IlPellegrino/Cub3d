@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 20:30:18 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 14:29:25 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	check_file(char *map, t_cubed *cubed)
 int	partial_init(t_cubed *cubed)
 {
 	int	i;
-	
+
 	i = -1;
 	cubed->player = malloc(sizeof(t_player));
 	if (!cubed->player)

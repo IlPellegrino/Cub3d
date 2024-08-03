@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 19:50:15 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/02 18:55:56 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_wall
 	int		tex_x;
 	double	tex_pos;
 	double	tex_step;
+	double	final_dist;
 }			t_wall;
 
 
@@ -103,16 +104,25 @@ typedef struct s_raycast
 	float	ra;  //ray angle
 	float	rx;  //ray x
 	float	ry;  //ray y
+	double	ray_angle;
 	double	vx;
 	double	vy;
 	double	hx;
 	double	hy;
-	double	stepX;
-	double	stepY;
-	double 	verX;
-	double 	verY;
-	double	horX;
-	double 	horY;
+	double	a_tan;
+	double	step_x;
+	double	step_y;
+	double 	ver_x;
+	double 	ver_y;
+	double	hor_x;
+	double 	hor_y;
+	double	half_screen;
+	double	half_fov;
+	double	hor_stepx;
+	double	hor_stepy;
+	double	ver_stepx;
+	double	ver_stepy;
+	double	ra_tan;
 }			t_raycast;
 
 typedef struct s_gui

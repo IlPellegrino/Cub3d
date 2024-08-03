@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/02 15:03:02 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 14:32:02 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,21 @@ int		is_legal(char c);
  *?    		GAME
  *========================**/
 int		game_loop(t_cubed *cub);
+int		is_door(t_cubed *cubed, int map_x, int map_y);
 void 	draw_walls(t_cubed *cubed, t_wall *wall, int flag);
 void	draw_vertical_line(t_cubed *cubed, int start, int end, int color);
 void	rendering(t_cubed *cubed);
 void 	draw_player(t_img *img, double x, double y, t_cubed *cubed);
 void	minimap(t_cubed *cubed, char **map);
 void	interactable(t_cubed *cubed);
+int		calculate_dir(t_raycast *ray, t_player *p, double *f_dist);
+void	calculate_ver(t_raycast *ray, t_player *p);
+void	calculate_hor(t_cubed *cubed, t_raycast *ray);
+void	call_door_wall(t_cubed *cubed, t_wall *wall, t_raycast *ray, int flag);
+void	call_wall(t_cubed *cubed, t_wall *wall, t_raycast *ray, int flag);
+void	ver_loop(t_cubed *cubed, t_raycast *ray, int flag);
+void	hor_loop(t_cubed *cubed, t_raycast *ray, int flag);
+void	angle_ray(t_raycast *ray, t_player *p);
 
 /**======================
  *?    	 MOVEMENT
