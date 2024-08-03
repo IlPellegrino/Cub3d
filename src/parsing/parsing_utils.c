@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:33:33 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:47:41 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 20:46:47 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	is_double_player(t_cubed *cubed, int *flag, int rows, int col)
 void	set_player(t_cubed *cubed, char c)
 {
 	if (c == 'N')
-		cubed->player->angle = NORTH;
+		cubed->player->angle = PI / 2;
 	else if (c == 'S')
-		cubed->player->angle = SOUTH;
+		cubed->player->angle = 3 * PI / 2;
 	else if (c == 'W')
 		cubed->player->angle = WEST;
 	else if (c == 'E')

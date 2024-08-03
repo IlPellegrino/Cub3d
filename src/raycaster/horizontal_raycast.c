@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:27:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 18:58:25 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 19:55:50 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	wall_ray(t_cubed *cubed, t_raycast *ray, int map_x, int map_y)
 
 void	hor_loop(t_cubed *cubed, t_raycast *ray, int flag)
 {
-	int map_x;
-	int map_y;
+	int	map_x;
+	int	map_y;
 
 	while (ray->dof < cubed->map_h)
 	{
@@ -69,7 +69,7 @@ void	hor_loop(t_cubed *cubed, t_raycast *ray, int flag)
 
 void	calculate_hor(t_cubed *cubed, t_raycast *ray)
 {
-	t_player *p;
+	t_player	*p;
 
 	p = cubed->player;
 	if (ray->ra > PI)

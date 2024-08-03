@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 19:24:00 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:42:02 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
+
+void	create_img(void *mlx, t_img *img)
+{
+	img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img->pixel_ptr = mlx_get_data_addr(img->img,
+			&img->bits_per_pixel, &img->line_len, &img->endian);
+}
 
 int	init_player(t_cubed *cubed)
 {
@@ -35,6 +42,7 @@ void	init_settings(t_cubed *cubed)
 	settings->rotation_speed = ROTATION_SPEED;
 	settings->player_size = PLAYER_SIZE;
 	settings->fov = FOV;
+	settings->radians_fov = (FOV * PI / 180);
 }
 
 int	init_texture(t_cubed *cubed)
@@ -61,6 +69,8 @@ int	init_data(t_cubed *cubed)
 		return (0);
 	cubed->keys = ft_calloc(sizeof(t_keys), 1);
 	cubed->keys->space = 0;
+	cubed->keys->page_down = 0;
+	cubed->keys->page_up = 0;
 	cubed->gui = malloc(sizeof(t_gui));
 	cubed->gui->open_door = 0;
 	cubed->gui->close_door = 0;

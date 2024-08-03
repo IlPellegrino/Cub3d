@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/02 14:03:36 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 00:36:48 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	close_fds(void)
 		fd++;
 }
 
-int ft_error(char *error, t_cubed *cubed)
+int	ft_error(char *error, t_cubed *cubed)
 {
 	ft_putendl_fd(error, 2);
 	ft_close(cubed, 1);
@@ -37,7 +37,6 @@ int	free_texture(t_cubed *cubed)
 	{
 		if (cubed->texture[i].img)
 			mlx_destroy_image(cubed->mlx, cubed->texture[i].img);
-		// free(cubed->texture[i].img);
 	}
 	return (1);
 }

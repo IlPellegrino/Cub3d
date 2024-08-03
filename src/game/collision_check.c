@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:58:34 by ciusca            #+#    #+#             */
-/*   Updated: 2024/07/31 20:58:35 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:46:47 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	is_wall(t_cubed *cubed, double x, double y)
 {
-	int			i;
-	int			j;
-	
+	int	i;
+	int	j;
+
 	j = (int)(x / TILE_SIZE);
 	i = (int)(y / TILE_SIZE);
 	if (i < 0 || i >= cubed->game->ht || j < 0 || j >= cubed->game->wd)
@@ -26,29 +26,31 @@ int	is_wall(t_cubed *cubed, double x, double y)
 	return (0);
 }
 
-int	validate_position(t_cubed *cubed, double dist, double dir)
+int	validate_position(t_cubed *cub, double dist, double dir)
 {
 	t_player	*p;
-	double		new_dist;
-	double		new_angle;
+	double		ndst;
+	double		ang;
 
-	new_dist = dist;
-	p = cubed->player;
-	if (dir == NORTH)
-		new_angle = p->angle;
-	else if (dir == SOUTH)
-		new_angle = p->angle + PI;
+	ndst = dist;
+	p = cub->player;
+	if (dir == PI / 2)
+		ang = p->angle;
+	else if (dir == 3 * PI / 2)
+		ang = p->angle + PI;
 	else if (dir == WEST)
-		new_angle = p->angle + PI / 2;
+		ang = p->angle + PI / 2;
 	else
-		new_angle = p->angle - PI / 2;
-	if (new_angle > 2 * PI)
-		new_angle -= 2 * PI;
-	if (dir != NORTH && dir != SOUTH)
-		new_dist = 10;
-	if (is_wall(cubed, p->x + cos(new_angle) * new_dist, p->y + sin(new_angle) * new_dist)
-	|| is_wall(cubed, p->x + cos(new_angle + 0.1) * new_dist, p->y + sin(new_angle + 0.1) * new_dist)
-	|| is_wall(cubed, p->x + cos(new_angle - 0.1) * new_dist, p->y + sin(new_angle - 0.1) * new_dist))
+		ang = p->angle - PI / 2;
+	if (ang > 2 * PI)
+		ang -= 2 * PI;
+	if (dir != PI / 2 && dir != 3 * PI / 2)
+		ndst = 10;
+	if (is_wall(cub, p->x + cos(ang) * ndst, p->y + sin(ang) * ndst)
+		|| is_wall(cub, p->x + cos(ang + 0.1) * ndst,
+			p->y + sin(ang + 0.1) * ndst)
+		|| is_wall(cub, p->x + cos(ang - 0.1) * ndst,
+			p->y + sin(ang - 0.1) * ndst))
 		return (0);
 	return (1);
 }

@@ -6,30 +6,26 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 18:58:58 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 20:47:46 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-#define door 234
 /**======================
  *?    	 MATH
  *========================**/
 # define PI 3.14159265359
 # define DR 0.0174533
-# define ANGLE_STEP (double)(RADIANS_FOV / WIDTH)
-# define RADIANS_FOV (FOV * PI / 180)
-# define NORTH PI / 2
-# define SOUTH 3 * PI / 2
 # define WEST PI
 # define EAST 0
 /**======================
  *?    	 SCREEN
  *========================**/
 # define WIDTH 1080
-# define HEIGHT 720
+# define HEIGHT 540
+# define MINIMAP_SIZE 200
 /**======================
  *?    	 TILES
  *========================**/
@@ -49,6 +45,7 @@
 # define F 1
 # define C 2
 /*-------------------------*/
+# define DOOR_PATH "src/textures/door animation/frame_"
 
 enum e_keys
 {
@@ -72,6 +69,8 @@ enum e_keys
 	space = 32,
 	plus = 65451,
 	minus = 65453,
+	page_up = 65365,
+	page_down = 65366,
 };
 
 enum e_colors
@@ -102,7 +101,7 @@ enum e_colors
 	snow = 0x00FFFAFA,
 	claret = 0x00DC143C,
 	rich_black = 0x00004040,
+	black_coral = 0x0054626F,
 };
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:26:38 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 18:58:35 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 20:20:26 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	wall_ver_ray(t_cubed *cubed, t_raycast *ray, int map_x, int map_y)
 
 void	ver_loop(t_cubed *cubed, t_raycast *ray, int flag)
 {
-	int map_x;
-	int map_y;
-	
+	int	map_x;
+	int	map_y;
+
 	while (ray->dof < cubed->map_w)
 	{
 		map_x = (int)(ray->ver_x) / TILE_SIZE;
@@ -60,7 +60,6 @@ void	ver_loop(t_cubed *cubed, t_raycast *ray, int flag)
 		if (map_y >= cubed->map_h)
 			map_y = cubed->map_h - 1;
 		cubed->map_w = ft_strlen(cubed->map[map_y]);
-		printf("flag = %d\n", flag);
 		if (flag)
 			door_ver_ray(cubed, ray, map_x, map_y);
 		else

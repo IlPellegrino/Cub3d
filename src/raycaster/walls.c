@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:07:38 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/02 12:41:20 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 20:19:47 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-void draw_vertical_line(t_cubed *cubed, int start, int end, int color)
+void	draw_vertical_line(t_cubed *cubed, int start, int end, int color)
 {
 	int	y;
 
 	y = start;
-    while (y < end)
-    {
-        better_pixel_put(cubed->img, cubed->raycast->r, y, color);
+	while (y < end)
+	{
+		better_pixel_put(cubed->img, cubed->raycast->r, y, color);
 		y++;
-    }
+	}
 }
 
 void	y_loop(t_cubed *cubed, t_wall *wall, t_img *texture)
@@ -47,37 +47,47 @@ void	y_loop(t_cubed *cubed, t_wall *wall, t_img *texture)
 	}
 }
 
-void draw_walls(t_cubed *cubed, t_wall *wall, int flag)
+t_img	*assign_texture(t_cubed *cubed, int flag)
 {
-    t_img	*texture;
+	t_img	*texture;
+	int		ry;
+	int		rx;
 
-    // Determine which texture to use based on the color
-    if (flag == 0)
-        texture = &cubed->texture[0];
-    else if (flag == 1)
-        texture = &cubed->texture[1];
-    else if (flag == 2)
-        texture = &cubed->texture[2];
-    else if (flag == 3)
-        texture = &cubed->texture[3];
-    else
+	ry = (int)cubed->raycast->ry / TILE_SIZE;
+	rx = (int)cubed->raycast->rx / TILE_SIZE;
+	if (flag == 0)
+		texture = &cubed->texture[0];
+	else if (flag == 1)
+		texture = &cubed->texture[1];
+	else if (flag == 2)
+		texture = &cubed->texture[2];
+	else if (flag == 3)
+		texture = &cubed->texture[3];
+	else
 	{
-		if (cubed->map[(int)cubed->raycast->ry / TILE_SIZE][(int)cubed->raycast->rx / TILE_SIZE] == 'D')
-        	texture = &cubed->door_anim[0];
-		else if (cubed->map[(int)cubed->raycast->ry / TILE_SIZE][(int)cubed->raycast->rx / TILE_SIZE] == 'C')
+		if (cubed->map[ry][rx] == 'D')
+			texture = &cubed->door_anim[0];
+		else if (cubed->map[ry][rx] == 'C')
 			texture = &cubed->door_anim[FRAME_NUMBER - 1];
 		else
 			texture = &cubed->texture[4];
 	}
-    // Calculate the x coordinate on the texture
-    if (flag == 2 || flag == 3 || flag == 4)
-    	wall->tex_x = (int)cubed->raycast->ry % TILE_SIZE;
+	return (texture);
+}
+
+void	draw_walls(t_cubed *cubed, t_wall *wall, int flag)
+{
+	t_img	*texture;
+
+	texture = assign_texture(cubed, flag);
+	if (flag == 2 || flag == 3 || flag == 4)
+		wall->tex_x = (int)cubed->raycast->ry % TILE_SIZE;
 	else
 		wall->tex_x = (int)cubed->raycast->rx % TILE_SIZE;
-    wall->tex_x = (wall->tex_x * texture->w) / TILE_SIZE;
-    wall->tex_x = wall->tex_x % texture->w;
-    wall->tex_step = (double)texture->h / wall->wall_height;
-    wall->tex_pos = (wall->wall_top - HEIGHT / 2
-		+ wall->wall_height / 2) * wall->tex_step;
+	wall->tex_x = (wall->tex_x * texture->w) / TILE_SIZE;
+	wall->tex_x = wall->tex_x % texture->w;
+	wall->tex_step = (double)texture->h / wall->wall_height;
+	wall->tex_pos = (wall->wall_top - HEIGHT / 2
+			+ wall->wall_height / 2) * wall->tex_step;
 	y_loop(cubed, wall, texture);
 }

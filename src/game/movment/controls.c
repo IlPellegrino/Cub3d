@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 19:03:01 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/02 15:12:20 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 20:46:47 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,44 @@
 
 void	move_up(t_cubed *cubed, double dist)
 {
-	double	new_x;
-	double	new_y;
+	double		new_x;
+	double		new_y;
 	t_player	*p;
-	
+	int			player_speed;
+
+	player_speed = cubed->settings->player_speed;
 	p = cubed->player;
-	new_x = p->x + p->d_x * (PLAYER_SPEED * 0.1);
-	new_y = p->y + p->d_y * (PLAYER_SPEED * 0.1);
-	if (validate_position(cubed, dist, NORTH))
+	new_x = p->x + p->d_x * (player_speed * 0.1);
+	new_y = p->y + p->d_y * (player_speed * 0.1);
+	if (validate_position(cubed, dist, PI / 2))
 	{
 		p->x = new_x;
 		p->y = new_y;
-	
 	}
 }
 
 void	move_down(t_cubed *cubed, double dist)
 {
-	double	new_x;
-	double	new_y;
+	double		new_x;
+	double		new_y;
 	t_player	*p;
-	
+
 	p = cubed->player;
 	new_x = p->x - p->d_x * (PLAYER_SPEED * 0.1);
 	new_y = p->y - p->d_y * (PLAYER_SPEED * 0.1);
-	if (validate_position(cubed, dist, SOUTH))
+	if (validate_position(cubed, dist, 3 * PI / 2))
 	{
 		p->x = new_x;
 		p->y = new_y;
-	
 	}
 }
 
 void	move_left(t_cubed *cubed, double dist)
 {
-	double	new_x;
-	double	new_y;
+	double		new_x;
+	double		new_y;
 	t_player	*p;
-	
+
 	p = cubed->player;
 	new_x = p->x - p->d_y * (PLAYER_SPEED * 0.1);
 	new_y = p->y + p->d_x * (PLAYER_SPEED * 0.1);
@@ -59,16 +59,15 @@ void	move_left(t_cubed *cubed, double dist)
 	{
 		p->x = new_x;
 		p->y = new_y;
-	
 	}
 }
 
 void	move_right(t_cubed *cubed, double dist)
 {
-	double	new_x;
-	double	new_y;
+	double		new_x;
+	double		new_y;
 	t_player	*p;
-	
+
 	p = cubed->player;
 	new_x = p->x + p->d_y * (PLAYER_SPEED * 0.1);
 	new_y = p->y - p->d_x * (PLAYER_SPEED * 0.1);
@@ -76,7 +75,6 @@ void	move_right(t_cubed *cubed, double dist)
 	{
 		p->x = new_x;
 		p->y = new_y;
-	
 	}
 }
 

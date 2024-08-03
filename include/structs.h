@@ -6,24 +6,26 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/02 18:55:56 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 20:51:19 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef	struct	s_settings
+/* struct that stores all the variables that can be changed during runtime */
+typedef struct s_settings
 {
-	int	mini_size;
-	int	player_speed;
-	int	rotation_speed;
-	int	player_size;
-	int	fov;
-	int	crosshair_color;
+	int		mini_size;
+	int		player_speed;
+	int		rotation_speed;
+	int		player_size;
+	int		fov;
+	double	radians_fov;
 }			t_settings;
 
-typedef	struct	s_img
+/* struct that stores all the information for the texture and the screen */
+typedef struct s_img
 {
 	char	*name;
 	char	*pixel_ptr;
@@ -31,12 +33,13 @@ typedef	struct	s_img
 	int		*data;
 	int		w;
 	int		h;
-	int		bits_per_pixel; 
+	int		bits_per_pixel;
 	int		endian;
 	int		line_len;
 	int		frame;
 }				t_img;
 
+/* struct for drawing the vertical lines to create the walls */
 typedef struct s_wall
 {
 	int		wall_top;
@@ -48,8 +51,8 @@ typedef struct s_wall
 	double	final_dist;
 }			t_wall;
 
-
-typedef	struct s_game
+/* struct that stores all the main data of the game */
+typedef struct s_game
 {
 	char	*no;
 	char	*so;
@@ -69,7 +72,8 @@ typedef	struct s_game
 	int		is_wall;
 }				t_game;
 
-typedef	struct s_keys
+/* struct to map the keys that can be pressed during runtime */
+typedef struct s_keys
 {
 	int	w;
 	int	s;
@@ -81,9 +85,13 @@ typedef	struct s_keys
 	int	right;
 	int	esc;
 	int	pause;
-	int space;
+	int	space;
+	int	shift;
+	int	page_up;
+	int	page_down;
 }				t_keys;
 
+/* struct that stores the player's position and direction */
 typedef struct s_player
 {
 	int		map_x;
@@ -91,19 +99,20 @@ typedef struct s_player
 	float	angle;
 	double	x;
 	double	y;
-	double	d_x; //delta x of the player
-	double	d_y; //delta y of the player
+	double	d_x;
+	double	d_y;
 }				t_player;
 
+/* struct that stores the raycasting variables */
 typedef struct s_raycast
 {
-	int		r;   //radiuds
-	int		mx;  //map x
-	int 	my;	 //map y
-	int		dof; //depht of field
-	float	ra;  //ray angle
-	float	rx;  //ray x
-	float	ry;  //ray y
+	int		r;
+	int		mx;
+	int		my;
+	int		dof;
+	float	ra;
+	float	rx;
+	float	ry;
 	double	ray_angle;
 	double	vx;
 	double	vy;
@@ -112,10 +121,10 @@ typedef struct s_raycast
 	double	a_tan;
 	double	step_x;
 	double	step_y;
-	double 	ver_x;
-	double 	ver_y;
+	double	ver_x;
+	double	ver_y;
 	double	hor_x;
-	double 	hor_y;
+	double	hor_y;
 	double	half_screen;
 	double	half_fov;
 	double	hor_stepx;
@@ -125,16 +134,18 @@ typedef struct s_raycast
 	double	ra_tan;
 }			t_raycast;
 
+/* struct to show the key to press to open/close the door */
 typedef struct s_gui
 {
 	int		open_door;
 	int		close_door;
 }			t_gui;
 
-typedef struct	s_cubed
+/* main struct */
+typedef struct s_cubed
 {
-	int			map_h;
 	int			map_w;
+	int			map_h;
 	char		**map;
 	void		*mlx;
 	void		*win;
