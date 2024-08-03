@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 19:33:46 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:37:57 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,11 @@ int	ft_error(char *error, t_cubed *cubed)
 
 int	free_texture(t_cubed *cubed)
 {
-	int		i;
-	t_img	*door;
-
-	door = cubed->door_anim;
-	i = -1;
-	while (++i < 5)
-	{
-		if (cubed->texture[i].img)
-		{
-			printf("img = %p\n", cubed->texture[i].img);
-			mlx_destroy_image(cubed->mlx, cubed->texture[i].img);
-		}
-	}
-	i = -1;
-	while (++i < FRAME_NUMBER)
-	{
-		if (door[i].img)
-		{
-			printf("img2 = %p\n", door[i].img);
-			printf("mlx = %p\n", cubed->mlx);
-			printf("i = %d\n", i);
-			mlx_destroy_image(cubed->mlx, door[i].img);
-		}
-	}
+	mlx_destroy_image(cubed->mlx, cubed->texture[0].img);
+	mlx_destroy_image(cubed->mlx, cubed->texture[1].img);
+	mlx_destroy_image(cubed->mlx, cubed->texture[2].img);
+	mlx_destroy_image(cubed->mlx, cubed->texture[3].img);
+	mlx_destroy_image(cubed->mlx, cubed->texture[4].img);
 	return (1);
 }
 
