@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 00:36:08 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:16:44 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	partial_init(t_cubed *cubed)
 
 	i = -1;
 	cubed->player = malloc(sizeof(t_player));
+	while (++i < FRAME_NUMBER)
+		cubed->door_anim[i].img = 0;
 	if (!cubed->player)
 		ft_error("Error: malloc failed\n", cubed);
 	cubed->game = ft_calloc(sizeof (t_game), 1);
@@ -97,6 +99,7 @@ int	partial_init(t_cubed *cubed)
 	cubed->raycast = 0;
 	cubed->keys = 0;
 	cubed->mlx = 0;
+	i = -1;
 	while (++i < 5)
 		cubed->texture[i].img = 0;
 	return (1);

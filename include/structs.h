@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 17:02:54 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 18:59:51 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ typedef struct s_raycast
 	double 	horY;
 }			t_raycast;
 
-/* struct to show the key to press to open/close the door */
+/* struct to show the key to press for opening/closing the door */
 typedef struct s_gui
 {
 	int		open_door;

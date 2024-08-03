@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 17:06:26 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:06:10 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,7 +227,7 @@ void rendering(t_cubed *cubed)
                 mapY = 0;
             if (mapY >= map_h)
                 mapY = map_h - 1;
-            map_w = 40;
+            map_w = ft_strlen(cubed->map[mapY]);
             if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && cubed->map[mapY][mapX] == '1')
             {
                 ray->hx = horX;

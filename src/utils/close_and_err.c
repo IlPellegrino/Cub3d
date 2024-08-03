@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 00:36:48 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:33:46 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,29 @@ int	ft_error(char *error, t_cubed *cubed)
 
 int	free_texture(t_cubed *cubed)
 {
-	int	i;
+	int		i;
+	t_img	*door;
 
+	door = cubed->door_anim;
 	i = -1;
 	while (++i < 5)
 	{
 		if (cubed->texture[i].img)
+		{
+			printf("img = %p\n", cubed->texture[i].img);
 			mlx_destroy_image(cubed->mlx, cubed->texture[i].img);
+		}
+	}
+	i = -1;
+	while (++i < FRAME_NUMBER)
+	{
+		if (door[i].img)
+		{
+			printf("img2 = %p\n", door[i].img);
+			printf("mlx = %p\n", cubed->mlx);
+			printf("i = %d\n", i);
+			mlx_destroy_image(cubed->mlx, door[i].img);
+		}
 	}
 	return (1);
 }
@@ -62,7 +78,6 @@ int	ft_close(t_cubed *cubed, int err_status)
 {
 	if (cubed->img)
 		mlx_destroy_image(cubed->mlx, cubed->img->img);
-	free (cubed->img);
 	if (cubed->win)
 		mlx_destroy_window(cubed->mlx, cubed->win);
 	if (cubed->raycast)
@@ -70,17 +85,20 @@ int	ft_close(t_cubed *cubed, int err_status)
 	if (cubed->player)
 		free (cubed->player);
 	free_game_texture(cubed);
+	if (cubed->mlx)
+	{
+		mlx_destroy_display(cubed->mlx);
+		free(cubed->mlx);
+	}
+	//free (cubed->img);
 	if (cubed->map)
 	{
 		free_matrix(cubed->map);
 		cubed->map = NULL;
 	}
 	free(cubed->keys);
-	if (cubed->mlx)
-	{
-		mlx_destroy_display(cubed->mlx);
-		free (cubed->mlx);
-	}
+	free(cubed->gui);
+	free(cubed->settings);
 	close_fds();
 	exit (err_status);
 }
