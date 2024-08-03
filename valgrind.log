@@ -1,52 +1,52 @@
-==968631== Memcheck, a memory error detector
-==968631== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==968631== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==968631== Command: ./cub3D map.cub
-==968631== 
-==968631== 
-==968631== HEAP SUMMARY:
-==968631==     in use at exit: 2,320 bytes in 32 blocks
-==968631==   total heap usage: 3,038 allocs, 3,006 frees, 177,221 bytes allocated
-==968631== 
-==968631== 24 bytes in 11 blocks are definitely lost in loss record 1 of 4
-==968631==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==968631==    by 0x4097BF: ft_itoa (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x402695: load_door_animation (texture.c:27)
-==968631==    by 0x402A05: load_texture (texture.c:64)
-==968631==    by 0x404D08: main (main.c:23)
-==968631== 
-==968631== 56 bytes in 1 blocks are still reachable in loss record 2 of 4
-==968631==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==968631==    by 0x4074B7: init_data (init.c:70)
-==968631==    by 0x404CFC: main (main.c:22)
-==968631== 
-==968631== 880 bytes in 10 blocks are still reachable in loss record 3 of 4
-==968631==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==968631==    by 0x40B0CB: mlx_int_new_xshm_image (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x40B3E2: mlx_new_image (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x40BD9A: mlx_int_parse_xpm (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x40C1B1: mlx_xpm_file_to_image (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x402718: load_door_animation (texture.c:32)
-==968631==    by 0x402A05: load_texture (texture.c:64)
-==968631==    by 0x404D08: main (main.c:23)
-==968631== 
-==968631== 1,360 bytes in 10 blocks are still reachable in loss record 4 of 4
-==968631==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==968631==    by 0x486DBB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
-==968631==    by 0x40B0FE: mlx_int_new_xshm_image (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x40B3E2: mlx_new_image (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x40BD9A: mlx_int_parse_xpm (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x40C1B1: mlx_xpm_file_to_image (in /nfs/homes/ciusca/Cub3d/cub3D)
-==968631==    by 0x402718: load_door_animation (texture.c:32)
-==968631==    by 0x402A05: load_texture (texture.c:64)
-==968631==    by 0x404D08: main (main.c:23)
-==968631== 
-==968631== LEAK SUMMARY:
-==968631==    definitely lost: 24 bytes in 11 blocks
-==968631==    indirectly lost: 0 bytes in 0 blocks
-==968631==      possibly lost: 0 bytes in 0 blocks
-==968631==    still reachable: 2,296 bytes in 21 blocks
-==968631==         suppressed: 0 bytes in 0 blocks
-==968631== 
-==968631== For lists of detected and suppressed errors, rerun with: -s
-==968631== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 1 from 1)
+==974645== Memcheck, a memory error detector
+==974645== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==974645== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==974645== Command: ./cub3D map.cub
+==974645== 
+==974645== 
+==974645== HEAP SUMMARY:
+==974645==     in use at exit: 2,320 bytes in 32 blocks
+==974645==   total heap usage: 2,854 allocs, 2,822 frees, 174,957 bytes allocated
+==974645== 
+==974645== 24 bytes in 11 blocks are definitely lost in loss record 1 of 4
+==974645==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==974645==    by 0x4097AF: ft_itoa (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x402695: load_door_animation (texture.c:27)
+==974645==    by 0x402A05: load_texture (texture.c:64)
+==974645==    by 0x404D08: main (main.c:23)
+==974645== 
+==974645== 56 bytes in 1 blocks are still reachable in loss record 2 of 4
+==974645==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==974645==    by 0x4074A7: init_data (init.c:70)
+==974645==    by 0x404CFC: main (main.c:22)
+==974645== 
+==974645== 880 bytes in 10 blocks are still reachable in loss record 3 of 4
+==974645==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==974645==    by 0x40B0BB: mlx_int_new_xshm_image (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x40B3D2: mlx_new_image (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x40BD8A: mlx_int_parse_xpm (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x40C1A1: mlx_xpm_file_to_image (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x402718: load_door_animation (texture.c:32)
+==974645==    by 0x402A05: load_texture (texture.c:64)
+==974645==    by 0x404D08: main (main.c:23)
+==974645== 
+==974645== 1,360 bytes in 10 blocks are still reachable in loss record 4 of 4
+==974645==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==974645==    by 0x486DBB3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==974645==    by 0x40B0EE: mlx_int_new_xshm_image (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x40B3D2: mlx_new_image (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x40BD8A: mlx_int_parse_xpm (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x40C1A1: mlx_xpm_file_to_image (in /nfs/homes/ciusca/Cub3d/cub3D)
+==974645==    by 0x402718: load_door_animation (texture.c:32)
+==974645==    by 0x402A05: load_texture (texture.c:64)
+==974645==    by 0x404D08: main (main.c:23)
+==974645== 
+==974645== LEAK SUMMARY:
+==974645==    definitely lost: 24 bytes in 11 blocks
+==974645==    indirectly lost: 0 bytes in 0 blocks
+==974645==      possibly lost: 0 bytes in 0 blocks
+==974645==    still reachable: 2,296 bytes in 21 blocks
+==974645==         suppressed: 0 bytes in 0 blocks
+==974645== 
+==974645== For lists of detected and suppressed errors, rerun with: -s
+==974645== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 1 from 1)
