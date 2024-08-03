@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 20:51:19 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 20:52:34 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ typedef struct s_raycast
 	double	ra_tan;
 }			t_raycast;
 
-/* struct to show the key to press to open/close the door */
+/* struct to show the key to press for opening/closing the door */
 typedef struct s_gui
 {
 	int		open_door;

@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 20:42:02 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 20:52:45 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ int	init_texture(t_cubed *cubed)
 		cubed->texture[i].w = WIDTH;
 		cubed->texture[i].h = HEIGHT;
 	}
+	i = -1;
+	while (++i < FRAME_NUMBER)
+	{
+		cubed->door_anim[i].w = WIDTH;
+		cubed->door_anim[i].h = HEIGHT;
+	}
 	return (1);
 }
 
@@ -65,8 +71,6 @@ int	init_data(t_cubed *cubed)
 	cubed->win = mlx_new_window(cubed->mlx, WIDTH, HEIGHT, "Cub3D");
 	create_img(cubed->mlx, cubed->img);
 	cubed->raycast = malloc(sizeof (t_raycast));
-	if (!cubed->raycast)
-		return (0);
 	cubed->keys = ft_calloc(sizeof(t_keys), 1);
 	cubed->keys->space = 0;
 	cubed->keys->page_down = 0;

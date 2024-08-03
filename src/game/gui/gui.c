@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:22:45 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 17:15:54 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:33:21 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,43 @@ void	draw_crosshair(t_cubed	*cubed)
 void	gui_2(t_cubed *cubed)
 {
 	mlx_string_put(cubed->mlx, cubed->win, 330, HEIGHT - 10, tea_green, "X: ");
-	mlx_string_put(cubed->mlx, cubed->win, 350, HEIGHT - 10, tea_green,
-		ft_itoa(cubed->player->x));
 	mlx_string_put(cubed->mlx, cubed->win, 410, HEIGHT - 10, tea_green, "Y: ");
-	mlx_string_put(cubed->mlx, cubed->win, 430, HEIGHT - 10, tea_green,
-		ft_itoa(cubed->player->y));
 	mlx_string_put(cubed->mlx, cubed->win, (WIDTH / 2) - 3,
 		HEIGHT - 10, tea_green, "CUB3D");
 	mlx_string_put(cubed->mlx, cubed->win, WIDTH - 120, HEIGHT - 10,
 		tea_green, "@CIUSCA -- @NROMITO");
 	mlx_string_put(cubed->mlx, cubed->win, WIDTH / 2 + 250, HEIGHT - 10,
 		tea_green, "HEIGHT: ");
-	mlx_string_put(cubed->mlx, cubed->win, WIDTH / 2 + 300, HEIGHT - 10,
-		tea_green, ft_itoa(HEIGHT));
 	mlx_string_put(cubed->mlx, cubed->win, WIDTH / 2 + 150, HEIGHT - 10,
 		tea_green, "WIDTH: ");
+}
+
+void	str_gui(t_cubed *cubed)
+{
+	char	*str;
+
+	str = ft_itoa(get_curr_time(cubed->time));
+	mlx_string_put(cubed->mlx, cubed->win, 64, HEIGHT - 10, tea_green, str);
+	mlx_string_put(cubed->mlx, cubed->win, 120, HEIGHT - 10,
+		tea_green, "FOV: ");
+	free(str);
+	str = ft_itoa(cubed->settings->fov);
+	mlx_string_put(cubed->mlx, cubed->win, 150, HEIGHT - 10, tea_green, str);
+	free(str);
+	str = ft_itoa(cubed->player->y);
+	mlx_string_put(cubed->mlx, cubed->win, 430, HEIGHT - 10, tea_green, str);
+	free(str);
+	str = ft_itoa(cubed->player->x);
+	mlx_string_put(cubed->mlx, cubed->win, 350, HEIGHT - 10, tea_green, str);
+	free(str);
+	str = ft_itoa(WIDTH);
 	mlx_string_put(cubed->mlx, cubed->win, WIDTH / 2 + 200, HEIGHT - 10,
-		tea_green, ft_itoa(WIDTH));
+		tea_green, str);
+	free(str);
+	str = ft_itoa(HEIGHT);
+	mlx_string_put(cubed->mlx, cubed->win, WIDTH / 2 + 300, HEIGHT - 10,
+		tea_green, str);
+	free(str);
 }
 
 void	text_gui(t_cubed *cubed)
@@ -96,14 +116,9 @@ void	text_gui(t_cubed *cubed)
 	else if (cubed->gui->close_door)
 		mlx_string_put(cubed->mlx, cubed->win, WIDTH / 2 + 15,
 			HEIGHT / 2 - 5, white, "PRESS 'SPACE' TO CLOSE DOOR");
+	str_gui(cubed);
 	mlx_string_put(cubed->mlx, cubed->win, 30, HEIGHT - 10,
 		tea_green, "TIME: ");
-	mlx_string_put(cubed->mlx, cubed->win, 64, HEIGHT - 10, tea_green,
-		ft_itoa(get_curr_time(cubed->time)));
-	mlx_string_put(cubed->mlx, cubed->win, 120, HEIGHT - 10,
-		tea_green, "FOV: ");
-	mlx_string_put(cubed->mlx, cubed->win, 150, HEIGHT - 10, tea_green,
-		ft_itoa(cubed->settings->fov));
 	mlx_string_put(cubed->mlx, cubed->win, 210, HEIGHT - 10,
 		tea_green, "MODE: ");
 	mlx_string_put(cubed->mlx, cubed->win, 244, HEIGHT - 10, tea_green, mode);

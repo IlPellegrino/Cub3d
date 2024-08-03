@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:36:45 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 00:25:42 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:42:47 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void	load_door_animation(t_cubed *cubed, int curr)
 	t_img	*door_anim;
 	char	*door_frame;
 	char	*temp;
+	char	*str;
 
 	i = -1;
 	door_anim = cubed->door_anim;
 	while (++i < FRAME_NUMBER)
 	{
 		door_anim[i].frame = i;
-		door_frame = ft_strjoin(DOOR_PATH, ft_itoa(i + 1));
+		str = ft_itoa(i + 1);
+		door_frame = ft_strjoin(DOOR_PATH, str);
+		free(str);
 		temp = ft_strdup(door_frame);
 		free(door_frame);
 		door_frame = ft_strjoin(temp, ".xpm");
@@ -32,7 +35,10 @@ void	load_door_animation(t_cubed *cubed, int curr)
 		door_anim[i].img = mlx_xpm_file_to_image(cubed->mlx, door_frame,
 				&door_anim[i].w, &door_anim[i].h);
 		if (!door_anim[i].img)
+		{
+			free(door_frame);
 			ft_error("Error: Failed to load xpm file\n", cubed);
+		}
 		door_anim[i].data = (int *)mlx_get_data_addr(door_anim[i].img,
 				&door_anim[i].bits_per_pixel, &door_anim[i].line_len,
 				&door_anim[i].endian);

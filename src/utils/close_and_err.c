@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 00:36:48 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 19:43:55 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ int	free_texture(t_cubed *cubed)
 		if (cubed->texture[i].img)
 			mlx_destroy_image(cubed->mlx, cubed->texture[i].img);
 	}
+	i = 0;
+	while (++i < FRAME_NUMBER)
+	{
+		if (cubed->door_anim[i].img)
+			mlx_destroy_image(cubed->mlx, cubed->door_anim[i].img);
+	}
 	return (1);
 }
 
@@ -62,7 +68,6 @@ int	ft_close(t_cubed *cubed, int err_status)
 {
 	if (cubed->img)
 		mlx_destroy_image(cubed->mlx, cubed->img->img);
-	free (cubed->img);
 	if (cubed->win)
 		mlx_destroy_window(cubed->mlx, cubed->win);
 	if (cubed->raycast)
@@ -70,17 +75,20 @@ int	ft_close(t_cubed *cubed, int err_status)
 	if (cubed->player)
 		free (cubed->player);
 	free_game_texture(cubed);
+	if (cubed->mlx)
+	{
+		mlx_destroy_display(cubed->mlx);
+		free(cubed->mlx);
+	}
+	free (cubed->img);
 	if (cubed->map)
 	{
 		free_matrix(cubed->map);
 		cubed->map = NULL;
 	}
 	free(cubed->keys);
-	if (cubed->mlx)
-	{
-		mlx_destroy_display(cubed->mlx);
-		free (cubed->mlx);
-	}
+	free(cubed->gui);
+	free(cubed->settings);
 	close_fds();
 	exit (err_status);
 }
