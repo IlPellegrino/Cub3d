@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 14:15:24 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 17:06:26 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void render_doors(t_cubed *cubed, t_wall *wall)
 	ray = cubed->raycast;
 	p = cubed->player;
 	map_h = cubed->game->ht;
-    double half_fov = RADIANS_FOV / 2;
+    double half_fov = cubed->settings->radians_fov / 2;
     double half_screen = WIDTH / 2;
     for (ray->r = 0; ray->r < WIDTH; ray->r++)
     {
@@ -68,7 +68,7 @@ void render_doors(t_cubed *cubed, t_wall *wall)
                 mapY = map_h - 1;
             map_w = ft_strlen(cubed->map[mapY]);
     
-            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == 'A' || cubed->map[mapY][mapX] == 'D' || cubed->map[mapY][mapX] == 'C' || cubed->map[mapY][mapX] == '1'))
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == 'A' || cubed->map[mapY][mapX] == 'D' || cubed->map[mapY][mapX] == '1'))
             {
                 ray->hx = horX;
                 ray->hy = horY;
@@ -111,7 +111,7 @@ void render_doors(t_cubed *cubed, t_wall *wall)
             if (mapY >= map_h)
                 mapY = map_h - 1;
             map_w = ft_strlen(cubed->map[mapY]);
-            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == 'A' || cubed->map[mapY][mapX] == 'D' || cubed->map[mapY][mapX] == 'C' || cubed->map[mapY][mapX] == '1'))
+            if (mapX >= 0 && mapX < map_w && mapY >= 0 && mapY < map_h && (cubed->map[mapY][mapX] == 'A' || cubed->map[mapY][mapX] == 'D' || cubed->map[mapY][mapX] == '1'))
             {
                 ray->vx = verX;
                 ray->vy = verY;
@@ -169,7 +169,7 @@ void render_doors(t_cubed *cubed, t_wall *wall)
 
         i = (int)(ray->rx / TILE_SIZE);
         j = (int)(ray->ry / TILE_SIZE);
-        if (i >= 0 && i < map_w && j >= 0 && j < map_h && (cubed->map[j][i] == 'A' || cubed->map[j][i] == 'D' || cubed->map[j][i] == 'C'))
+        if (i >= 0 && i < map_w && j >= 0 && j < map_h && (cubed->map[j][i] == 'A' || cubed->map[j][i] == 'D'))
             draw_walls(cubed, wall, color);
     }
 }
@@ -180,7 +180,7 @@ void rendering(t_cubed *cubed)
     t_raycast *ray = cubed->raycast;
     int map_h = cubed->game->ht;
     int map_w;
-    double half_fov = RADIANS_FOV / 2;
+    double half_fov = cubed->settings->radians_fov / 2;
     double half_screen = WIDTH / 2;
     t_wall wall;
 

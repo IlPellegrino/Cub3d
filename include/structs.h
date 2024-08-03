@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 16:10:49 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 17:02:54 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 /* struct that stores all the variables that can be changed during runtime */
 typedef	struct	s_settings
 {
-	int	mini_size;
-	int	player_speed;
-	int	rotation_speed;
-	int	player_size;
-	int	fov;
-	int	crosshair_color;
+	int		mini_size;
+	int		player_speed;
+	int		rotation_speed;
+	int		player_size;
+	int		fov;
+	double	radians_fov;
 }			t_settings;
 
 /* struct that stores all the information for the texture and the screen */
@@ -85,6 +85,9 @@ typedef	struct s_keys
 	int	esc;
 	int	pause;
 	int space;
+	int shift;
+	int page_up;
+	int page_down;
 }				t_keys;
 
 /* struct that stores the player's position and direction */

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 15:58:09 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 17:02:53 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_settings(t_cubed *cubed)
 	settings->rotation_speed = ROTATION_SPEED;
 	settings->player_size = PLAYER_SIZE;
 	settings->fov = FOV;
+	settings->radians_fov = RADIANS_FOV;
 }
 
 int	init_texture(t_cubed *cubed)
@@ -68,6 +69,8 @@ int	init_data(t_cubed *cubed)
 		return (0);
 	cubed->keys = ft_calloc(sizeof(t_keys), 1);
 	cubed->keys->space = 0;
+	cubed->keys->page_down = 0;
+	cubed->keys->page_up = 0;
 	cubed->gui = malloc(sizeof(t_gui));
 	cubed->gui->open_door = 0;
 	cubed->gui->close_door = 0;

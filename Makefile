@@ -22,7 +22,7 @@ UTILS_SRC		= 	close_and_err.c utils.c draw_line.c
 INIT_SRC 		= 	init.c
 GAME_SRC		= 	texture.c game_loop.c input/input_manager.c collision_check.c \
 				 	interactable.c input/input_keys.c movment/controls.c gui/gui.c \
-					gui/minimap_gui.c
+					gui/minimap_gui.c input/change_settings.c
 
 # Folders
 GAME = $(addprefix game/, $(GAME_SRC))

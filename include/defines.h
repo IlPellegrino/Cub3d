@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 14:32:44 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 17:12:58 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 /**======================
  *?    	 SCREEN
  *========================**/
-# define WIDTH 680
-# define HEIGHT 420
+# define WIDTH 1080
+# define HEIGHT 540
 # define MINIMAP_SIZE 200
 /**======================
  *?    	 TILES
@@ -73,6 +73,8 @@ enum e_keys
 	space = 32,
 	plus = 65451,
 	minus = 65453,
+	page_up = 65365,
+	page_down = 65366,
 };
 
 enum e_colors

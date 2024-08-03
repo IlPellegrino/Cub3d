@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 16:05:51 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 17:20:09 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 /* 1. INIT    	line: (44)  */
 /* 2. GAME   	line: (51)  */
 /* 3. MOVEMENT	line: (61)  */
-/* 4. INPUT   	line: (70)  */
+/* 4. SETTINGS  line: (70)*/
 /* 5. KEYS    	line: (79)  */
 /* 6. PARSING 	line: (88)  */
 /* 7. TEXTURE 	line: (97)  */
 /* 8. CLOSE   	line: (106) */
-/* 9. UTILS   	line: (111) */
+/* 9. UTILS   	line: (115) */
 
 /**======================
  *?    		INIT
@@ -66,9 +66,17 @@ void	move_right(t_cubed *cubed, double dist);
 int		rotate_player(t_cubed *cubed, t_keys *key);
 
 /**======================
+ *?     CHANGE SETTINGS
+ *========================**/
+void	change_fov(t_cubed *cubed);
+void	player_run(t_cubed *cubed);
+int		mouse_rotate_pov(t_cubed *cubed);
+int		check_map_size(t_cubed *cubed);
+
+/**======================
  *?    INPUT MANAGER
  *========================**/
-int		move_handler(t_cubed *cubed);
+int		settings_handler(t_cubed *cubed);
 
 /**======================
  *?    		KEYS
@@ -83,6 +91,7 @@ void	draw_crosshair(t_cubed *cubed);
 void	draw_minimap(t_cubed *cubed);
 void	minimap(t_cubed *cubed);
 void	text_gui(t_cubed *cubed);
+void	display_data(t_cubed *cubed);
 
 /**======================
  *?    	  PARSING
