@@ -6,14 +6,13 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 00:15:04 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 14:32:44 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-#define door 234
 /**======================
  *?    	 MATH
  *========================**/
@@ -104,6 +103,7 @@ enum e_colors
 	snow = 0x00FFFAFA,
 	claret = 0x00DC143C,
 	rich_black = 0x00004040,
+	black_coral = 0x0054626F,
 };
 
 

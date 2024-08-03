@@ -6,26 +6,11 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:22:45 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 00:28:02 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 14:10:01 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cubed.h"
-
-void	draw_player(t_img *img, double x, double y, t_cubed *cubed)
-{
-	double		plyr_x;
-	double		plyr_y;
-	t_player	*p;
-
-	p = cubed->player;
-	plyr_x = x * MINI_SIZE;
-	plyr_y = y * MINI_SIZE;
-	draw_line(img, plyr_x, plyr_y, (plyr_x + p->d_x * 10),
-		(plyr_y + p->d_y * 10), red);
-	draw_shape(img, plyr_x - PLAYER_SIZE / 2,
-		plyr_y - PLAYER_SIZE / 2, PLAYER_SIZE, yellow);
-}
 
 void	draw_crosshair(t_cubed	*cubed)
 {

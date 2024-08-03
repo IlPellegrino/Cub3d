@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/02 16:20:11 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 16:05:51 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,25 @@
 # include "defines.h"
 # include "structs.h"
 # include "errors.h"
-# include "colors.h"
 # include <math.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <sys/time.h>
 # include <string.h>
 # include <time.h>
 
-
+/* ------------------------ */
+/*          INDEX           */	
+/* ------------------------ */
+/* 1. INIT    	line: (44)  */
+/* 2. GAME   	line: (51)  */
+/* 3. MOVEMENT	line: (61)  */
+/* 4. INPUT   	line: (70)  */
+/* 5. KEYS    	line: (79)  */
+/* 6. PARSING 	line: (88)  */
+/* 7. TEXTURE 	line: (97)  */
+/* 8. CLOSE   	line: (106) */
+/* 9. UTILS   	line: (111) */
 
 /**======================
  *?    		INIT
@@ -44,8 +53,7 @@ int		game_loop(t_cubed *cub);
 void 	draw_walls(t_cubed *cubed, t_wall *wall, int flag);
 void	draw_vertical_line(t_cubed *cubed, int start, int end, int color);
 void	rendering(t_cubed *cubed);
-void 	draw_player(t_img *img, double x, double y, t_cubed *cubed);
-void	minimap(t_cubed *cubed, char **map);
+void	minimap(t_cubed *cubed);
 void	interactable(t_cubed *cubed);
 
 /**======================
@@ -72,10 +80,8 @@ int		key_release(int realesed, t_keys *keys);
  *?    	  	GUI
  *========================**/
 void	draw_crosshair(t_cubed *cubed);
-void	draw_minimap(t_cubed *cubed, char **map);
-void	minimap(t_cubed *cubed, char **map);
-void	draw_shape(t_img *img, double x, double y, int size, int color);
-void	draw_player(t_img *img, double x, double y, t_cubed *cubed);
+void	draw_minimap(t_cubed *cubed);
+void	minimap(t_cubed *cubed);
 void	text_gui(t_cubed *cubed);
 
 /**======================
@@ -101,21 +107,22 @@ int		is_legal(char c);
  *========================**/
 void	load_texture(t_cubed *cubed);
 
-
 /**======================
  *?    	CLOSE / ERROR
  *========================**/
-int			ft_close(t_cubed *cubed, int err_status);
-int 		ft_error(char *error, t_cubed *cubed);
+int		ft_close(t_cubed *cubed, int err_status);
+int 	ft_error(char *error, t_cubed *cubed);
 
 /**======================
  *?    		UTILS
  *========================**/
-int			is_wall(t_cubed *cubed, double x, double y);
-int			create_trgb(int t, int r, int g, int b);
-void 		draw_line(t_img *img, int x0, int y0, int x1, int y1, int color);
-void		better_pixel_put(t_img *img, int x, int y, int color);
-int			validate_position(t_cubed *cubed, double dist, double dir);
-clock_t 	get_curr_time(time_t initial_time);
+void	draw_shape(t_img *img, double x, double y, int size);
+int		is_wall(t_cubed *cubed, double x, double y);
+int		create_trgb(int t, int r, int g, int b);
+void 	draw_line(t_img *img, int start_pos[2], int x1, int y1);
+void	better_pixel_put(t_img *img, int x, int y, int color);
+int		validate_position(t_cubed *cubed, double dist, double dir);
+clock_t	get_curr_time(time_t initial_time);
+void	mask_manager(t_cubed *cubed);
 
 #endif

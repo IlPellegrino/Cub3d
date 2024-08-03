@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:04:24 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 00:31:37 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 15:55:25 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,18 @@ void	draw_minimap(t_cubed *cubed)
 	}
 }
 
-void	minimap(t_cubed *cubed, char **map)
+void	minimap(t_cubed *cubed)
 {
 	double		x_len;
 	double		y_len;
+	int			start_pos[2];
 
+	start_pos[0] = 100;
+	start_pos[1] = 100;
 	draw_minimap(cubed);
-	draw_shape(cubed->img, 98, 98, 5, rich_black);
+	draw_shape(cubed->img, 98, 98, 5);
 	x_len = cubed->player->d_x * 10;
 	y_len = cubed->player->d_y * 10;
-	draw_line(cubed->img, 100, 100, (int)(100 + x_len),
-		(int)(100 + y_len), rich_black);
+	draw_line(cubed->img, start_pos, (int)(100 + x_len),
+		(int)(100 + y_len));
 }

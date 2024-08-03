@@ -6,13 +6,14 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 19:50:15 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 16:10:49 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+/* struct that stores all the variables that can be changed during runtime */
 typedef	struct	s_settings
 {
 	int	mini_size;
@@ -23,6 +24,7 @@ typedef	struct	s_settings
 	int	crosshair_color;
 }			t_settings;
 
+/* struct that stores all the information for the texture and the screen */
 typedef	struct	s_img
 {
 	char	*name;
@@ -37,6 +39,7 @@ typedef	struct	s_img
 	int		frame;
 }				t_img;
 
+/* struct for drawing the vertical lines to create the walls */
 typedef struct s_wall
 {
 	int		wall_top;
@@ -47,7 +50,7 @@ typedef struct s_wall
 	double	tex_step;
 }			t_wall;
 
-
+/* struct that stores all the main data of the game */
 typedef	struct s_game
 {
 	char	*no;
@@ -68,6 +71,7 @@ typedef	struct s_game
 	int		is_wall;
 }				t_game;
 
+/* struct to map the keys that can be pressed during runtime */
 typedef	struct s_keys
 {
 	int	w;
@@ -83,6 +87,7 @@ typedef	struct s_keys
 	int space;
 }				t_keys;
 
+/* struct that stores the player's position and direction */
 typedef struct s_player
 {
 	int		map_x;
@@ -90,20 +95,21 @@ typedef struct s_player
 	float	angle;
 	double	x;
 	double	y;
-	double	d_x; //delta x of the player
-	double	d_y; //delta y of the player
+	double	d_x;
+	double	d_y;
 }				t_player;
 
+/* struct that stores the raycasting variables */
 typedef struct s_raycast
 {
-	int		r;   //radiuds
-	int		mx;  //map x
-	int 	my;	 //map y
-	int		dof; //depht of field
-	float	ra;  //ray angle
-	float	rx;  //ray x
-	float	ry;  //ray y
-	double	vx;
+	int		r;
+	int		mx;
+	int 	my;
+	int		dof;
+	float	ra;
+	float	rx;
+	float	ry;
+	double	vx; 
 	double	vy;
 	double	hx;
 	double	hy;
@@ -115,16 +121,16 @@ typedef struct s_raycast
 	double 	horY;
 }			t_raycast;
 
+/* struct to show the key to press to open/close the door */
 typedef struct s_gui
 {
 	int		open_door;
 	int		close_door;
 }			t_gui;
 
+/* main struct */
 typedef struct	s_cubed
 {
-	int			map_h;
-	int			map_w;
 	char		**map;
 	void		*mlx;
 	void		*win;

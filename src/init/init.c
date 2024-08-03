@@ -6,11 +6,18 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/31 19:24:00 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 15:58:09 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
+
+void	create_img(void *mlx, t_img *img)
+{
+	img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img->pixel_ptr = mlx_get_data_addr(img->img,
+			&img->bits_per_pixel, &img->line_len, &img->endian);
+}
 
 int	init_player(t_cubed *cubed)
 {

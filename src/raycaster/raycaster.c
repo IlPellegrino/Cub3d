@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/02 22:06:25 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 14:15:24 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,19 +158,12 @@ void render_doors(t_cubed *cubed, t_wall *wall)
         // Calculate wall height
         wall->wall_height = (TILE_SIZE * HEIGHT) / correctedDist;
 
-        // Ensure wall height does not exceed the screen height
-        // Calculate start and end positions for the wall slice
         wall->wall_top = (HEIGHT / 2) - (wall->wall_height / 2);
         wall->wall_bottom = wall->wall_top + wall->wall_height;
         if (wall->wall_bottom > HEIGHT)
             wall->wall_bottom = HEIGHT;
         if (wall->wall_top < 0)
             wall->wall_top = 0;
-        // Draw the wall slice (a vertical line) on the screen
-        // draw top half of the screen as the ceiling
-        //draw_vertical_line(cubed->img, ray->r, 0, wallTop, cyan);
-        // draw bottom half of the screen as floor
-        //draw_vertical_line(cubed->img, ray->r, wallBottom, HEIGHT, brown);
         int    i;
         int    j;
 
