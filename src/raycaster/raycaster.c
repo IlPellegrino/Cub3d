@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 20:53:04 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/04 16:26:49 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ void	render_doors(t_cubed *cubed, t_wall *wall)
 	t_player	*p;
 	t_raycast	*ray;
 	int			flag;
-	double		angle_step;
 	double		corrected_dist;
 
 	ray = cubed->raycast;
 	p = cubed->player;
-	angle_step = init_vars(cubed, ray);
+	ray->r = 0;
 	while (++ray->r < WIDTH)
 	{
 		angle_ray(ray, p);

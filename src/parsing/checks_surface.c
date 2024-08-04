@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_surface.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:48:53 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/20 16:05:07 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/04 15:54:35 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	assign_path(char *prefix, t_cubed *cubed, char *path)
 	else if (!ft_strncmp(prefix, "EA", 3) && !cubed->game->ea)
 		cubed->game->ea = ft_strdup(path);
 	else
-		ft_error("Error: texture duplicates not allowed\n", cubed);
+		return (0);
 	return (1);
 }
 
@@ -101,7 +101,10 @@ int	textures_check(char *line, t_cubed *cubed)
 		free_matrix(splitted);
 		ft_error("Error: wrong path for walls\n", cubed);
 	}
-	assign_path(splitted[0], cubed, splitted[1]);
-	free_matrix(splitted);
-	return (1);
+	if (!assign_path(splitted[0], cubed, splitted[1]))
+	{
+		free_matrix(splitted);
+		ft_error("Error: no duplicates allowed\n", cubed);
+	}
+	return (free_matrix(splitted),1);
 }

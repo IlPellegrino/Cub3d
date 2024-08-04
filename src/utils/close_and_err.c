@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 19:43:55 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/03 22:51:04 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,12 @@ int	ft_close(t_cubed *cubed, int err_status)
 	}
 	free (cubed->img);
 	if (cubed->map)
-	{
 		free_matrix(cubed->map);
-		cubed->map = NULL;
-	}
 	free(cubed->keys);
-	free(cubed->gui);
-	free(cubed->settings);
+	if (cubed->gui)
+		free(cubed->gui);
+	if (cubed->settings)
+		free(cubed->settings);
 	close_fds();
 	exit (err_status);
 }
