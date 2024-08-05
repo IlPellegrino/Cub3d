@@ -6,32 +6,40 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:36:45 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 19:42:47 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:19:28 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
+
+char	*get_frame_path(t_img *door_anim, int i)
+{
+	char	*str;
+	char	*door_frame;
+	char	*temp;
+
+	door_anim[i].frame = i;
+	str = ft_itoa(i + 1);
+	door_frame = ft_strjoin(DOOR_PATH, str);
+	free(str);
+	temp = ft_strdup(door_frame);
+	free(door_frame);
+	door_frame = ft_strjoin(temp, ".xpm");
+	free(temp);
+	return (door_frame);
+}
 
 void	load_door_animation(t_cubed *cubed, int curr)
 {
 	int		i;
 	t_img	*door_anim;
 	char	*door_frame;
-	char	*temp;
-	char	*str;
 
 	i = -1;
 	door_anim = cubed->door_anim;
 	while (++i < FRAME_NUMBER)
 	{
-		door_anim[i].frame = i;
-		str = ft_itoa(i + 1);
-		door_frame = ft_strjoin(DOOR_PATH, str);
-		free(str);
-		temp = ft_strdup(door_frame);
-		free(door_frame);
-		door_frame = ft_strjoin(temp, ".xpm");
-		free(temp);
+		door_frame = get_frame_path(door_anim, i);
 		door_anim[i].img = mlx_xpm_file_to_image(cubed->mlx, door_frame,
 				&door_anim[i].w, &door_anim[i].h);
 		if (!door_anim[i].img)

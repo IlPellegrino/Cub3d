@@ -6,11 +6,17 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 16:00:31 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 16:01:24 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 13:19:14 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
+
+void	error_msg(t_cubed *cubed, char *msg, char **matrix)
+{
+	free_matrix(matrix);
+	ft_error(msg, cubed);
+}
 
 static void	update_position(int d_pos[2], int s_pos[2], int start[2], int *err)
 {

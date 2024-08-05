@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/04 16:26:49 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:13:31 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	render_doors(t_cubed *cubed, t_wall *wall)
 
 	ray = cubed->raycast;
 	p = cubed->player;
-	ray->r = 0;
+	ray->r = -1;
 	while (++ray->r < WIDTH)
 	{
 		angle_ray(ray, p);

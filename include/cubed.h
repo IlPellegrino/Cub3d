@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 20:52:29 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 14:21:01 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	draw_crosshair(t_cubed *cubed);
 void	draw_minimap(t_cubed *cubed);
 void	minimap(t_cubed *cubed);
 void	text_gui(t_cubed *cubed);
-void	display_data(t_cubed *cubed);
+void	draw_background(t_img *img);
 
 /**======================
  *?    	  PARSING
@@ -142,5 +142,6 @@ void	better_pixel_put(t_img *img, int x, int y, int color);
 int		validate_position(t_cubed *cubed, double dist, double dir);
 clock_t	get_curr_time(time_t initial_time);
 void	mask_manager(t_cubed *cubed);
+void	error_msg(t_cubed *cubed, char *msg, char **matrix);
 
 #endif

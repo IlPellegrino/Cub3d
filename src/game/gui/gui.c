@@ -6,13 +6,13 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:22:45 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 19:33:21 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:21:09 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cubed.h"
 
-static void	draw_background(t_img *img)
+void	draw_background(t_img *img)
 {
 	int	i;
 	int	j;
@@ -24,11 +24,6 @@ static void	draw_background(t_img *img)
 		while (++j < WIDTH)
 			better_pixel_put(img, j, i, 0x000000);
 	}
-}
-
-void	display_data(t_cubed *cubed)
-{
-	draw_background(cubed->img);
 }
 
 void	draw_crosshair(t_cubed	*cubed)

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 22:51:33 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:14:43 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int	partial_init(t_cubed *cubed)
 	cubed->keys = 0;
 	cubed->mlx = 0;
 	cubed->settings = 0;
+	cubed->game->ceiling_cl = 0;
+	cubed->game->floor_cl = 0;
 	cubed->gui = 0;
 	i = -1;
 	while (++i < 5)

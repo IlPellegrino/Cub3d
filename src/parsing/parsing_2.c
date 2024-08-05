@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:39:31 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:32:03 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 13:24:59 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	count_map_columns(int fd, t_cubed *cubed)
 		i = 0;
 		while (line[i] == ' ')
 			i++;
-		if (line[i] == '1' || line[i] == '0')
+		if (line[i] && (line[i] == '1' || line[i] == '0'))
 			cubed->game->ht++;
 		free(line);
 		line = get_next_line(fd);

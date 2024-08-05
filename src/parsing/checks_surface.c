@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:48:53 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/04 15:54:35 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:16:31 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,12 @@ int	textures_check(char *line, t_cubed *cubed)
 	splitted[h][ft_strlen(splitted[h]) - 1] = '\0';
 	fd = open(splitted[1], O_RDONLY);
 	if (fd < 0)
-	{
-		free_matrix(splitted);
-		ft_error("Error: wrong path to file\n", cubed);
-	}
+		error_msg(cubed, "Error: wrong path to file\n", splitted);
 	close(fd);
 	if (!check_path(splitted[1]))
-	{
-		free_matrix(splitted);
-		ft_error("Error: wrong path for walls\n", cubed);
-	}
+		error_msg(cubed, "Error: wrong path for walls\n", splitted);
 	if (!assign_path(splitted[0], cubed, splitted[1]))
-	{
-		free_matrix(splitted);
-		ft_error("Error: no duplicates allowed\n", cubed);
-	}
-	return (free_matrix(splitted),1);
+		error_msg(cubed, "Error: texture duplicates not allowed\n", splitted);
+	free_matrix(splitted);
+	return (1);
 }
