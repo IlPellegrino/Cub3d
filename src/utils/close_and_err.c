@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_and_err.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 15:58:13 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 19:59:13 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	free_texture(t_cubed *cubed)
 		if (cubed->door_anim[i].img)
 			mlx_destroy_image(cubed->mlx, cubed->door_anim[i].img);
 	}
+	if (cubed->weapon[0].img)
+		mlx_destroy_image(cubed->mlx, cubed->weapon[0].img);
 	return (1);
 }
 
