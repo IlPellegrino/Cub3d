@@ -1,4 +1,5 @@
 NAME = cub3D
+NAME_BONUS = cub3D_bonus
 
 LIBFT_PATH = libft/
 LIBFT = $(addprefix $(LIBFT_PATH), libft.a)
@@ -21,11 +22,13 @@ RAYCASTER_SRC	= 	raycaster.c walls.c vertical_raycast.c horizontal_raycast.c \
 					raycast_utils.c direction_utils.c
 UTILS_SRC		= 	close_and_err.c utils.c draw_line.c
 INIT_SRC 		= 	init.c
-GAME_SRC		= 	texture.c game_loop.c input/input_manager.c collision_check.c \
+GAME_SRC		= 	texture.c input/input_manager.c collision_check.c \
 				 	interactable.c input/input_keys.c movment/controls.c gui/gui.c \
 					gui/minimap_gui.c input/change_settings.c gui/weapon.c
 
-# Folders
+MAND = game/game_loop.c
+BONUS = bonus_src/game_loop_bonus.c
+
 GAME = $(addprefix game/, $(GAME_SRC))
 INIT = $(addprefix init/, $(INIT_SRC))
 RAYCASTER = $(addprefix raycaster/, $(RAYCASTER_SRC))
@@ -34,36 +37,19 @@ UTILS = $(addprefix utils/, $(UTILS_SRC))
 MAIN = main.c
 
 SRC = $(addprefix src/, $(GAME) $(MAIN) \
-						$(PARSING) $(UTILS) $(INIT) $(RAYCASTER))
+						$(PARSING) $(UTILS) \
+						$(INIT) $(RAYCASTER) $(MAND))
+
+BONUS_SRC = $(addprefix src/, $(GAME) $(MAIN) \
+						$(PARSING) $(UTILS) $(INIT) \
+						$(RAYCASTER) $(BONUS))
 
 OBJS = $(SRC:.c=.o)
+BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
 COMPILE = cc -Wall -Wextra -Werror -g
 
-BLK = "\e[0;30m"
-RED = "\e[0;31m"
-GRN = "\e[0;32m"
-YEL = "\e[0;33m"
-BLU = "\e[0;34m"
-MAG = "\e[0;35m"
-CYN = "\e[0;36m"
-WHT = "\e[0;37m"
-CRESET = "\e[0m"
-
-all: $(NAME)
-
-%.o: %.c
-	$(CLONE_MLX)
-	$(COMPILE) -c $< -o $@
-
-$(NAME): $(OBJS)
-	@echo "\e[0;33mCompiling\e[0m -> \e[0;37mLIBFT\e[0m"
-	@make -C $(LIBFT_PATH)
-	@echo "\e[0;32mDone\e[0m"
-	@echo "\e[0;33mCompiling \e[0m-> \e[0;37mMLX\e[0m"
-	@make -C $(MLX_PATH) 2> /dev/null
-	$(COMPILE) $(OBJS) -I include/cubed.h $(LIBFT) $(MLX) $(MLX_INCLUDE) -o $(NAME)
-	@CLR="\033[36m"; \
+ASCII_ART = @CLR="\033[36m"; \
 	NC="\033[0m"; \
 	echo ""; \
 	echo "    █████████  █████  █████ ███████████ $${CLR}  ████████  ██████████ $${NC}"; \
@@ -76,6 +62,45 @@ $(NAME): $(OBJS)
 	echo "   ░░░░░░░░░    ░░░░░░░░   ░░░░░░░░░░░  $${CLR} ░░░░░░░░  ░░░░░░░░░░ $${NC}"; \
 	echo ""
 
+BLK = "\e[0;30m"
+RED = "\e[0;31m"
+GRN = "\e[0;32m"
+YEL = "\e[0;33m"
+BLU = "\e[0;34m"
+MAG = "\e[0;35m"
+CYN = "\e[0;36m"
+WHT = "\e[0;37m"
+CRESET = "\e[0m"
+
+
+
+all: $(NAME)
+%.o: %.c
+	$(CLONE_MLX)
+	$(COMPILE) -c $< -o $@
+
+$(NAME): $(OBJS)
+	@echo "\e[0;33mCompiling\e[0m -> \e[0;37mLIBFT\e[0m"
+	@make -C $(LIBFT_PATH)
+	@echo "\e[0;32mDone\e[0m"
+	@echo "\e[0;33mCompiling \e[0m-> \e[0;37mMLX\e[0m"
+	@make -C $(MLX_PATH) 2> /dev/null
+	$(COMPILE) $(OBJS) -I include/cubed.h $(LIBFT) $(MLX) $(MLX_INCLUDE) -o $(NAME)
+	$(ASCII_ART)
+
+bonus: $(NAME_BONUS)
+%.o: %.c
+	$(CLONE_MLX)
+	$(COMPILE) -c $< -o $@
+$(NAME_BONUS): $(BONUS_OBJS)
+	@echo "\e[0;33mCompiling bonus\e[0m -> \e[0;37mLIBFT\e[0m"
+	@make -C $(LIBFT_PATH)
+	@echo "\e[0;32mDone\e[0m"
+	@echo "\e[0;33mCompiling bonus \e[0m-> \e[0;37mMLX\e[0m"
+	@make -C $(MLX_PATH) 2> /dev/null
+	$(COMPILE) $(BONUS_OBJS) -I include/cubed.h $(LIBFT) $(MLX) $(MLX_INCLUDE) -o $(NAME_BONUS)
+	$(ASCII_ART)
+
 clean:
 	@echo "\e[0;35mCleaning\e[0m -> \e[0;37mLIBFT\e[0m"
 	@make -C $(LIBFT_PATH) clean
@@ -84,7 +109,7 @@ clean:
 			make -C $(MLX_PATH) clean; \
 	fi
 	@echo "\e[0;35mCleaning\e[0m -> \e[0;37mOBJS\e[0m"
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
 	make -C $(LIBFT_PATH) fclean
@@ -104,4 +129,4 @@ No rule called '\e[1;31m$@\e[0m'\n\
 
 .SILENT:
 
-.PHONY: all clean fclean re destroy
+.PHONY: all clean fclean re destroy bonus
