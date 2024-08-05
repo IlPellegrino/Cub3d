@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:33:33 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 20:46:47 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 19:50:25 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	set_player(t_cubed *cubed, char c)
 		cubed->player->angle = EAST;
 }
 
-int	copy_map(t_cubed *cubed, int *k, int *i)
+int	copy_map(t_cubed *cubed, int *k, int *i, int *flag)
 {
+	(*flag) = 1;
 	while (cubed->game->cub[(*i)][(*k)])
 	{
 		if (!is_legal(cubed->game->cub[(*i)][(*k)])
@@ -52,22 +53,26 @@ int	syntax_checker(t_cubed *cubed)
 {
 	int	i;
 	int	k;
+	int	flag;
 
 	i = -1;
+	flag = 0;
 	while (cubed->game->cub[++i])
 	{
 		k = 0;
 		while (ft_isspace(cubed->game->cub[i][k]))
 			k++;
-		if (!ft_strncmp(cubed->game->cub[i] + k, "NO", 2)
+		if ((!ft_strncmp(cubed->game->cub[i] + k, "NO", 2)
 			|| !ft_strncmp(cubed->game->cub[i] + k, "SO", 2)
 			|| !ft_strncmp(cubed->game->cub[i] + k, "EA", 2)
-			|| !ft_strncmp(cubed->game->cub[i] + k, "WE", 2))
+			|| !ft_strncmp(cubed->game->cub[i] + k, "WE", 2)) && !flag)
 			textures_check(cubed->game->cub[i], cubed);
-		else if (cubed->game->cub[i][k] == 'F' || cubed->game->cub[i][k] == 'C')
+		else if ((cubed->game->cub[i][k] == 'F' || cubed->game->cub[i][k] == 'C')
+			&& !flag)
 			surfaces_check(cubed->game->cub[i], cubed);
-		else if (is_legal(cubed->game->cub[i][k]))
-			copy_map(cubed, &k, &i);
+		else if (is_legal(cubed->game->cub[i][k]) || cubed->game->cub[i][k] == 'F'
+			|| cubed->game->cub[i][k] == 'C')
+			copy_map(cubed, &k, &i, &flag);
 	}
 	return (1);
 }

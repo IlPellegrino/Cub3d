@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:13 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 14:13:31 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 14:54:43 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ double	init_vars(t_cubed *cubed, t_raycast *ray)
 {
 	double	angle_step;
 
-	cubed->map_h = cubed->game->ht;
 	angle_step = (FOV * PI / 180) / WIDTH;
+	cubed->map_h = cubed->game->ht;
 	ray->half_fov = (FOV * PI / 180) / 2;
 	ray->half_screen = WIDTH / 2;
 	ray->r = -1;

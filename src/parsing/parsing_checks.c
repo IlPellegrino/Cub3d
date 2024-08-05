@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/30 18:47:38 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 15:48:34 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ int	is_a_door(t_cubed *cubed, int rows, int col)
 			&& cubed->map[rows + 1][col] == '1'
 			&& cubed->map[rows][col + 1] == '1'
 			&& cubed->map[rows][col - 1] == '1')
+			return (0);
+		if (cubed->map[rows - 1][col] != '1'
+			&& cubed->map[rows + 1][col] != '1'
+			&& cubed->map[rows][col + 1] != '1'
+			&& cubed->map[rows][col - 1] != '1')
+			return (0);
+		if ((cubed->map[rows - 1][col] == '1'
+			&& cubed->map[rows + 1][col] == '1')
+			|| (cubed->map[rows][col + 1] == '1'
+			&& cubed->map[rows][col - 1] == '1'))
+			return (1);
+		else
 			return (0);
 	}
 	return (1);
