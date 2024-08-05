@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:10:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 22:51:04 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 15:55:51 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	free_texture(t_cubed *cubed)
 	int	i;
 
 	i = -1;
-	while (++i < 5)
+	while (++i < 4)
 	{
 		if (cubed->texture[i].img)
 			mlx_destroy_image(cubed->mlx, cubed->texture[i].img);
 	}
-	i = 0;
+	i = -1;
 	while (++i < FRAME_NUMBER)
 	{
 		if (cubed->door_anim[i].img)
