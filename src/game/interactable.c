@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:11:16 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 22:47:27 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 19:44:39 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int	get_frame(t_cubed *cubed, int state, int i, int j)
 		change_frame = 1;
 	else
 		return (0);
-	if ((get_curr_time(cubed->time)) % 1 == 0)
-		frame = cubed->texture[4].frame + change_frame;
-	else
-		frame = cubed->texture[4].frame;
+	frame = cubed->texture[4].frame + change_frame;
 	if ((frame != FRAME_NUMBER -1 || frame != 0))
 		cubed->map[i][j] = 'A';
 	frame = check_last_frame(frame, cubed, i, j);

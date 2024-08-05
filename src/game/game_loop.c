@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/05 14:20:50 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 19:29:00 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	game_loop(t_cubed *cubed)
 	draw_crosshair(cubed);
 	text_gui(cubed);
 	draw_background(img);
+	show_weapon(cubed);
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);
 }

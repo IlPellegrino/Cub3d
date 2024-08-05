@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 01:02:43 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/04 16:26:02 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 16:19:07 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	call_wall(t_cubed *cubed, t_wall *wall, t_raycast *ray, int flag)
 	wall->wall_bottom = wall->wall_top + wall->wall_height;
 	if (wall->wall_bottom > HEIGHT)
 		wall->wall_bottom = HEIGHT;
-	draw_vertical_line(cubed, 0, wall->wall_top, cyan);
-	draw_vertical_line(cubed, wall->wall_bottom, HEIGHT, brown);
+	draw_vertical_line(cubed, 0, wall->wall_top, cubed->game->ceiling_cl);
+	draw_vertical_line(cubed, wall->wall_bottom, HEIGHT, cubed->game->floor_cl);
 	draw_walls(cubed, wall, flag);
 }
 

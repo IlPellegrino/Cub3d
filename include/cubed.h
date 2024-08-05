@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 14:21:01 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 18:40:01 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	draw_minimap(t_cubed *cubed);
 void	minimap(t_cubed *cubed);
 void	text_gui(t_cubed *cubed);
 void	draw_background(t_img *img);
+void	show_weapon(t_cubed *cubed);
 
 /**======================
  *?    	  PARSING

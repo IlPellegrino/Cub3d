@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:58:34 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/05 15:53:06 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 18:24:16 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	validate_position(t_cubed *cub, double dist, double dir)
 	if (dir != PI / 2 && dir != 3 * PI / 2)
 		ndst = 10;
 	if (is_wall(cub, p->x + cos(ang) * ndst, p->y + sin(ang) * ndst)
-		|| is_wall(cub, p->x + cos(ang + 0.5) * ndst,
-			p->y + sin(ang + 0.5) * ndst)
-		|| is_wall(cub, p->x + cos(ang - 0.5) * ndst,
-			p->y + sin(ang - 0.5) * ndst))
+		|| is_wall(cub, p->x + cos(ang + 0.3) * ndst,
+			p->y + sin(ang + 0.3) * ndst)
+		|| is_wall(cub, p->x + cos(ang - 0.3) * ndst,
+			p->y + sin(ang - 0.3) * ndst))
 		return (0);
 	return (1);
 }

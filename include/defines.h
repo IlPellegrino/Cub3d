@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:00:14 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/03 20:47:46 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 19:48:38 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
  *========================**/
 # define TILE_SIZE 64
 # define MINI_SIZE 12
-# define FRAME_NUMBER 11
+# define FRAME_NUMBER 21
 /**======================
  *?   PLAYER SETTINGS
  *========================**/

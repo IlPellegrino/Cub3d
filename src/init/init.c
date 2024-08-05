@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:50:29 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 20:52:45 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 19:28:59 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,12 @@ int	init_texture(t_cubed *cubed)
 		cubed->door_anim[i].w = WIDTH;
 		cubed->door_anim[i].h = HEIGHT;
 	}
-	return (1);
+	cubed->weapon[0].w = WIDTH;
+	cubed->weapon[0].h = HEIGHT;
+	cubed->weapon[0].img = mlx_xpm_file_to_image(cubed->mlx,
+			"src/textures/weapon.xpm",
+			&cubed->weapon[0].w, &cubed->weapon[0].h);
+	return (0);
 }
 
 int	init_data(t_cubed *cubed)

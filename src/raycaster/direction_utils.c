@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   direction_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 20:26:17 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 20:26:26 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 16:17:13 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	w_flag(t_raycast *ray, double h_dist, double v_dist, double *f_dist)
 	if (h_dist < v_dist)
 	{
 		if (ray->ra > 0 && ray->ra < PI)
-			flag = 0;
-		else
 			flag = 1;
+		else
+			flag = 0;
 		ray->rx = ray->hor_x;
 		ray->ry = ray->hor_y;
 		*(f_dist) = h_dist;
@@ -56,9 +56,9 @@ int	w_flag(t_raycast *ray, double h_dist, double v_dist, double *f_dist)
 	else
 	{
 		if (ray->ra > PI / 2 && ray->ra < 3 * PI / 2)
-			flag = 2;
-		else
 			flag = 3;
+		else
+			flag = 2;
 		ray->rx = ray->ver_x;
 		ray->ry = ray->ver_y;
 		*(f_dist) = v_dist;

@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:50:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 22:45:08 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 18:36:43 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct s_cubed
 	t_img		texture[5];
 	t_img		door_anim[FRAME_NUMBER];
 	time_t		time;
+	t_img		weapon[1];
 	t_raycast	*raycast;
 	t_game		*game;
 	t_keys		*keys;
