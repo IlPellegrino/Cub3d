@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 16:17:41 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 19:50:13 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ int	parsing(char **argv, int argc, t_cubed *cubed)
 		|| !cubed->game->ea || !cubed->game->we)
 		ft_error("Error: invalid texture direction\n", cubed);
 	check_map(cubed);
-	print_matrix(cubed->map);
 	count_width(cubed);
 	return (1);
 }
