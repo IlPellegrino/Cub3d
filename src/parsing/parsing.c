@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 14:14:43 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/05 16:17:41 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	copy_file(int fd, t_cubed *cubed)
 	return (1);
 }
 
-int	check_type(char *map)
+int	check_type(char *map, int fd, t_cubed *cubed)
 {
 	int	i;
 
@@ -46,7 +46,10 @@ int	check_type(char *map)
 			if (!ft_strncmp(map + i, ".cub", 5))
 				continue ;
 			else
-				return (0);
+			{
+				close(fd);
+				ft_error("Error: Cub3D accepts only `.cub' files\n", cubed);
+			}
 		}
 	}
 	return (1);
@@ -63,10 +66,10 @@ int	check_file(char *map, t_cubed *cubed)
 		close(fd);
 		ft_error("Error: Cub3D does not accept directories\n", cubed);
 	}
-	check_type(map);
+	check_type(map, fd, cubed);
 	fd = open(map, O_RDONLY, 0677);
 	if (fd < 0)
-		ft_error("Error: Cub3D accepts only '.cub' files\n", cubed);
+		ft_error("Error: File does not exist\n", cubed);
 	h = count_map_columns(fd, cubed);
 	if (fd)
 		close (fd);
