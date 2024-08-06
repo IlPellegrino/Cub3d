@@ -16,33 +16,35 @@ CLONE_MLX = @if [ -d "mlx/" ]; then \
 			fi
 
 # Sources
-PARSING_SRC		= 	parsing.c parsing_2.c checks_color.c checks_surface.c \
-					parsing_checks.c parsing_utils.c
-RAYCASTER_SRC	= 	raycaster.c walls.c vertical_raycast.c horizontal_raycast.c \
-					raycast_utils.c direction_utils.c
-UTILS_SRC		= 	close_and_err.c utils.c draw_line.c
-INIT_SRC 		= 	init.c
-GAME_SRC		= 	texture.c input/input_manager.c collision_check.c \
+PARSING_SRC		= 	checks_color.c checks_surface.c parsing_utils.c
+UTILS_SRC		=	utils.c draw_line.c
+GAME_SRC		= 	input/input_manager.c collision_check.c \
 				 	interactable.c input/input_keys.c movment/controls.c gui/gui.c \
 					gui/minimap_gui.c input/change_settings.c gui/weapon.c
 
-MAND = game/game_loop.c
-BONUS = bonus_src/game_loop_bonus.c
+MAND = game/game_loop.c parsing/parsing.c parsing/parsing_2.c parsing/parsing_checks.c \
+		raycaster/raycaster.c raycaster/walls.c raycaster/vertical_raycast.c \
+		raycaster/horizontal_raycast.c raycaster/raycast_utils.c raycaster/direction_utils.c \
+		utils/close_and_err.c game/texture.c init/init.c
+		
+BONUS = bonus_src/game_loop_bonus.c bonus_src/parsing_bonus.c bonus_src/parsing_2_bonus.c \
+		bonus_src/parsing_checks_bonus.c bonus_src/raycaster_bonus.c bonus_src/walls_bonus.c \
+		bonus_src/vertical_raycast_bonus.c bonus_src/horizontal_raycast_bonus.c \
+		bonus_src/raycast_utils_bonus.c bonus_src/direction_utils_bonus.c \
+		bonus_src/close_and_err_bonus.c bonus_src/texture_bonus.c bonus_src/init_bonus.c
 
 GAME = $(addprefix game/, $(GAME_SRC))
-INIT = $(addprefix init/, $(INIT_SRC))
-RAYCASTER = $(addprefix raycaster/, $(RAYCASTER_SRC))
 PARSING = $(addprefix parsing/, $(PARSING_SRC))
 UTILS = $(addprefix utils/, $(UTILS_SRC))
 MAIN = main.c
 
 SRC = $(addprefix src/, $(GAME) $(MAIN) \
 						$(PARSING) $(UTILS) \
-						$(INIT) $(RAYCASTER) $(MAND))
+						$(MAND))
 
 BONUS_SRC = $(addprefix src/, $(GAME) $(MAIN) \
-						$(PARSING) $(UTILS) $(INIT) \
-						$(RAYCASTER) $(BONUS))
+						$(PARSING) $(UTILS) \
+						$(BONUS))
 
 OBJS = $(SRC:.c=.o)
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
