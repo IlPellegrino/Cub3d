@@ -2,9 +2,11 @@ NO ./src/textures/regular_tiles.xpm
 SO ./src/textures/regular_tiles.xpm
 EA ./src/textures/green_tiles.xpm
 
+
 WE ./src/textures/green_tiles.xpm
-C 0,39,47
+C 000000,39,47
 F 245,245,220
+
 
             1111111111111111111111111
             10000000001100000000000011

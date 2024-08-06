@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:14:33 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/06 12:03:17 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/06 15:44:14 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ int	game_loop(t_cubed *cubed)
 	img = cubed->img;
 	if (!pause_game(cubed))
 		return (0);
-	//text_gui(cubed);
 	settings_handler(cubed);
 	rendering(cubed);
-	// printf("mand loop\n");
 	mlx_put_image_to_window(cubed->mlx, cubed->win, img->img, 0, 0);
 	return (1);
 }

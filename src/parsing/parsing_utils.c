@@ -6,11 +6,27 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:33:33 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 19:50:25 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/06 15:43:57 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
+
+int	count_commas(char *line)
+{
+	int	i;
+	int	comma;
+
+	i = 0;
+	comma = 0;
+	while (line[i])
+	{
+		if (line[i] == ',')
+			comma++;
+		i++;
+	}
+	return (comma);
+}
 
 int	is_double_player(t_cubed *cubed, int *flag, int rows, int col)
 {
@@ -63,14 +79,15 @@ int	syntax_checker(t_cubed *cubed)
 		while (ft_isspace(cubed->game->cub[i][k]))
 			k++;
 		if ((!ft_strncmp(cubed->game->cub[i] + k, "NO", 2)
-			|| !ft_strncmp(cubed->game->cub[i] + k, "SO", 2)
-			|| !ft_strncmp(cubed->game->cub[i] + k, "EA", 2)
-			|| !ft_strncmp(cubed->game->cub[i] + k, "WE", 2)) && !flag)
+				|| !ft_strncmp(cubed->game->cub[i] + k, "SO", 2)
+				|| !ft_strncmp(cubed->game->cub[i] + k, "EA", 2)
+				|| !ft_strncmp(cubed->game->cub[i] + k, "WE", 2)) && !flag)
 			textures_check(cubed->game->cub[i], cubed);
-		else if ((cubed->game->cub[i][k] == 'F' || cubed->game->cub[i][k] == 'C')
-			&& !flag)
+		else if ((cubed->game->cub[i][k] == 'F'
+			|| cubed->game->cub[i][k] == 'C') && !flag)
 			surfaces_check(cubed->game->cub[i], cubed);
-		else if (is_legal(cubed->game->cub[i][k]) || cubed->game->cub[i][k] == 'F'
+		else if (is_legal(cubed->game->cub[i][k])
+			|| cubed->game->cub[i][k] == 'F'
 			|| cubed->game->cub[i][k] == 'C')
 			copy_map(cubed, &k, &i, &flag);
 	}
