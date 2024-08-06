@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:16:21 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 18:40:01 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/06 16:36:59 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,9 @@ int		check_colors(char **color, t_cubed *cubed, int surface);
 int		is_double_player(t_cubed *cubed, int *flag, int rows, int col);
 int		syntax_checker(t_cubed *cubed);
 void	set_player(t_cubed *cubed, char c);
+int		count_commas(char *line);
 int		is_acceptable(char c);
+int		is_texture(t_cubed *cubed, int i, int k);
 int		is_legal(char c);
 
 /**======================

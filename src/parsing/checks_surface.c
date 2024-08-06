@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_surface.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:48:53 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 14:16:31 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/06 15:41:39 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	surfaces_check(char *str, t_cubed *cubed)
 {
 	char	**colors;
 
+	if (count_commas(str) != 2)
+		ft_error("Error: wrong syntax color\n", cubed);
 	colors = ft_split(str, ' ');
 	if (!colors || matrix_len(colors) != 2)
 	{

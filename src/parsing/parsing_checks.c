@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:36:40 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/06 10:33:18 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/06 16:36:14 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
+
+int	is_texture(t_cubed *cubed, int i, int k)
+{
+	return (!ft_strncmp(cubed->game->cub[i] + k, "NO", 2)
+		|| !ft_strncmp(cubed->game->cub[i] + k, "SO", 2)
+		|| !ft_strncmp(cubed->game->cub[i] + k, "EA", 2)
+		|| !ft_strncmp(cubed->game->cub[i] + k, "WE", 2));
+}
 
 int	is_a_player(t_cubed *cubed, int *flag, int rows, int col)
 {

@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:06:11 by nromito           #+#    #+#             */
-/*   Updated: 2024/07/24 17:35:28 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/06 15:43:07 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,25 @@ int	is_digit(char **rgb)
 
 int	check_error_color(t_cubed *cubed, char **rgb)
 {
+	int	i;
+
+	i = -1;
 	if (!rgb || !is_digit(rgb) || matrix_len(rgb) != 3
 		|| !rgb[2][0])
 	{
 		free_matrix(rgb);
 		ft_error("Error: invalid color\n", cubed);
+	}
+	while (rgb[++i])
+	{
+		if (ft_strncmp(rgb[i], "0", 1) == 0)
+		{
+			if (ft_strlen(rgb[i]) > 1)
+			{
+				free_matrix(rgb);
+				ft_error("Error: invalid color\n", cubed);
+			}
+		}
 	}
 	return (1);
 }
