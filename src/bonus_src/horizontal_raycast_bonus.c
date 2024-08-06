@@ -6,11 +6,28 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:27:43 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/06 11:56:59 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 19:55:50 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
+
+void	door_ray(t_cubed *cubed, t_raycast *ray, int map_x, int map_y)
+{
+	if (map_x >= 0 && map_x < cubed->map_w && map_y >= 0 && map_y < cubed->map_h
+		&& (is_door(cubed, map_x, map_y) || cubed->map[map_y][map_x] == '1'))
+	{
+		ray->hx = ray->hor_x;
+		ray->hy = ray->hor_y;
+		ray->dof = cubed->map_h;
+	}
+	else
+	{
+		ray->hor_x += ray->hor_stepx;
+		ray->hor_y += ray->hor_stepy;
+		ray->dof += 1;
+	}
+}
 
 void	wall_ray(t_cubed *cubed, t_raycast *ray, int map_x, int map_y)
 {
@@ -43,7 +60,9 @@ void	hor_loop(t_cubed *cubed, t_raycast *ray, int flag)
 		if (map_y >= cubed->map_h)
 			map_y = cubed->map_h - 1;
 		cubed->map_w = ft_strlen(cubed->map[map_y]);
-		if (!flag)
+		if (flag)
+			door_ray(cubed, ray, map_x, map_y);
+		else
 			wall_ray(cubed, ray, map_x, map_y);
 	}
 }

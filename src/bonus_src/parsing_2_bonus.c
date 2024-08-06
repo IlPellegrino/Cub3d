@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:39:31 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/06 10:29:04 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 13:24:59 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,15 @@ int	check_chars(char **map, int l, int col)
 		return (1);
 	if (map[l][col] == ' ')
 		return (1);
+	if (map[l][col] == 'D')
+		return (1);
 	return (0);
 }
 
 int	is_acceptable(char c)
 {
 	if (c == '1' || c == '0' || c == 'N' || c == 'S'
-		|| c == 'W' || c == 'E')
+		|| c == 'W' || c == 'E' || c == 'D')
 		return (1);
 	return (0);
 }
@@ -83,7 +85,7 @@ int	is_acceptable(char c)
 int	is_legal(char c)
 {
 	if (c == '1' || c == '0' || c == 'N' || c == 'S'
-		|| c == 'W' || c == 'E' || c == ' ')
+		|| c == 'W' || c == 'E' || c == 'D' || c == ' ')
 		return (1);
 	return (0);
 }

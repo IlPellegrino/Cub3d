@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/06 10:26:37 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/05 20:01:12 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,11 @@ int	partial_init(t_cubed *cubed)
 {
 	int	i;
 
+	i = -1;
 	cubed->player = malloc(sizeof(t_player));
+	while (++i < FRAME_NUMBER)
+		cubed->door_anim[i].img = 0;
+	cubed->weapon[0].img = 0;
 	cubed->game = ft_calloc(sizeof (t_game), 1);
 	cubed->game->anim_state = -1;
 	cubed->map = 0;
@@ -102,7 +106,7 @@ int	partial_init(t_cubed *cubed)
 	cubed->game->floor_cl = 0;
 	cubed->gui = 0;
 	i = -1;
-	while (++i < 4)
+	while (++i < 5)
 		cubed->texture[i].img = 0;
 	return (1);
 }

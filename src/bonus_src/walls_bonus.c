@@ -6,7 +6,7 @@
 /*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:07:38 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/06 11:54:10 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/03 20:19:47 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,14 @@ t_img	*assign_texture(t_cubed *cubed, int flag)
 	else if (flag == 3)
 		texture = &cubed->texture[3];
 	else
-		texture = &cubed->texture[0];
+	{
+		if (cubed->map[ry][rx] == 'D')
+			texture = &cubed->door_anim[0];
+		else if (cubed->map[ry][rx] == 'C')
+			texture = &cubed->door_anim[FRAME_NUMBER - 1];
+		else
+			texture = &cubed->texture[4];
+	}
 	return (texture);
 }
 
@@ -73,7 +80,7 @@ void	draw_walls(t_cubed *cubed, t_wall *wall, int flag)
 	t_img	*texture;
 
 	texture = assign_texture(cubed, flag);
-	if (flag == 2 || flag == 3)
+	if (flag == 2 || flag == 3 || flag == 4)
 		wall->tex_x = (int)cubed->raycast->ry % TILE_SIZE;
 	else
 		wall->tex_x = (int)cubed->raycast->rx % TILE_SIZE;
