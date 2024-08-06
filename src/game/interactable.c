@@ -6,7 +6,7 @@
 /*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:11:16 by ciusca            #+#    #+#             */
-/*   Updated: 2024/08/05 19:44:39 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/06 14:28:28 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void	interactable(t_cubed *cubed)
 	p = cubed->player;
 	cubed->gui->close_door = 0;
 	cubed->gui->open_door = 0;
-	i = (int)((p->y + p->d_y * 40) / TILE_SIZE);
-	j = (int)((p->x + p->d_x * 40) / TILE_SIZE);
+	i = (int)((p->y + p->d_y * 60) / TILE_SIZE);
+	j = (int)((p->x + p->d_x * 60) / TILE_SIZE);
 	if (i < 0 || j < 0 || i >= cubed->game->ht || j >= cubed->game->wd)
 		return ;
 	if (cubed->map[i][j] == 'C')
