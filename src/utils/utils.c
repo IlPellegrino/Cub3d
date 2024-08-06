@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 11:58:47 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/03 19:13:50 by nromito          ###   ########.fr       */
+/*   Updated: 2024/08/06 19:23:49 by ciusca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	mask_manager(t_cubed *cubed)
 {
 	mlx_hook(cubed->win, KeyPress, KeyPressMask, &key_press, cubed->keys);
 	mlx_hook(cubed->win, KeyRelease, KeyReleaseMask, &key_release, cubed->keys);
-	mlx_hook(cubed->win, DestroyNotify, StructureNotifyMask, &ft_close, &cubed);
+	mlx_hook(cubed->win, DestroyNotify, StructureNotifyMask, &ft_close, cubed);
 }
 
 void	draw_shape(t_img *img, double x, double y, int size)

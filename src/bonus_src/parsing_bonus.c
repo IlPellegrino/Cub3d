@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:49:02 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/05 20:01:12 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/06 17:05:58 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	parsing(char **argv, int argc, t_cubed *cubed)
 		return (ft_putendl_fd(USAGE, 0), 0);
 	partial_init(cubed);
 	check_file(argv[1], cubed);
-	cubed->map = ft_calloc(sizeof (char **), cubed->game->ht + 1);
+	cubed->map = ft_calloc(sizeof (char **), cubed->game->ht + 2);
 	syntax_checker(cubed);
 	if (!cubed->game->no || !cubed->game->so
 		|| !cubed->game->ea || !cubed->game->we)

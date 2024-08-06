@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:33:33 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/06 16:38:44 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/06 16:56:01 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	is_double_player(t_cubed *cubed, int *flag, int rows, int col)
 void	set_player(t_cubed *cubed, char c)
 {
 	if (c == 'N')
-		cubed->player->angle = PI / 2;
-	else if (c == 'S')
 		cubed->player->angle = 3 * PI / 2;
+	else if (c == 'S')
+		cubed->player->angle = PI / 2;
 	else if (c == 'W')
 		cubed->player->angle = WEST;
 	else if (c == 'E')

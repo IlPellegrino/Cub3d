@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ciusca <ciusca@student.42firenze.it>       +#+  +:+       +#+        */
+/*   By: nromito <nromito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 20:29:17 by nromito           #+#    #+#             */
-/*   Updated: 2024/08/04 16:21:12 by ciusca           ###   ########.fr       */
+/*   Updated: 2024/08/06 16:48:17 by nromito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@
 
 # define ERROR "$RED Error $RESET: "
 
-# define USAGE "\n\033[1;31mUsage\033[0m: \033[1;32m./cub3D path/to/map\033[0m\n"
+# define USAGE "\n\033[1;31mUsage\033[0m:\
+\033[1;32m./cub3D path/to/map\033[0m\n"
 
 // make all error wwords in red
-#define SYNTAX "\033[1;31mError\033[0m: syntax error\n"
-
-
+# define SYNTAX "\033[1;31mError\033[0m: syntax error\n"
 
 #endif

@@ -31,7 +31,8 @@ BONUS = bonus_src/game_loop_bonus.c bonus_src/parsing_bonus.c bonus_src/parsing_
 		bonus_src/parsing_checks_bonus.c bonus_src/raycaster_bonus.c bonus_src/walls_bonus.c \
 		bonus_src/vertical_raycast_bonus.c bonus_src/horizontal_raycast_bonus.c \
 		bonus_src/raycast_utils_bonus.c bonus_src/direction_utils_bonus.c \
-		bonus_src/close_and_err_bonus.c bonus_src/texture_bonus.c bonus_src/init_bonus.c
+		bonus_src/close_and_err_bonus.c bonus_src/texture_bonus.c bonus_src/init_bonus.c \
+		bonus_src/is_texture.c
 
 GAME = $(addprefix game/, $(GAME_SRC))
 PARSING = $(addprefix parsing/, $(PARSING_SRC))
@@ -95,10 +96,10 @@ bonus: $(NAME_BONUS)
 	$(CLONE_MLX)
 	$(COMPILE) -c $< -o $@
 $(NAME_BONUS): $(BONUS_OBJS)
-	@echo "\e[0;33mCompiling bonus\e[0m -> \e[0;37mLIBFT\e[0m"
+	@echo "\e[0;33mCompiling\e[0m -> \e[0;37mLIBFT\e[0m"
 	@make -C $(LIBFT_PATH)
 	@echo "\e[0;32mDone\e[0m"
-	@echo "\e[0;33mCompiling bonus \e[0m-> \e[0;37mMLX\e[0m"
+	@echo "\e[0;33mCompiling \e[0m-> \e[0;37mMLX\e[0m"
 	@make -C $(MLX_PATH) 2> /dev/null
 	$(COMPILE) $(BONUS_OBJS) -I include/cubed.h $(LIBFT) $(MLX) $(MLX_INCLUDE) -o $(NAME_BONUS)
 	$(ASCII_ART)
